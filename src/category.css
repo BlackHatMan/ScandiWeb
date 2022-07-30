@@ -1,0 +1,45 @@
+.header {
+    margin: 0 auto;
+    max-width: 1200px;
+    height: 80px;
+    padding: 25px 0;
+    display: flex;
+    justify-content: space-between;
+}
+.nav-link {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 120%;
+    text-transform: uppercase;
+    color: #5ece7b;
+    text-decoration: none;
+    margin: 0 1rem;
+}
+.currency_wrapper {
+    width: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.cart_logo {
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    background-image: url("./svg/Vector.svg");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.cart_qty {
+    height: 1.2rem;
+    width: 1.2rem;
+    line-height: 1rem;
+    font-weight: 600;
+    text-align: center;
+    display: block;
+    background-color: black;
+    color: white;
+    border-radius: 50%;
+    transform: translate(14px, -8px);
+}
