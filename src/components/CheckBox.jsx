@@ -14,6 +14,7 @@ const Label = styled.label`
   width: ${(props) => props.size};
   height: ${(props) => props.size};
   font-size: 14px;
+  font-family: Source Sans Pro;
   line-height: 22px;
   text-transform: uppercase;
   text-align: center;
@@ -24,7 +25,7 @@ const Label = styled.label`
   ${HiddenCheckBox}:checked + && {
     color: ${(props) => props.colorChecked};
     background-color: ${(props) => props.bgColorChecked};
-    border: ${(props) => props.borderChecked};
+    outline: ${(props) => props.outline};
   }
 `;
 
@@ -43,7 +44,7 @@ const CheckBox = ({
   bgColor,
   bgColorChecked,
   colorChecked,
-  borderChecked,
+  outline,
 }) => {
   const handler = (t) => {
     console.log(t);
@@ -59,7 +60,7 @@ const CheckBox = ({
         bgColor={bgColor}
         colorChecked={colorChecked}
         bgColorChecked={bgColorChecked}
-        borderChecked={borderChecked}
+        outline={outline}
       >
         {text}
       </Label>

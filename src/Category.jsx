@@ -5,10 +5,6 @@ import { ReactComponent as CardLogo } from './svg/Card_logo.svg';
 import './category.css';
 
 class Category extends Component {
-  /*  constructor() {
-    super();
-  } */
-
   render() {
     return (
       <div className="header">
