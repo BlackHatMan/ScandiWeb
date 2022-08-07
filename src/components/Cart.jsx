@@ -8,13 +8,13 @@ class Cart extends Component {
     return (
       <Container margin="20px 0">
         <Container width="136px" flexDirection="column">
-          <Typography fw="300" lh="25px" mr="4px">
+          <Typography fw="300" lh="25px" mr="4px 0">
             Apollo Running Short
           </Typography>
           <Typography fw="500" lh="25px">
             50$
           </Typography>
-          <Typography fs="14px" fw="500" lh="16px" mr="4px">
+          <Typography fs="14px" fw="500" lh="16px" mr="4px 0">
             Size:
           </Typography>
           <div>
@@ -33,7 +33,7 @@ class Cart extends Component {
               );
             })}
           </div>
-          <Typography fs="14px" fw="400" lh="16px" mr="4px">
+          <Typography fs="14px" fw="400" lh="16px" mr="4px 0">
             Color:
           </Typography>
           <div>

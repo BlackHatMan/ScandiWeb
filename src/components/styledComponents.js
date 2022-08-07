@@ -7,12 +7,12 @@ export const Container = styled('div')`
   flex-direction: ${(props) => props.flexDirection};
   align-items: ${(props) => props.alignItems};
   margin: ${(props) => props.margin};
+  padding: ${(props) => props.padding};
 `;
 
 export const Typography = styled('p')`
   font-size: ${(props) => props.fs};
   font-weight: ${(props) => props.fw};
   line-height: ${(props) => props.lh};
-  margin-top: ${(props) => props.mr};
-  margin-bottom: ${(props) => props.mr};
+  margin: ${(props) => props.mr};
 `;

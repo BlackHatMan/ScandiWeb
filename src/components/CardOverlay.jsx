@@ -45,7 +45,7 @@ class CardOverlay extends Component {
   render() {
     return (
       <ContainerOverlay>
-        <Typography fw="700" lh="25px" mr="4px">
+        <Typography fw="700" lh="25px" mr="4px 0">
           My Bag {this.state.count} items
         </Typography>
         <Cart
