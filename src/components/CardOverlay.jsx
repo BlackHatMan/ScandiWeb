@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import styled from 'styled-components';
 import { Container, Typography } from './styledComponents';
-import Cart from './Cart';
+import CartModal from './CartModal';
 
 const ContainerOverlay = styled('div')`
   width: 325px;
@@ -48,7 +48,7 @@ class CardOverlay extends Component {
         <Typography fw="700" lh="25px" mr="4px 0">
           My Bag {this.state.count} items
         </Typography>
-        <Cart
+        <CartModal
           sizeStock={sizeStock}
           colorStock={colorStock}
           handlerCount={this.handlerCount}

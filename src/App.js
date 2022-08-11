@@ -1,13 +1,13 @@
 import Category from './Category';
 import CardOverlay from './components/CardOverlay';
-import ItemPreview from './components/ItemPreview';
+import PLP from './components/PLP';
 
 function App() {
   return (
     <div className="App">
       <Category />
-      <CardOverlay />
-      <ItemPreview />
+      {/* <CardOverlay /> */}
+      <PLP />
     </div>
   );
 }
