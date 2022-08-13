@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { Component } from 'react';
-import DropDown from './components/DropDown';
+import DropDown from './common/DropDown';
 import { ReactComponent as CardLogo } from './svg/Card_logo.svg';
 import './category.css';
 

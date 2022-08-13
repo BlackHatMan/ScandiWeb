@@ -1,7 +1,10 @@
 import { Component } from 'react';
 import styled from 'styled-components';
-import { Container, Typography } from './styledComponents';
+import { Container, Typography } from '../common/styledComponents';
 import CartModal from './CartModal';
+
+const sizeStock = ['XS', 'S', 'M', 'L'];
+const colorStock = ['grey', 'yellow', 'red', 'lightgreen', 'blue'];
 
 const ContainerOverlay = styled('div')`
   width: 325px;
@@ -24,10 +27,8 @@ const Button = styled('button')`
     opacity: 0.75;
   }
 `;
-const sizeStock = ['XS', 'S', 'M', 'L'];
-const colorStock = ['grey', 'yellow', 'red', 'lightgreen', 'blue'];
 
-class CardOverlay extends Component {
+class BasketOverlay extends Component {
   constructor() {
     super();
     this.state = {
@@ -36,12 +37,10 @@ class CardOverlay extends Component {
   }
 
   handlerCount = (arg) => {
-    if (arg === '-') {
-      if (this.state.count === 0) return;
-      this.setState({ count: this.state.count - 1 });
-    }
+    if (arg === '-' && this.state.count > 0) this.setState({ count: this.state.count - 1 });
     if (arg === '+') this.setState({ count: this.state.count + 1 });
   };
+
   render() {
     return (
       <ContainerOverlay>
@@ -68,4 +67,4 @@ class CardOverlay extends Component {
     );
   }
 }
-export default CardOverlay;
+export default BasketOverlay;

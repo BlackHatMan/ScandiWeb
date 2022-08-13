@@ -2,7 +2,7 @@ import { Component } from 'react';
 import styled from 'styled-components';
 
 const DropDownContainer = styled('div')`
-  width: 3rem;
+  width: 50px;
   cursor: pointer;
   font-size: 18px;
   font-weight: 500;
@@ -29,7 +29,7 @@ const DropDownHeader = styled('div')`
 const DropDownList = styled('ul')`
   position: absolute;
   z-index: 100;
-  width: 6rem;
+  width: 90px;
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.15);
   padding: 0;
   margin: 0;

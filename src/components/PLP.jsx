@@ -1,11 +1,11 @@
 import { Component } from 'react';
 import styled from 'styled-components';
-import { Container, Typography } from './styledComponents';
+import { Container, Typography } from '../common/styledComponents';
 import CartLogo from '../svg/Card_item.svg';
+import Image from '../common/Image';
 
 const ImageWrapper = styled('div')`
   max-width: 350px;
-  height: 330px;
   width: 100%;
   position: relative;
 `;
@@ -41,6 +41,7 @@ const StockTitle = styled('span')`
 const Products = styled(Container)`
   flex-wrap: wrap;
 `;
+
 class PLP extends Component {
   render() {
     const item = {
@@ -62,7 +63,8 @@ class PLP extends Component {
               color={item.available ? '' : '#8D8F9A'}
             >
               <ImageWrapper>
-                <img src={item.imageSrc} alt="product" />
+                <Image src={item.imageSrc} alt="product" />
+
                 {item.available ? (
                   <Logo src={CartLogo} alt="add item" />
                 ) : (

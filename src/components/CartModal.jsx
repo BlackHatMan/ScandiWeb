@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import styled from 'styled-components';
-import CheckBox from './CheckBox';
-import { Container, Typography } from './styledComponents';
+import CheckBox from '../common/CheckBox';
+import { Container, Typography } from '../common/styledComponents';
 
 class Cart extends Component {
   render() {
