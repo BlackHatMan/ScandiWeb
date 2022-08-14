@@ -9,6 +9,8 @@ const Img = styled('img')`
 const Wrapper = styled('div')`
   max-width: ${(props) => props.MaxWidth};
   max-height: ${(props) => props.MaxHeight};
+  width: ${(props) => props.width};
+  height: ${(props) => props.height};
 `;
 class Image extends Component {
   render() {

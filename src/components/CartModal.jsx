@@ -3,6 +3,14 @@ import styled from 'styled-components';
 import CheckBox from '../common/CheckBox';
 import { Container, Typography } from '../common/styledComponents';
 
+const Button = styled('button')`
+  background-color: white;
+  border-width: 1px;
+  width: 24px;
+  height: 24px;
+  font-size: 20px;
+  cursor: pointer;
+`;
 class Cart extends Component {
   render() {
     return (
@@ -63,12 +71,3 @@ class Cart extends Component {
   }
 }
 export default Cart;
-
-const Button = styled('button')`
-  background-color: white;
-  border-width: 1px;
-  width: 24px;
-  height: 24px;
-  font-size: 20px;
-  cursor: pointer;
-`;

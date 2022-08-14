@@ -6,7 +6,7 @@ import CartModal from './CartModal';
 const sizeStock = ['XS', 'S', 'M', 'L'];
 const colorStock = ['grey', 'yellow', 'red', 'lightgreen', 'blue'];
 
-const ContainerOverlay = styled('div')`
+const ContainerOverlay = styled(Container)`
   width: 325px;
   max-height: 800px;
   padding: 32px 16px;

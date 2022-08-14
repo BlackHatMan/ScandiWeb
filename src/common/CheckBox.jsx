@@ -11,17 +11,18 @@ const HiddenCheckBox = styled.input.attrs({ type: 'radio' })`
 
 const Label = styled.label`
   display: inline-block;
-  width: ${(props) => props.size};
-  height: ${(props) => props.size};
+  color: black;
   font-size: 14px;
   font-family: Source Sans Pro;
-  line-height: 22px;
   text-transform: uppercase;
   text-align: center;
   cursor: pointer;
+  width: ${(props) => props.width ?? props.size};
+  height: ${(props) => props.height ?? props.size};
+  line-height: ${(props) => props.size};
   border: ${(props) => props.border};
   background-color: ${(props) => props.bgColor};
-  color: black;
+  ${(props) => props.rest};
   ${HiddenCheckBox}:checked + && {
     color: ${(props) => props.colorChecked};
     background-color: ${(props) => props.bgColorChecked};
@@ -40,11 +41,13 @@ const CheckBox = ({
   id,
   nameGroup,
   size,
+  width,
   border,
   bgColor,
   bgColorChecked,
   colorChecked,
   outline,
+  ...rest
 }) => {
   const handler = (t) => {
     console.log(t);
@@ -56,11 +59,13 @@ const CheckBox = ({
         htmlFor={`${nameGroup}-${id}`}
         onClick={() => handler(text)}
         size={size}
+        width={width}
         border={border}
         bgColor={bgColor}
         colorChecked={colorChecked}
         bgColorChecked={bgColorChecked}
         outline={outline}
+        rest={rest}
       >
         {text}
       </Label>

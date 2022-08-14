@@ -1,5 +1,6 @@
 import Category from './Category';
 import BasketOverlay from './components/BasketOverlay';
+import PDP from './components/PDP';
 import PLP from './components/PLP';
 
 function App() {
@@ -8,6 +9,7 @@ function App() {
       <Category />
       {/* <BasketOverlay /> */}
       <PLP />
+      <PDP />
     </div>
   );
 }
