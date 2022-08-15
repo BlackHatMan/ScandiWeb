@@ -6,13 +6,14 @@ import CheckBox from './../common/CheckBox';
 
 const sizeStock = ['XS', 'S', 'M', 'L'];
 const colorStock = ['grey', 'yellow', 'red', 'lightgreen', 'blue'];
+const pathImage = ['./Product_D.jpg', './Product_D.jpg', './Product_D.jpg', './Product_D.jpg'];
 
 const TypographyRoboto = styled(Typography)`
   font-family: 'Roboto Condensed';
 `;
 const Wrapper = styled('div')`
   margin: ${(props) => props.mr};
-  ${(props) => props};
+  width: ${(props) => props.width};
 `;
 const Button = styled('button')`
   width: 100%;
@@ -26,13 +27,47 @@ const Button = styled('button')`
     opacity: 0.75;
   }
 `;
+const ImageContainer = styled('div')`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 30px;
+  overflow-y: auto;
+  max-height: 600px;
+  margin-right: 30px;
+`;
+
+const Img = styled('img')`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  cursor: pointer;
+  max-width: 80px;
+  max-height: 80px;
+`;
 
 class PDP extends Component {
+  constructor() {
+    super();
+    this.state = {
+      path: './Product_D.jpg',
+    };
+  }
+  handlerPath = (path) => {
+    this.setState({ path });
+  };
   render() {
     return (
       <Container>
-        <Image src="./Product_D.jpg" width="610px" height="510px" />
-        <Wrapper width="300px">
+        <Container>
+          <ImageContainer>
+            {pathImage.map((el, i) => {
+              return <Img key={`${el}+${i}`} src={el} onClick={() => this.handlerPath(el)} />;
+            })}
+          </ImageContainer>
+          <Image src={this.state.path} width="610px" height="510px" />
+        </Container>
+        <Wrapper width="292px">
           <div>
             <Typography fs="30px" fw="600" lh="27px">
               Apollo
@@ -93,10 +128,10 @@ class PDP extends Component {
           <Button color="white" bgColor="#5ECE7B" border="1px solid #5ECE7B">
             ADD TO CART
           </Button>
-          <Typography fs="16px" lh="26px" mr="40px 0 0 0">
+          <TypographyRoboto fs="16px" lh="26px" mr="40px 0 0 0">
             Find stunning women's cocktail dresses and party dresses. Stand out in lace and metallic
             cocktail dresses and party dresses from all your favorite brands.
-          </Typography>
+          </TypographyRoboto>
         </Wrapper>
       </Container>
     );
