@@ -16,3 +16,7 @@ export const Typography = styled('p')`
   line-height: ${(props) => props.lh};
   margin: ${(props) => props.mr};
 `;
+
+export const TypographyRoboto = styled(Typography)`
+  font-family: 'Roboto Condensed';
+`;

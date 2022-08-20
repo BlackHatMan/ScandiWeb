@@ -1,16 +1,13 @@
 import { Component } from 'react';
 import styled from 'styled-components';
 import Image from '../common/Image';
-import { Container, Typography } from '../common/styledComponents';
+import { Container, Typography, TypographyRoboto } from '../common/styledComponents';
 import CheckBox from './../common/CheckBox';
 
 const sizeStock = ['XS', 'S', 'M', 'L'];
 const colorStock = ['grey', 'yellow', 'red', 'lightgreen', 'blue'];
 const pathImage = ['./Product_D.jpg', './Product_D.jpg', './Product_D.jpg', './Product_D.jpg'];
 
-const TypographyRoboto = styled(Typography)`
-  font-family: 'Roboto Condensed';
-`;
 const Wrapper = styled('div')`
   margin: ${(props) => props.mr};
   width: ${(props) => props.width};

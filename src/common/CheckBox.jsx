@@ -17,9 +17,8 @@ const Label = styled.label`
   text-transform: uppercase;
   text-align: center;
   cursor: pointer;
-  width: ${(props) => props.width ?? props.size};
-  height: ${(props) => props.height ?? props.size};
-  line-height: ${(props) => props.size};
+  width: ${(props) => props.width};
+  height: ${(props) => props.height};
   border: ${(props) => props.border};
   background-color: ${(props) => props.bgColor};
   ${(props) => props.rest};
@@ -40,8 +39,8 @@ const CheckBox = ({
   text,
   id,
   nameGroup,
-  size,
   width,
+  height,
   border,
   bgColor,
   bgColorChecked,
@@ -58,8 +57,8 @@ const CheckBox = ({
       <Label
         htmlFor={`${nameGroup}-${id}`}
         onClick={() => handler(text)}
-        size={size}
         width={width}
+        height={height}
         border={border}
         bgColor={bgColor}
         colorChecked={colorChecked}
