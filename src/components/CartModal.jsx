@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import CheckBox from '../common/CheckBox';
 import { Container, Typography } from '../common/styledComponents';
 
-const Button = styled('button')`
+const ButtonCount = styled('button')`
   background-color: white;
   border-width: 1px;
   width: 24px;
@@ -59,11 +59,11 @@ class Cart extends Component {
           </div>
         </Container>
         <Container flexDirection="column" alignItems="center">
-          <Button onClick={() => this.props.handlerCount('+')}>+</Button>
+          <ButtonCount onClick={() => this.props.handlerCount('+')}>+</ButtonCount>
           <Typography fs="16px" fw="500" lh="25px">
             {this.props.count}
           </Typography>
-          <Button onClick={() => this.props.handlerCount('-')}>-</Button>
+          <ButtonCount onClick={() => this.props.handlerCount('-')}>-</ButtonCount>
         </Container>
         <img src="./product.jpg" alt="item" width="120px" height="190px" />
       </Container>

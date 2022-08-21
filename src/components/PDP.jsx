@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import styled from 'styled-components';
 import Image from '../common/Image';
-import { Container, Typography, TypographyRoboto } from '../common/styledComponents';
+import { Container, Typography, TypographyRoboto, Button } from '../common/styledComponents';
 import CheckBox from './../common/CheckBox';
 
 const sizeStock = ['XS', 'S', 'M', 'L'];
@@ -12,18 +12,7 @@ const Wrapper = styled('div')`
   margin: ${(props) => props.mr};
   width: ${(props) => props.width};
 `;
-const Button = styled('button')`
-  width: 100%;
-  padding: 16px 32px;
-  font: 600 16px/120% 'Raleway', sans-serif;
-  color: ${(props) => props.color};
-  background-color: ${(props) => props.bgColor || 'transparent'};
-  border: ${(props) => props.border || '1px solid'};
-  cursor: pointer;
-  &:hover {
-    opacity: 0.75;
-  }
-`;
+
 const ImageContainer = styled('div')`
   display: flex;
   flex-direction: column;
@@ -122,7 +111,7 @@ class PDP extends Component {
               $50.00
             </Typography>
           </Wrapper>
-          <Button color="white" bgColor="#5ECE7B" border="1px solid #5ECE7B">
+          <Button height="52px" color="white" border="1px solid #5ECE7B">
             ADD TO CART
           </Button>
           <TypographyRoboto fs="16px" lh="26px" mr="40px 0 0 0">
