@@ -73,9 +73,9 @@ class PDP extends Component {
                     key={el}
                     id={i}
                     text={el}
-                    nameGroup="size"
-                    size="45px"
+                    nameGroup="size-PDP"
                     width="65px"
+                    height="45px"
                     border="solid 1px #1d1f22"
                     colorChecked="white"
                     bgColorChecked="black"

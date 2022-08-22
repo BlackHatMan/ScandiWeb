@@ -16,6 +16,8 @@ const WrapperCost = styled('div')`
   display: grid;
   grid-template-columns: 1fr 1fr;
   max-width: 200px;
+  row-gap: 8px;
+  margin: 30px 0 20px 0;
 `;
 const ButtonCount = styled('button')`
   background-color: white;
@@ -41,7 +43,7 @@ class Cart extends Component {
   render() {
     return (
       <div>
-        <Typography fw="700" fs="32px" lh="40px">
+        <Typography fw="700" fs="32px" lh="40px" mr="60px 0">
           CART
         </Typography>
         <WrapperItem padding="24px 0">
@@ -65,13 +67,13 @@ class Cart extends Component {
                     key={el}
                     id={i}
                     text={el}
-                    nameGroup="size"
-                    width="63px"
+                    nameGroup="size-cart"
                     height="45px"
-                    line-height="45px"
+                    width="63px"
                     border="solid 1px #1d1f22"
                     colorChecked="white"
                     bgColorChecked="black"
+                    font-size="16px"
                   />
                 );
               })}
@@ -84,7 +86,7 @@ class Cart extends Component {
                 <CheckBox
                   key={el}
                   id={i}
-                  nameGroup="color"
+                  nameGroup="color-cart"
                   width="32px"
                   height="32px"
                   bgColor={el}

@@ -21,6 +21,7 @@ const Label = styled.label`
   height: ${(props) => props.height};
   border: ${(props) => props.border};
   background-color: ${(props) => props.bgColor};
+  line-height: ${(props) => props.height};
   ${(props) => props.rest};
   ${HiddenCheckBox}:checked + && {
     color: ${(props) => props.colorChecked};

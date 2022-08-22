@@ -33,7 +33,8 @@ class Cart extends Component {
                   id={i}
                   text={el}
                   nameGroup="size"
-                  size="24px"
+                  width="24px"
+                  height="24px"
                   border="solid 1px #1d1f22"
                   colorChecked="white"
                   bgColorChecked="black"
@@ -50,7 +51,8 @@ class Cart extends Component {
                 key={el}
                 id={i}
                 nameGroup="color"
-                size="16px"
+                width="16px"
+                height="16px"
                 bgColor={el}
                 border="1px solid white"
                 outline="solid 1px #5ECE7B"
