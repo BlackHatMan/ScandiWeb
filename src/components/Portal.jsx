@@ -1,19 +1,19 @@
 import { Component } from 'react';
 import { createPortal } from 'react-dom';
 
-const root = document.getElementById('root');
-
 class Portal extends Component {
   constructor() {
     super();
+    this.root = document.getElementById('root');
     this.el = document.createElement('div');
+    this.el.className = 'portal';
   }
 
   componentDidMount() {
-    root.appendChild(this.el);
+    this.root.appendChild(this.el);
   }
   componentWillUnmount() {
-    root.removeChild(this.el);
+    this.root.removeChild(this.el);
   }
 
   render() {

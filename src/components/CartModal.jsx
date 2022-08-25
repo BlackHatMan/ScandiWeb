@@ -11,7 +11,8 @@ const ButtonCount = styled('button')`
   font-size: 20px;
   cursor: pointer;
 `;
-class Cart extends Component {
+
+class CartModal extends Component {
   render() {
     return (
       <Container margin="20px 0">
@@ -38,6 +39,7 @@ class Cart extends Component {
                   border="solid 1px #1d1f22"
                   colorChecked="white"
                   bgColorChecked="black"
+                  handler={this.props.handlerSize}
                 />
               );
             })}
@@ -56,6 +58,7 @@ class Cart extends Component {
                 bgColor={el}
                 border="1px solid white"
                 outline="solid 1px #5ECE7B"
+                handler={this.props.handlerColor}
               />
             ))}
           </div>
@@ -72,4 +75,4 @@ class Cart extends Component {
     );
   }
 }
-export default Cart;
+export default CartModal;

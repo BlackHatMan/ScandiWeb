@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 
 const HiddenCheckBox = styled.input.attrs({ type: 'radio' })`
@@ -36,40 +36,42 @@ const CheckBoxContainer = styled('div')`
   position: relative;
 `;
 
-const CheckBox = ({
-  text,
-  id,
-  nameGroup,
-  width,
-  height,
-  border,
-  bgColor,
-  bgColorChecked,
-  colorChecked,
-  outline,
-  ...rest
-}) => {
-  const handler = (t) => {
-    console.log(t);
-  };
-  return (
-    <CheckBoxContainer>
-      <HiddenCheckBox id={`${nameGroup}-${id}`} name={nameGroup} />
-      <Label
-        htmlFor={`${nameGroup}-${id}`}
-        onClick={() => handler(text)}
-        width={width}
-        height={height}
-        border={border}
-        bgColor={bgColor}
-        colorChecked={colorChecked}
-        bgColorChecked={bgColorChecked}
-        outline={outline}
-        rest={rest}
-      >
-        {text}
-      </Label>
-    </CheckBoxContainer>
-  );
-};
+class CheckBox extends Component {
+  render() {
+    const {
+      text,
+      id,
+      nameGroup,
+      width,
+      height,
+      border,
+      bgColor,
+      bgColorChecked,
+      colorChecked,
+      outline,
+      handler,
+      ...rest
+    } = this.props;
+    return (
+      <CheckBoxContainer>
+        <HiddenCheckBox id={`${nameGroup}-${id}`} name={nameGroup} />
+        <Label
+          htmlFor={`${nameGroup}-${id}`}
+          onClick={() => handler(text || bgColor)}
+          width={width}
+          height={height}
+          border={border}
+          bgColor={bgColor}
+          colorChecked={colorChecked}
+          bgColorChecked={bgColorChecked}
+          outline={outline}
+          rest={rest}
+        >
+          {text}
+        </Label>
+      </CheckBoxContainer>
+    );
+  }
+}
+
 export default CheckBox;

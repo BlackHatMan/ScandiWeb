@@ -21,3 +21,11 @@ code {
   max-width: 1200px;
   margin: 0 auto;
 }
+.portal {
+  position: absolute;
+  left: 0;
+  top: 80px;
+  background: rgba(55, 57, 72, 0.22);
+  height: calc(100% - 80px);
+  width: 100%;
+}
