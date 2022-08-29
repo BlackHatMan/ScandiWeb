@@ -42,7 +42,7 @@ const Products = styled(Container)`
   flex-wrap: wrap;
 `;
 
-class PLP extends Component {
+class ProductPage extends Component {
   render() {
     const item = {
       name: 'Apollo Running Short',
@@ -85,4 +85,4 @@ class PLP extends Component {
   }
 }
 
-export default PLP;
+export default ProductPage;

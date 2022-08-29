@@ -2,7 +2,7 @@ import { Component } from 'react';
 import styled from 'styled-components';
 import Image from '../common/Image';
 import { Container, Typography, TypographyRoboto, Button } from '../common/styledComponents';
-import CheckBox from './../common/CheckBox';
+import CheckBox from '../common/CheckBox';
 import { pathImage, colorStock, sizeStock } from '../mock';
 
 const Wrapper = styled('div')`
@@ -29,7 +29,7 @@ const Img = styled('img')`
   max-height: 80px;
 `;
 
-class PDP extends Component {
+class CategoryPage extends Component {
   constructor() {
     super();
     this.state = {
@@ -121,4 +121,4 @@ class PDP extends Component {
   }
 }
 
-export default PDP;
+export default CategoryPage;

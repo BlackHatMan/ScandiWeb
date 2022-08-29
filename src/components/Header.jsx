@@ -1,21 +1,12 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Container } from '../common/styledComponents';
+import BasketOverlay from './BasketOverlay';
+import Portal from './Portal';
 import DropDown from '../common/DropDown';
 import { ReactComponent as CartLogo } from '../svg/Card_logo.svg';
 import img from '../svg/Vector.svg';
-import Portal from './Portal';
-import BasketOverlay from './BasketOverlay';
-
-const Link = styled('a')`
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 120%;
-  text-transform: uppercase;
-  color: #5ece7b;
-  text-decoration: none;
-  margin: 0 1rem;
-`;
+import Link from './../common/Link';
 
 const Logo = styled('div')`
   cursor: pointer;
@@ -55,9 +46,9 @@ class Header extends Component {
     return (
       <Container padding="25px 0" css="height:80px">
         <nav>
-          <Link href="/Women">Women</Link>
-          <Link href="/Men">Men</Link>
-          <Link href="/Kids">Kids</Link>
+          <Link to="/Women">Women</Link>
+          <Link to="/Men">Men</Link>
+          <Link to="/Kids">Kids</Link>
         </nav>
         <CartLogo />
         <Container width="80px" css="align-items: center;">
