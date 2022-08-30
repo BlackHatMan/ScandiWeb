@@ -1,18 +1,16 @@
 import { Route, Routes } from 'react-router-dom';
-import Header from './components/Header';
 import ProductPage from './components/ProductPage';
 import { Page404 } from './components/Page404';
+import Layout from './components/Layout';
 
 function App() {
   return (
     <div className="App">
-      <Header />
       <Routes>
-        <Route index element={<ProductPage />} />
-        <Route path="Women" element={<ProductPage />} />
-        <Route path="Men" element={<ProductPage />} />
-        <Route path="Kids" element={<ProductPage />} />
-        <Route path="*" element={<Page404 />} />
+        <Route path="/" element={<Layout />}>
+          <Route path=":category" element={<ProductPage />} />
+          <Route path="*" element={<Page404 />} />
+        </Route>
       </Routes>
     </div>
   );
