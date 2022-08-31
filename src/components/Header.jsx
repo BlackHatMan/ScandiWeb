@@ -6,6 +6,7 @@ import Portal from './Portal';
 import DropDown from '../common/DropDown';
 import { ReactComponent as CartLogo } from '../svg/Card_logo.svg';
 import img from '../svg/Vector.svg';
+import { Link as LinkRote } from 'react-router-dom';
 import Link from './../common/Link';
 
 const Logo = styled('div')`
@@ -50,7 +51,9 @@ class Header extends Component {
           <Link to="/Men">Men</Link>
           <Link to="/Kids">Kids</Link>
         </nav>
-        <CartLogo />
+        <LinkRote to="/cart">
+          <CartLogo />
+        </LinkRote>
         <Container width="80px" css="align-items: center;">
           <DropDown />
           <Logo onClick={this.handlerPortal}>
