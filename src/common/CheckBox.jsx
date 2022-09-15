@@ -11,18 +11,14 @@ const HiddenCheckBox = styled.input.attrs({ type: 'radio' })`
 
 const Label = styled.label`
   display: inline-block;
-  color: black;
-  font-size: 14px;
+  padding: 1rem;
   font-family: Source Sans Pro;
   text-transform: uppercase;
   text-align: center;
   cursor: pointer;
-  width: ${(props) => props.width};
-  height: ${(props) => props.height};
   border: ${(props) => props.border};
   background-color: ${(props) => props.bgColor};
   line-height: ${(props) => props.height};
-  ${(props) => props.rest};
   ${HiddenCheckBox}:checked + && {
     color: ${(props) => props.colorChecked};
     background-color: ${(props) => props.bgColorChecked};
@@ -38,36 +34,41 @@ const CheckBoxContainer = styled('div')`
 
 class CheckBox extends Component {
   render() {
-    const {
-      text,
+    let {
       id,
+      value,
+      type,
       nameGroup,
-      width,
-      height,
       border,
       bgColor,
       bgColorChecked,
       colorChecked,
       outline,
-      handler,
       ...rest
     } = this.props;
+
+    if (type === 'swatch') {
+      bgColor = value;
+      bgColorChecked = value;
+      border = '2px solid white';
+      outline = `2px solid ${value}`;
+      value = '';
+    }
+
     return (
       <CheckBoxContainer>
         <HiddenCheckBox id={`${nameGroup}-${id}`} name={nameGroup} />
         <Label
           htmlFor={`${nameGroup}-${id}`}
-          onClick={() => handler(text || bgColor)}
-          width={width}
-          height={height}
           border={border}
           bgColor={bgColor}
           colorChecked={colorChecked}
           bgColorChecked={bgColorChecked}
           outline={outline}
           rest={rest}
+          title={value}
         >
-          {text}
+          {value}
         </Label>
       </CheckBoxContainer>
     );

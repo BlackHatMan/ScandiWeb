@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { Link as RouterLink, useLocation, useParams } from 'react-router-dom';
+import { Link as RouterLink, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
 const StyledLink = styled(RouterLink)`
@@ -31,14 +31,6 @@ const StyledLink = styled(RouterLink)`
   }
 `;
 
-function Wrapper(Child) {
-  return function ComponentWithRouterProp(props) {
-    const location = useLocation();
-    const param = useParams();
-    return <Child {...props} location={location} />;
-  };
-}
-
 class Link extends Component {
   render() {
     const active = (this.props.location.pathname === this.props.to).toString();
@@ -50,3 +42,10 @@ class Link extends Component {
   }
 }
 export default Wrapper(Link);
+
+function Wrapper(Child) {
+  return function ComponentWithRouterProp(props) {
+    const location = useLocation();
+    return <Child {...props} location={location} />;
+  };
+}

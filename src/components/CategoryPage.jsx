@@ -1,13 +1,13 @@
 import { Component } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Container, Typography } from '../common/styledComponents';
+import { getCategory } from '../hok/getCategory';
 import CartLogo from '../svg/Card_item.svg';
 import Image from '../common/Image';
-import { Link } from 'react-router-dom';
 
-const ImageWrapper = styled('div')`
+const WrapperImage = styled('div')`
   max-width: 350px;
-  width: 100%;
   position: relative;
 `;
 const Logo = styled('img')`
@@ -19,7 +19,8 @@ const Logo = styled('img')`
   transition: opacity ease 0.3s;
 `;
 
-const Wrapper = styled(Container)`
+const WrapperCard = styled(Container)`
+  max-height: 400px;
   color: ${(props) => props.color};
   &:hover {
     transition: ease 0.3s background;
@@ -39,53 +40,46 @@ const StockTitle = styled('span')`
   font-size: 24px;
   line-height: 160%;
 `;
-const Products = styled(Container)`
-  flex-wrap: wrap;
-`;
 
 class CategoryPage extends Component {
   render() {
-    const item = {
-      name: 'Apollo_Running_Short',
-      price: '$50.00',
-      imageSrc: './Product_B.jpg',
-      available: true,
-    };
-    const mock = new Array(6).fill('');
     return (
-      <Products>
-        {mock.map((e, i) => {
+      <Container style={{ flexWrap: 'wrap' }}>
+        {this.props.data?.map((item, i) => {
           return (
-            <Wrapper
+            <WrapperCard
               key={i}
               padding="16px"
               flexDirection="column"
               width="386px"
-              color={item.available ? '' : '#8D8F9A'}
+              color={item.inStock ? '' : '#8D8F9A'}
             >
-              <Link to={`${item.name}`}>
-                <ImageWrapper>
-                  <Image src={item.imageSrc} alt="product" />
+              <Link to={`${item.id}`}>
+                <WrapperImage>
+                  <Image src={item.gallery[0]} alt="product" maxHeight="300px" />
 
-                  {item.available ? (
+                  {item.inStock ? (
                     <Logo src={CartLogo} alt="add item" />
                   ) : (
                     <StockTitle>OUT OF STOCK</StockTitle>
                   )}
-                </ImageWrapper>
+                </WrapperImage>
               </Link>
-              <Typography fw="300" fs="16px" lh="29px" mr="24px 0 0 0">
-                {item.name}
-              </Typography>
-              <Typography fw="500" fs="16px" lh="29px">
-                {item.price}
-              </Typography>
-            </Wrapper>
+              <div>
+                <Typography fw="300" fs="16px" lh="29px" mr="24px 0 0 0">
+                  {item.name}
+                </Typography>
+                <Typography fw="500" fs="16px" lh="29px">
+                  {item.prices[0].amount}
+                  {item.prices[0].currency.symbol}
+                </Typography>
+              </div>
+            </WrapperCard>
           );
         })}
-      </Products>
+      </Container>
     );
   }
 }
 
-export default CategoryPage;
+export default getCategory(CategoryPage);

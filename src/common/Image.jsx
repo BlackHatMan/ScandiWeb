@@ -1,4 +1,3 @@
-import { Component } from 'react';
 import styled from 'styled-components';
 
 const Img = styled('img')`
@@ -7,19 +6,22 @@ const Img = styled('img')`
   object-fit: cover;
 `;
 const Wrapper = styled('div')`
-  max-width: ${(props) => props.MaxWidth};
-  max-height: ${(props) => props.MaxHeight};
+  overflow: hidden;
+  max-height: ${(props) => props.maxHeight};
   width: ${(props) => props.width};
   height: ${(props) => props.height};
 `;
-class Image extends Component {
-  render() {
-    return (
-      <Wrapper width={this.props.width} height={this.props.height}>
-        <Img src={this.props.src} loading="lazy" alt={this.props.alt} />
-      </Wrapper>
-    );
-  }
-}
+const Image = (props) => {
+  return (
+    <Wrapper
+      width={props.width}
+      height={props.height}
+      maxWidth={props.maxWidth}
+      maxHeight={props.maxHeight}
+    >
+      <Img src={props.src} loading="lazy" alt={props.alt} />
+    </Wrapper>
+  );
+};
 
 export default Image;

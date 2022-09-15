@@ -8,7 +8,6 @@ export const Container = styled('div')`
   align-items: ${(props) => props.alignItems};
   margin: ${(props) => props.margin};
   padding: ${(props) => props.padding};
-  ${(props) => props.css};
 `;
 
 export const Typography = styled('p')`
