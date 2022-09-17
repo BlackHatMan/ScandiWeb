@@ -2,7 +2,6 @@ import { Component } from 'react';
 import styled from 'styled-components';
 import { Container, Typography, Button } from '../common/styledComponents';
 import CartModal from './CartModal';
-import { sizeStock, colorStock } from './../mock';
 
 const ContainerOverlay = styled(Container)`
   position: absolute;
@@ -45,14 +44,14 @@ class BasketOverlay extends Component {
         <Typography fw="700" lh="25px" mr="4px 0">
           My Bag {this.state.count} items
         </Typography>
-        <CartModal
+        {/*  <CartModal
           sizeStock={sizeStock}
           colorStock={colorStock}
           handlerCount={this.handlerCount}
           count={this.state.count}
           handlerColor={this.handlerColor}
           handlerSize={this.handlerSize}
-        />
+        /> */}
         <Container margin="0 0 30px 0">
           <Typography fw="700">Total</Typography>
           <Typography fw="700">$200</Typography>

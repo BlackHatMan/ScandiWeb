@@ -1,9 +1,11 @@
-import { Component, Fragment } from 'react';
+import { Component } from 'react';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
-import Image from '../common/Image';
 import { Container, Typography, TypographyRoboto, Button } from '../common/styledComponents';
+import Image from '../common/Image';
 import CheckBox from '../common/CheckBox';
 import { getProduct } from '../hok/getCategory';
+import { addItem } from '../data/slice';
 
 const Wrapper = styled('div')`
   margin: ${(props) => props.mr};
@@ -16,7 +18,7 @@ const ImageContainer = styled('div')`
   justify-content: flex-start;
   gap: 30px;
   overflow-y: auto;
-  max-height: 600px;
+  max-height: 800px;
   margin-right: 30px;
 `;
 
@@ -30,38 +32,69 @@ const Img = styled('img')`
 `;
 
 class ProductPage extends Component {
+  constructor() {
+    super();
+    this.state = {
+      path: this.props?.data?.gallery[0],
+      isOrder: true,
+    };
+  }
+
+  handlerPath(path) {
+    this.setState({ path });
+  }
+
+  handlerIsOrder(data) {
+    this.setState((prev) => {
+      return {
+        isOrder: !prev.isOrder,
+      };
+    });
+
+    this.props.addItem({
+      attributes: data.attributes,
+      brand: data.brand,
+      gallery: data.gallery,
+      name: data.name,
+      prices: data.prices,
+    });
+  }
+
+  handler() {
+    console.log('lll');
+  }
   render() {
-    const data = this.props?.data?.product;
-    console.log('render ~ props', this.props);
+    const { gallery, brand, name, attributes, prices, description } = this.props.data.product;
     return (
-      <Container>
+      <Container margin="30px 0 0 0">
         <Container>
           <ImageContainer>
-            {data?.gallery.map((el, i) => {
-              return <Img key={`${el}+${i}`} src={el} onClick={() => this.handlerPath(el)} />;
+            {gallery.map((el, i) => {
+              return <Img key={el} src={el} onClick={() => this.handlerPath(el)} />;
             })}
           </ImageContainer>
-          <Image src={data?.gallery[0]} width="610px" height="510px" />
+          <Image src={this.state.path || gallery[0]} width="610px" height="510px" />
         </Container>
         <Wrapper width="292px">
           <div>
             <Typography fs="30px" fw="600" lh="27px">
-              {data?.brand}
+              {brand}
             </Typography>
             <Typography fs="30px" fw="400" lh="27px" mr="16px 0">
-              {data?.name}
+              {name}
             </Typography>
           </div>
           <Wrapper mr="24px 0">
-            {data?.attributes.map((attr) => {
+            {attributes.map((attr) => {
               return (
-                <div>
+                <div key={attr.id}>
                   <TypographyRoboto fs="18px" fw="700" mr="10px 0">
                     {attr.id}
                   </TypographyRoboto>
                   {attr.items.map((el) => {
                     return (
                       <CheckBox
+                        onClick={this.handler}
                         key={el.value}
                         id={el.id}
                         value={el.value}
@@ -82,14 +115,20 @@ class ProductPage extends Component {
               Price:
             </TypographyRoboto>
             <Typography fs="24px" fw="700">
-              {data?.prices[0].amount}$
+              {prices[0].amount}$
             </Typography>
           </Wrapper>
-          <Button height="52px" color="white" border="1px solid #5ECE7B">
+          <Button
+            /*  disabled={this.state.isOrder} */
+            onClick={this.handlerIsOrder.bind(this, this.props.data.product)}
+            height="52px"
+            color="white"
+            border="1px solid #5ECE7B"
+          >
             ADD TO CART
           </Button>
           <TypographyRoboto fs="16px" lh="26px" mr="40px 0 0 0">
-            <div dangerouslySetInnerHTML={{ __html: data?.description }}></div>
+            <div dangerouslySetInnerHTML={{ __html: description }} />
           </TypographyRoboto>
         </Wrapper>
       </Container>
@@ -97,4 +136,4 @@ class ProductPage extends Component {
   }
 }
 
-export default getProduct(ProductPage);
+export default connect(null, { addItem })(getProduct(ProductPage));
