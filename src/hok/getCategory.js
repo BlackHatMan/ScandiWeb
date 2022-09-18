@@ -30,6 +30,10 @@ export function getProduct(Component) {
       },
     });
 
-    return Boolean(data) ? <Component {...props} data={data} /> : null;
+    if (!data) {
+      return null;
+    }
+
+    return <Component {...props} data={data} />;
   };
 }

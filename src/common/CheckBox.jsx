@@ -44,6 +44,7 @@ class CheckBox extends Component {
       bgColorChecked,
       colorChecked,
       outline,
+      required,
       ...rest
     } = this.props;
 
@@ -57,7 +58,7 @@ class CheckBox extends Component {
 
     return (
       <CheckBoxContainer>
-        <HiddenCheckBox id={`${nameGroup}-${id}`} name={nameGroup} />
+        <HiddenCheckBox id={`${nameGroup}-${id}`} name={nameGroup} required={required} />
         <Label
           htmlFor={`${nameGroup}-${id}`}
           border={border}

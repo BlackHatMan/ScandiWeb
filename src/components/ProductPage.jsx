@@ -11,7 +11,11 @@ const Wrapper = styled('div')`
   margin: ${(props) => props.mr};
   width: ${(props) => props.width};
 `;
-
+const Form = styled('form')`
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+`;
 const ImageContainer = styled('div')`
   display: flex;
   flex-direction: column;
@@ -44,7 +48,7 @@ class ProductPage extends Component {
     this.setState({ path });
   }
 
-  handlerIsOrder(data) {
+  handlerAddToCart(data, e) {
     this.setState((prev) => {
       return {
         isOrder: !prev.isOrder,
@@ -60,13 +64,10 @@ class ProductPage extends Component {
     });
   }
 
-  handler() {
-    console.log('lll');
-  }
   render() {
     const { gallery, brand, name, attributes, prices, description } = this.props.data.product;
     return (
-      <Container margin="30px 0 0 0">
+      <Form>
         <Container>
           <ImageContainer>
             {gallery.map((el, i) => {
@@ -94,7 +95,6 @@ class ProductPage extends Component {
                   {attr.items.map((el) => {
                     return (
                       <CheckBox
-                        onClick={this.handler}
                         key={el.value}
                         id={el.id}
                         value={el.value}
@@ -103,6 +103,7 @@ class ProductPage extends Component {
                         border="solid 1px #1d1f22"
                         colorChecked="white"
                         bgColorChecked="black"
+                        required
                       />
                     );
                   })}
@@ -119,8 +120,7 @@ class ProductPage extends Component {
             </Typography>
           </Wrapper>
           <Button
-            /*  disabled={this.state.isOrder} */
-            onClick={this.handlerIsOrder.bind(this, this.props.data.product)}
+            onClick={this.handlerAddToCart.bind(this, this.props.data.product)}
             height="52px"
             color="white"
             border="1px solid #5ECE7B"
@@ -131,7 +131,7 @@ class ProductPage extends Component {
             <div dangerouslySetInnerHTML={{ __html: description }} />
           </TypographyRoboto>
         </Wrapper>
-      </Container>
+      </Form>
     );
   }
 }
