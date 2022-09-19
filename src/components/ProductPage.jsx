@@ -49,25 +49,30 @@ class ProductPage extends Component {
   }
 
   handlerAddToCart(data, e) {
-    this.setState((prev) => {
-      return {
-        isOrder: !prev.isOrder,
-      };
-    });
+    e.preventDefault();
+    if (e.target.checkValidity()) {
+      this.setState((prev) => {
+        return {
+          isOrder: !prev.isOrder,
+        };
+      });
 
-    this.props.addItem({
-      attributes: data.attributes,
-      brand: data.brand,
-      gallery: data.gallery,
-      name: data.name,
-      prices: data.prices,
-    });
+      this.props.addItem({
+        attributes: data.attributes,
+        brand: data.brand,
+        gallery: data.gallery,
+        name: data.name,
+        prices: data.prices,
+      });
+
+      this.props.navigate(-1);
+    }
   }
 
   render() {
     const { gallery, brand, name, attributes, prices, description } = this.props.data.product;
     return (
-      <Form>
+      <Form onSubmit={this.handlerAddToCart.bind(this, this.props.data.product)}>
         <Container>
           <ImageContainer>
             {gallery.map((el, i) => {
@@ -119,12 +124,7 @@ class ProductPage extends Component {
               {prices[0].amount}$
             </Typography>
           </Wrapper>
-          <Button
-            onClick={this.handlerAddToCart.bind(this, this.props.data.product)}
-            height="52px"
-            color="white"
-            border="1px solid #5ECE7B"
-          >
+          <Button height="52px" color="white" border="1px solid #5ECE7B" type="submit">
             ADD TO CART
           </Button>
           <TypographyRoboto fs="16px" lh="26px" mr="40px 0 0 0">

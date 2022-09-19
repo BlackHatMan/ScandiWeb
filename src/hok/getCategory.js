@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/client';
 import { GET_CATEGORY, GET_PRODUCT } from '../data/query';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { addItem } from '../data/slice';
 import { useDispatch } from 'react-redux';
 
@@ -23,6 +23,7 @@ export function getCategory(Component) {
 export function getProduct(Component) {
   return (props) => {
     const param = useParams();
+    const navigate = useNavigate();
 
     const { data } = useQuery(GET_PRODUCT, {
       variables: {
@@ -34,6 +35,6 @@ export function getProduct(Component) {
       return null;
     }
 
-    return <Component {...props} data={data} />;
+    return <Component {...props} data={data} navigate={navigate} />;
   };
 }
