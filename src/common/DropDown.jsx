@@ -44,7 +44,15 @@ const DropDownItem = styled('li')`
     background-color: #eeeeee;
   }
 `;
-
+const Overlay = styled('div')`
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+`;
 const options = ['$ USD', '€ EUR', '¥ JPY'];
 
 class DropDown extends Component {
@@ -57,7 +65,7 @@ class DropDown extends Component {
   }
 
   currencyHandler = (value) => () => {
-    this.setState((state) => ({ isOpen: !state.isOpen, selectedOption: value.charAt(0) }));
+    this.setState({ selectedOption: value.charAt(0) });
   };
 
   openDropDown = () => {
@@ -66,18 +74,19 @@ class DropDown extends Component {
 
   render() {
     return (
-      <DropDownContainer>
-        <DropDownHeader onClick={this.openDropDown} isOpen={this.state.isOpen}>
-          {this.state.selectedOption}
-        </DropDownHeader>
+      <DropDownContainer onClick={this.openDropDown}>
+        <DropDownHeader isOpen={this.state.isOpen}>{this.state.selectedOption}</DropDownHeader>
         {this.state.isOpen && (
-          <DropDownList>
-            {options.map((option) => (
-              <DropDownItem onClick={this.currencyHandler(option)} key={option}>
-                {option}
-              </DropDownItem>
-            ))}
-          </DropDownList>
+          <>
+            <Overlay />
+            <DropDownList>
+              {options.map((option) => (
+                <DropDownItem onClick={this.currencyHandler(option)} key={option}>
+                  {option}
+                </DropDownItem>
+              ))}
+            </DropDownList>
+          </>
         )}
       </DropDownContainer>
     );

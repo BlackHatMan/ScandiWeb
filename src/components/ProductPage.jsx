@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import { Markup } from 'interweave';
 import { Container, Typography, TypographyRoboto, Button } from '../common/styledComponents';
 import Image from '../common/Image';
 import CheckBox from '../common/CheckBox';
@@ -33,6 +34,12 @@ const Img = styled('img')`
   cursor: pointer;
   max-width: 80px;
   max-height: 80px;
+`;
+const DescriptionContainer = styled('div')`
+  font-family: 'Roboto Condensed';
+  font-size: 16px;
+  line-height: 26px;
+  margin: 40px 0 0 0;
 `;
 
 class ProductPage extends Component {
@@ -127,9 +134,9 @@ class ProductPage extends Component {
           <Button height="52px" color="white" border="1px solid #5ECE7B" type="submit">
             ADD TO CART
           </Button>
-          <TypographyRoboto fs="16px" lh="26px" mr="40px 0 0 0">
-            <div dangerouslySetInnerHTML={{ __html: description }} />
-          </TypographyRoboto>
+          <DescriptionContainer>
+            <Markup content={description} />
+          </DescriptionContainer>
         </Wrapper>
       </Form>
     );

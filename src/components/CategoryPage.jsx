@@ -45,7 +45,7 @@ class CategoryPage extends Component {
   render() {
     return (
       <Container style={{ flexWrap: 'wrap' }}>
-        {this.props.data?.map((item, i) => {
+        {this.props.data.map((item, i) => {
           return (
             <WrapperCard
               key={i}
@@ -54,7 +54,7 @@ class CategoryPage extends Component {
               width="386px"
               color={item.inStock ? '' : '#8D8F9A'}
             >
-              <Link to={`${item.id}`}>
+              <Link to={item.inStock ? item.id : false}>
                 <WrapperImage>
                   <Image src={item.gallery[0]} alt="product" maxHeight="300px" />
 

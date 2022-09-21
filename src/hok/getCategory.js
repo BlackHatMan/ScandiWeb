@@ -1,8 +1,6 @@
 import { useQuery } from '@apollo/client';
 import { GET_CATEGORY, GET_PRODUCT } from '../data/query';
 import { useNavigate, useParams } from 'react-router-dom';
-import { addItem } from '../data/slice';
-import { useDispatch } from 'react-redux';
 
 export function getCategory(Component) {
   return (props) => {
@@ -16,7 +14,11 @@ export function getCategory(Component) {
       },
     });
 
-    return <Component {...props} param={param} data={data?.category?.products} />;
+    if (!data) {
+      return null;
+    }
+
+    return <Component {...props} param={param} data={data.category.products} />;
   };
 }
 
