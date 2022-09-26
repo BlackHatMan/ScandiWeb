@@ -37,10 +37,9 @@ class BasketOverlay extends Component {
   handlerSize = (size) => {
     this.setState({ size });
   };
-
   render() {
     return (
-      <ContainerOverlay>
+      <ContainerOverlay onClick={(e) => e.stopPropagation()}>
         <Typography fw="700" lh="25px" mr="4px 0">
           My Bag {this.state.count} items
         </Typography>
@@ -60,7 +59,13 @@ class BasketOverlay extends Component {
           <Button width="140px" height="40px" fw="700" color="black" bgColor="transparent">
             View bag
           </Button>
-          <Button width="140px" height="40px" fw="700" border="1px solid #5ECE7B">
+          <Button
+            onClick={() => console.log('lllox')}
+            width="140px"
+            height="40px"
+            fw="700"
+            border="1px solid #5ECE7B"
+          >
             CHECK OUT
           </Button>
         </Container>

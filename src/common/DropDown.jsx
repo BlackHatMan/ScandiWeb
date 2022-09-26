@@ -50,8 +50,7 @@ const Overlay = styled('div')`
   right: 0;
   top: 0;
   bottom: 0;
-  width: 100vw;
-  height: 100vh;
+  z-index: 100;
 `;
 const options = ['$ USD', '€ EUR', '¥ JPY'];
 
@@ -64,7 +63,7 @@ class DropDown extends Component {
     };
   }
 
-  currencyHandler = (value) => () => {
+  itemHandler = (value) => () => {
     this.setState({ selectedOption: value.charAt(0) });
   };
 
@@ -81,7 +80,7 @@ class DropDown extends Component {
             <Overlay />
             <DropDownList>
               {options.map((option) => (
-                <DropDownItem onClick={this.currencyHandler(option)} key={option}>
+                <DropDownItem onClick={this.itemHandler(option)} key={option}>
                   {option}
                 </DropDownItem>
               ))}

@@ -4,6 +4,7 @@ export const Container = styled('div')`
   display: flex;
   justify-content: space-between;
   width: ${(props) => props.width};
+  height: ${(props) => props.height};
   flex-direction: ${(props) => props.flexDirection};
   align-items: ${(props) => props.alignItems};
   margin: ${(props) => props.margin};

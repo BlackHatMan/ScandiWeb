@@ -45,7 +45,7 @@ class Header extends Component {
   };
   render() {
     return (
-      <Container padding="25px 0" style={{ height: '80px' }}>
+      <Container padding="25px 0" height="80px">
         <nav>
           <Link to="/all">All</Link>
           <Link to="/clothes">Clothes</Link>
@@ -58,11 +58,9 @@ class Header extends Component {
             <span>3</span>
           </Logo>
         </Container>
-        {this.state.isOpen && (
-          <Portal>
-            <BasketOverlay />
-          </Portal>
-        )}
+        <Portal handleClose={this.handlerPortal} isVisible={true}>
+          <BasketOverlay />
+        </Portal>
       </Container>
     );
   }
