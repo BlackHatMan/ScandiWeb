@@ -1,6 +1,7 @@
 import { useQuery } from '@apollo/client';
 import { GET_CATEGORY, GET_PRODUCT } from '../data/query';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 export function getCategory(Component) {
   return (props) => {
@@ -38,5 +39,16 @@ export function getProduct(Component) {
     }
 
     return <Component {...props} data={data} navigate={navigate} />;
+  };
+}
+
+export function getBasketProduct(Component) {
+  return (props) => {
+    const data = useSelector((state) => state);
+    if (!data) {
+      return null;
+    }
+
+    return <Component {...props} data={data.items} />;
   };
 }

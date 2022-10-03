@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { css } from 'styled-components';
+
+const CheckBoxContainer = styled('div')`
+  display: inline-block;
+  margin-right: 0.5rem;
+  position: relative;
+`;
 
 const HiddenCheckBox = styled.input.attrs({ type: 'radio' })`
   position: absolute;
@@ -9,68 +16,61 @@ const HiddenCheckBox = styled.input.attrs({ type: 'radio' })`
   z-index: -1;
 `;
 
-const Label = styled.label`
+const Color = styled('label')`
   display: inline-block;
-  padding: 1rem;
-  font-family: Source Sans Pro;
-  text-transform: uppercase;
-  text-align: center;
   cursor: pointer;
-  border: ${(props) => props.border};
-  background-color: ${(props) => props.bgColor};
-  line-height: ${(props) => props.height};
+  border: 2px solid white;
+  width: ${(props) => props.width || '2rem'};
+  height: ${(props) => props.height || '2rem'};
+  background-color: ${(props) => props.value};
+  ${(props) =>
+    props.small &&
+    css`
+      width: ${(props) => props.width || '1rem'};
+      height: ${(props) => props.height || '1rem'};
+    `}
   ${HiddenCheckBox}:checked + && {
-    color: ${(props) => props.colorChecked};
-    background-color: ${(props) => props.bgColorChecked};
-    outline: ${(props) => props.outline};
+    outline: ${(props) => `2px solid ${props.value}`};
   }
 `;
 
-const CheckBoxContainer = styled('div')`
+const Text = styled('label')`
   display: inline-block;
-  margin-right: 8px;
-  position: relative;
+  text-transform: uppercase;
+  padding: 0.7rem;
+  text-align: center;
+  cursor: pointer;
+  border: solid 1px #1d1f22;
+  font-family: Source Sans Pro, sans-serif;
+  width: ${(props) => props.width || '4rem'};
+  height: ${(props) => props.height || '3rem'};
+  ${(props) =>
+    props.small &&
+    css`
+      padding: 0.2rem;
+      width: ${(props) => props.width || '100%'};
+      height: ${(props) => props.height || '1.5rem'};
+    `}
+  ${HiddenCheckBox}:checked + && {
+    color: white;
+    background-color: black;
+  }
 `;
 
 class CheckBox extends Component {
   render() {
-    let {
-      id,
-      value,
-      type,
-      nameGroup,
-      border,
-      bgColor,
-      bgColorChecked,
-      colorChecked,
-      outline,
-      required,
-      ...rest
-    } = this.props;
-
-    if (type === 'swatch') {
-      bgColor = value;
-      bgColorChecked = value;
-      border = '2px solid white';
-      outline = `2px solid ${value}`;
-      value = '';
-    }
+    const { id, value, type, nameGroup, required, ...rest } = this.props;
+    const ID = `${nameGroup}-${id}`;
 
     return (
       <CheckBoxContainer>
-        <HiddenCheckBox id={`${nameGroup}-${id}`} name={nameGroup} required={required} />
-        <Label
-          htmlFor={`${nameGroup}-${id}`}
-          border={border}
-          bgColor={bgColor}
-          colorChecked={colorChecked}
-          bgColorChecked={bgColorChecked}
-          outline={outline}
-          rest={rest}
-          title={value}
-        >
-          {value}
-        </Label>
+        <HiddenCheckBox id={ID} name={nameGroup} required={required} />
+        {type === 'text' && (
+          <Text htmlFor={ID} {...rest}>
+            {value}
+          </Text>
+        )}
+        {type === 'swatch' && <Color htmlFor={ID} value={value} {...rest} />}
       </CheckBoxContainer>
     );
   }

@@ -28,7 +28,7 @@ const DropDownHeader = styled('div')`
 
 const DropDownList = styled('ul')`
   position: absolute;
-  z-index: 100;
+  z-index: 101;
   width: 90px;
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.15);
   padding: 0;
@@ -50,7 +50,7 @@ const Overlay = styled('div')`
   right: 0;
   top: 0;
   bottom: 0;
-  z-index: 100;
+  z-index: 101;
 `;
 const options = ['$ USD', '€ EUR', '¥ JPY'];
 

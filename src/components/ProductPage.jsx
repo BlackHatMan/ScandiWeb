@@ -26,7 +26,7 @@ const ImageContainer = styled('div')`
   max-height: 800px;
   margin-right: 30px;
 `;
-
+// TODO  think about Image Component, is it really need?
 const Img = styled('img')`
   width: 100%;
   height: 100%;
@@ -55,7 +55,7 @@ class ProductPage extends Component {
     this.setState({ path });
   }
 
-  handlerAddToCart(data, e) {
+  addToCart = (e, data) => {
     e.preventDefault();
     if (e.target.checkValidity()) {
       this.setState((prev) => {
@@ -74,12 +74,12 @@ class ProductPage extends Component {
 
       this.props.navigate(-1);
     }
-  }
+  };
 
   render() {
     const { gallery, brand, name, attributes, prices, description } = this.props.data.product;
     return (
-      <Form onSubmit={this.handlerAddToCart.bind(this, this.props.data.product)}>
+      <Form onSubmit={(e) => this.addToCart(e, this.props.data.product)}>
         <Container>
           <ImageContainer>
             {gallery.map((el, i) => {
@@ -112,9 +112,6 @@ class ProductPage extends Component {
                         value={el.value}
                         type={attr.type}
                         nameGroup={attr.id}
-                        border="solid 1px #1d1f22"
-                        colorChecked="white"
-                        bgColorChecked="black"
                         required
                       />
                     );

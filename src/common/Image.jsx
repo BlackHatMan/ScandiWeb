@@ -12,14 +12,10 @@ const Wrapper = styled('div')`
   height: ${(props) => props.height};
 `;
 const Image = (props) => {
+  const { src, width, height, maxHeight, maxWidth, alt } = props;
   return (
-    <Wrapper
-      width={props.width}
-      height={props.height}
-      maxWidth={props.maxWidth}
-      maxHeight={props.maxHeight}
-    >
-      <Img src={props.src} loading="lazy" alt={props.alt} />
+    <Wrapper width={width} height={height} maxWidth={maxWidth} maxHeight={maxHeight}>
+      <Img src={src} loading="lazy" alt={alt} />
     </Wrapper>
   );
 };

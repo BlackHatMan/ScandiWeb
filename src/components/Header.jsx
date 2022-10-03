@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { Container } from '../common/styledComponents';
 import Link from './../common/Link';
 import BasketOverlay from './BasketOverlay';
-import Portal from './Portal';
 import DropDown from '../common/DropDown';
 import { ReactComponent as CartLogo } from '../svg/Card_logo.svg';
 import img from '../svg/Vector.svg';
@@ -58,9 +57,7 @@ class Header extends Component {
             <span>3</span>
           </Logo>
         </Container>
-        <Portal handleClose={this.handlerPortal} isVisible={true}>
-          <BasketOverlay />
-        </Portal>
+        {this.state.isOpen && <BasketOverlay close={this.handlerPortal} />}
       </Container>
     );
   }
