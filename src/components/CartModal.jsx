@@ -37,7 +37,7 @@ class CartModal extends Component {
                 </Typography>
 
                 {item.attributes.map((attr, index) => {
-                  /* parse type from redux have added ProductPAge */
+                  /* parse type checkbox from redux Wich the added from ProductPAge */
                   const [value, type] = attr.at(1).split('-');
                   return (
                     <div style={{ fontSize: '14px', fontWeight: '500' }} key={attr.at(0)}>

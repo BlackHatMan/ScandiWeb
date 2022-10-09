@@ -6,17 +6,14 @@ import { getCategory } from '../hok/getCategory';
 import CartLogo from '../svg/Card_item.svg';
 import { Image } from '../common/Image';
 
+const WrapperPage = styled('div')`
+  display: flex;
+  flex-wrap: wrap;
+`;
+
 const WrapperImage = styled('div')`
   max-width: 350px;
   position: relative;
-`;
-const Logo = styled('img')`
-  cursor: pointer;
-  position: absolute;
-  bottom: -26px;
-  right: 15px;
-  opacity: 0;
-  transition: opacity ease 0.3s;
 `;
 
 const WrapperCard = styled(Container)`
@@ -34,6 +31,16 @@ const WrapperCard = styled(Container)`
     }
   }
 `;
+
+const Logo = styled('img')`
+  cursor: pointer;
+  position: absolute;
+  bottom: -26px;
+  right: 15px;
+  opacity: 0;
+  transition: opacity ease 0.3s;
+`;
+
 const StockTitle = styled('span')`
   position: absolute;
   left: 25%;
@@ -47,7 +54,7 @@ const StockTitle = styled('span')`
 class CategoryPage extends Component {
   render() {
     return (
-      <Container style={{ flexWrap: 'wrap' }}>
+      <WrapperPage>
         {this.props.data.map((item, i) => {
           return (
             <WrapperCard key={i} color={item.inStock ? '' : '#8D8F9A'}>
@@ -74,7 +81,7 @@ class CategoryPage extends Component {
             </WrapperCard>
           );
         })}
-      </Container>
+      </WrapperPage>
     );
   }
 }
