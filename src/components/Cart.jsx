@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import { Typography, TypographyRoboto, Button } from '../common/styledComponents';
 import { Container } from './../common/styledComponents';
-import CheckBox from './../common/CheckBox';
+import { CheckBox } from './../common/CheckBox';
 import styled from 'styled-components';
 
 const sizeStock = ['XS', 'S', 'M', 'L'];

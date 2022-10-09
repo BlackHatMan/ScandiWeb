@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { Container, Typography } from '../common/styledComponents';
 import { getCategory } from '../hok/getCategory';
 import CartLogo from '../svg/Card_item.svg';
-import Image from '../common/Image';
+import { Image } from '../common/Image';
 
 const WrapperImage = styled('div')`
   max-width: 350px;
@@ -20,7 +20,10 @@ const Logo = styled('img')`
 `;
 
 const WrapperCard = styled(Container)`
-  max-height: 400px;
+  width: 380px;
+  max-height: 450px;
+  flex-direction: column;
+  padding: 16px;
   color: ${(props) => props.color};
   &:hover {
     transition: ease 0.3s background;
@@ -47,16 +50,10 @@ class CategoryPage extends Component {
       <Container style={{ flexWrap: 'wrap' }}>
         {this.props.data.map((item, i) => {
           return (
-            <WrapperCard
-              key={i}
-              padding="16px"
-              flexDirection="column"
-              width="386px"
-              color={item.inStock ? '' : '#8D8F9A'}
-            >
+            <WrapperCard key={i} color={item.inStock ? '' : '#8D8F9A'}>
               <Link to={item.inStock ? item.id : false}>
                 <WrapperImage>
-                  <Image src={item.gallery[0]} alt="product" maxHeight="300px" />
+                  <Image src={item.gallery.at(0)} alt={item.name} width={350} height={340} />
 
                   {item.inStock ? (
                     <Logo src={CartLogo} alt="add item" />

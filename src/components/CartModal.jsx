@@ -1,9 +1,9 @@
 import { Component } from 'react';
 import styled from 'styled-components';
-import CheckBox from '../common/CheckBox';
+import { CheckBox } from '../common/CheckBox';
 import { Container, Typography } from '../common/styledComponents';
 import { TypographyRoboto } from './../common/styledComponents';
-import Image from './../common/Image';
+import { Image } from './../common/Image';
 
 const ButtonCount = styled('button')`
   background-color: white;
@@ -36,25 +36,22 @@ class CartModal extends Component {
                   {item.prices[0].amount}$
                 </Typography>
 
-                {item.attributes.map((attr) => {
+                {item.attributes.map((attr, index) => {
+                  /* parse type from redux have added ProductPAge */
+                  const [value, type] = attr.at(1).split('-');
                   return (
-                    <div style={{ fontSize: '14px', fontWeight: '500' }} key={attr.name}>
+                    <div style={{ fontSize: '14px', fontWeight: '500' }} key={attr.at(0)}>
                       <TypographyRoboto fs="14px" fw="500" lh="16px" mr="4px 0">
-                        {attr.name}
+                        {attr.at(0)}
                       </TypographyRoboto>
                       <Stack>
-                        {attr.items.map((el) => {
-                          return (
-                            <CheckBox
-                              small
-                              key={el.value}
-                              id={el.id}
-                              value={el.value}
-                              type={attr.type}
-                              nameGroup={attr.id}
-                            />
-                          );
-                        })}
+                        <CheckBox
+                          small
+                          value={value}
+                          type={type}
+                          nameGroup={value + index}
+                          defaultChecked={true}
+                        />
                       </Stack>
                     </div>
                   );
@@ -67,7 +64,7 @@ class CartModal extends Component {
                 </Typography>
                 <ButtonCount onClick={() => this.props.handlerCount('-')}>-</ButtonCount>
               </Container>
-              <Image src={item.gallery[0]} alt="item" width="120px" height="190px" />
+              <Image src={item.gallery.at(0)} alt={item.name} width={120} height={180} />
             </Container>
           );
         })}

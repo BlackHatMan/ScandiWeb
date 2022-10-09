@@ -2,16 +2,12 @@ import { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { Markup } from 'interweave';
-import { Container, Typography, TypographyRoboto, Button } from '../common/styledComponents';
-import Image from '../common/Image';
-import CheckBox from '../common/CheckBox';
+import { Typography, TypographyRoboto, Button } from '../common/styledComponents';
+import { Image } from '../common/Image';
+import { CheckBox } from '../common/CheckBox';
 import { getProduct } from '../hok/getCategory';
 import { addItem } from '../data/slice';
 
-const Wrapper = styled('div')`
-  margin: ${(props) => props.mr};
-  width: ${(props) => props.width};
-`;
 const Form = styled('form')`
   display: flex;
   justify-content: space-between;
@@ -24,16 +20,26 @@ const ImageContainer = styled('div')`
   gap: 30px;
   overflow-y: auto;
   max-height: 800px;
-  margin-right: 30px;
+  margin-right: 15px;
 `;
-// TODO  think about Image Component, is it really need?
-const Img = styled('img')`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  cursor: pointer;
-  max-width: 80px;
-  max-height: 80px;
+const ScrollContainer = styled('div')`
+  height: 550px;
+  overflow-y: auto;
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-track {
+    border-radius: 5px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #5ece7b;
+    border-radius: 15px;
+    height: 2px;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: lightBlue;
+    max-height: 10px;
+  }
 `;
 const DescriptionContainer = styled('div')`
   font-family: 'Roboto Condensed';
@@ -46,26 +52,22 @@ class ProductPage extends Component {
   constructor() {
     super();
     this.state = {
-      path: this.props?.data?.gallery[0],
-      isOrder: true,
+      path: this.props?.data.gallery[0],
     };
   }
 
-  handlerPath(path) {
+  handlerPath = (path) => {
     this.setState({ path });
-  }
+  };
 
   addToCart = (e, data) => {
     e.preventDefault();
+
     if (e.target.checkValidity()) {
-      this.setState((prev) => {
-        return {
-          isOrder: !prev.isOrder,
-        };
-      });
+      const attributes = Object.entries(Object.fromEntries(new FormData(e.target)));
 
       this.props.addItem({
-        attributes: data.attributes,
+        attributes,
         brand: data.brand,
         gallery: data.gallery,
         name: data.name,
@@ -80,15 +82,25 @@ class ProductPage extends Component {
     const { gallery, brand, name, attributes, prices, description } = this.props.data.product;
     return (
       <Form onSubmit={(e) => this.addToCart(e, this.props.data.product)}>
-        <Container>
+        <ScrollContainer>
           <ImageContainer>
-            {gallery.map((el, i) => {
-              return <Img key={el} src={el} onClick={() => this.handlerPath(el)} />;
+            {gallery.map((el) => {
+              return (
+                <Image
+                  key={el}
+                  src={el}
+                  width={80}
+                  height={80}
+                  onClick={() => this.handlerPath(el)}
+                  cursor="pointer"
+                  alt="additional image"
+                />
+              );
             })}
           </ImageContainer>
-          <Image src={this.state.path || gallery[0]} width="610px" height="510px" />
-        </Container>
-        <Wrapper width="292px">
+        </ScrollContainer>
+        <Image src={this.state.path || gallery.at(0)} width={610} height={510} />
+        <div style={{ width: '292px' }}>
           <div>
             <Typography fs="30px" fw="600" lh="27px">
               {brand}
@@ -97,7 +109,7 @@ class ProductPage extends Component {
               {name}
             </Typography>
           </div>
-          <Wrapper mr="24px 0">
+          <div style={{ margin: '24px 0' }}>
             {attributes.map((attr) => {
               return (
                 <div key={attr.id}>
@@ -119,22 +131,22 @@ class ProductPage extends Component {
                 </div>
               );
             })}
-          </Wrapper>
-          <Wrapper mr="12px 0 20px 0">
+          </div>
+          <div style={{ margin: '12px 0 20px 0' }}>
             <TypographyRoboto fs="18px" fw="700" mr="10px 0">
               Price:
             </TypographyRoboto>
             <Typography fs="24px" fw="700">
               {prices[0].amount}$
             </Typography>
-          </Wrapper>
+          </div>
           <Button height="52px" color="white" border="1px solid #5ECE7B" type="submit">
             ADD TO CART
           </Button>
           <DescriptionContainer>
             <Markup content={description} />
           </DescriptionContainer>
-        </Wrapper>
+        </div>
       </Form>
     );
   }

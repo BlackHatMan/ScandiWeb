@@ -38,6 +38,7 @@ const Text = styled('label')`
   display: inline-block;
   text-transform: uppercase;
   padding: 0.7rem;
+  margin: 2px 0;
   text-align: center;
   cursor: pointer;
   border: solid 1px #1d1f22;
@@ -49,6 +50,7 @@ const Text = styled('label')`
     css`
       padding: 0.2rem;
       width: ${(props) => props.width || '100%'};
+      min-width: 1.5rem;
       height: ${(props) => props.height || '1.5rem'};
     `}
   ${HiddenCheckBox}:checked + && {
@@ -57,14 +59,20 @@ const Text = styled('label')`
   }
 `;
 
-class CheckBox extends Component {
+export class CheckBox extends Component {
   render() {
     const { id, value, type, nameGroup, required, ...rest } = this.props;
     const ID = `${nameGroup}-${id}`;
 
     return (
       <CheckBoxContainer>
-        <HiddenCheckBox id={ID} name={nameGroup} required={required} />
+        <HiddenCheckBox
+          id={ID}
+          name={nameGroup}
+          required={required}
+          value={`${value}-${type}`}
+          {...rest}
+        />
         {type === 'text' && (
           <Text htmlFor={ID} {...rest}>
             {value}
@@ -75,5 +83,3 @@ class CheckBox extends Component {
     );
   }
 }
-
-export default CheckBox;

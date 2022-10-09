@@ -33,20 +33,12 @@ class BasketOverlay extends Component {
     super();
     this.state = {
       count: 1,
-      color: '',
-      size: '',
     };
   }
 
   handlerCount = (arg) => {
     if (arg === '-' && this.state.count > 0) this.setState({ count: this.state.count - 1 });
     if (arg === '+') this.setState({ count: this.state.count + 1 });
-  };
-  handlerColor = (color) => {
-    this.setState({ color });
-  };
-  handlerSize = (size) => {
-    this.setState({ size });
   };
   render() {
     return (
