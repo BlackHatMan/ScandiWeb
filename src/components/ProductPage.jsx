@@ -24,9 +24,11 @@ const ImageContainer = styled('div')`
 `;
 const ScrollContainer = styled('div')`
   height: 550px;
+  min-width: 70px;
   overflow-y: auto;
+  margin-right: 15px;
   &::-webkit-scrollbar {
-    width: 6px;
+    width: 5px;
   }
   &::-webkit-scrollbar-track {
     border-radius: 5px;
@@ -62,16 +64,18 @@ class ProductPage extends Component {
 
   addToCart = (e, data) => {
     e.preventDefault();
-
+    console.log(data);
     if (e.target.checkValidity()) {
       const attributes = Object.entries(Object.fromEntries(new FormData(e.target)));
 
       this.props.addItem({
+        id: data.id,
         attributes,
         brand: data.brand,
         gallery: data.gallery,
         name: data.name,
         prices: data.prices,
+        count: 1,
       });
 
       this.props.navigate(-1);
@@ -100,7 +104,7 @@ class ProductPage extends Component {
           </ImageContainer>
         </ScrollContainer>
         <Image src={this.state.path || gallery.at(0)} width={610} height={510} />
-        <div style={{ width: '292px' }}>
+        <div style={{ width: '292px', margin: '0 15px' }}>
           <div>
             <Typography fs="30px" fw="600" lh="27px">
               {brand}

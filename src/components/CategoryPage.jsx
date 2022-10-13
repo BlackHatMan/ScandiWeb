@@ -9,6 +9,7 @@ import { Image } from '../common/Image';
 const WrapperPage = styled('div')`
   display: flex;
   flex-wrap: wrap;
+  gap: 40px;
 `;
 
 const WrapperImage = styled('div')`
@@ -16,9 +17,19 @@ const WrapperImage = styled('div')`
   position: relative;
 `;
 
+const Logo = styled('img')`
+  cursor: pointer;
+  position: absolute;
+  bottom: -26px;
+  right: 15px;
+  opacity: 0;
+  transition: opacity ease 0.3s;
+`;
+
 const WrapperCard = styled(Container)`
-  width: 380px;
-  max-height: 450px;
+  width: 386px;
+  min-width: 300px;
+  max-height: 444px;
   flex-direction: column;
   padding: 16px;
   color: ${(props) => props.color};
@@ -30,15 +41,6 @@ const WrapperCard = styled(Container)`
       opacity: 1;
     }
   }
-`;
-
-const Logo = styled('img')`
-  cursor: pointer;
-  position: absolute;
-  bottom: -26px;
-  right: 15px;
-  opacity: 0;
-  transition: opacity ease 0.3s;
 `;
 
 const StockTitle = styled('span')`
