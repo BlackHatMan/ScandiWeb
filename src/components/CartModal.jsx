@@ -37,7 +37,7 @@ class CartModal extends Component {
                 </Typography>
 
                 {item.attributes.map((attr, index) => {
-                  /* parse type checkbox from redux Wich the added from ProductPAge */
+                  /* parse type checkbox from redux which the added from ProductPAge */
                   const [value, type] = attr.at(1).split('-');
                   return (
                     <div style={{ fontSize: '14px', fontWeight: '500' }} key={attr.at(0)}>
@@ -58,11 +58,11 @@ class CartModal extends Component {
                 })}
               </Container>
               <Container flexDirection="column" alignItems="center">
-                <ButtonCount onClick={() => this.props.handlerCount('+')}>+</ButtonCount>
+                <ButtonCount onClick={() => this.props.increaseCount(item.id)}>+</ButtonCount>
                 <Typography fs="16px" fw="500" lh="25px">
-                  {this.props.count}
+                  {item.count}
                 </Typography>
-                <ButtonCount onClick={() => this.props.handlerCount('-')}>-</ButtonCount>
+                <ButtonCount onClick={() => this.props.decreaseCount(item.id)}>-</ButtonCount>
               </Container>
               <Image src={item.gallery.at(0)} alt={item.name} width={120} height={180} />
             </Container>

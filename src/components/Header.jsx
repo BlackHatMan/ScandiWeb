@@ -6,6 +6,7 @@ import BasketOverlay from './BasketOverlay';
 import DropDown from '../common/DropDown';
 import { ReactComponent as CartLogo } from '../svg/Card_logo.svg';
 import img from '../svg/Vector.svg';
+import { connect } from 'react-redux';
 
 const Logo = styled('div')`
   cursor: pointer;
@@ -19,7 +20,7 @@ const Logo = styled('div')`
   & span {
     height: 1.2rem;
     width: 1.2rem;
-    line-height: 1rem;
+    line-height: 1.1rem;
     font-weight: 600;
     text-align: center;
     display: block;
@@ -54,7 +55,7 @@ class Header extends Component {
         <Container width="80px" style={{ alignItems: 'center' }}>
           <DropDown />
           <Logo onClick={this.handlerPortal}>
-            <span>3</span>
+            <span>{this.props.total.count || 0}</span>
           </Logo>
         </Container>
         {this.state.isOpen && <BasketOverlay close={this.handlerPortal} />}
@@ -62,5 +63,6 @@ class Header extends Component {
     );
   }
 }
+const mapStateToProps = (state) => ({ total: state.total });
 
-export default Header;
+export default connect(mapStateToProps, null)(Header);

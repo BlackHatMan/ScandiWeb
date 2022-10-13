@@ -64,7 +64,6 @@ class ProductPage extends Component {
 
   addToCart = (e, data) => {
     e.preventDefault();
-    console.log(data);
     if (e.target.checkValidity()) {
       const attributes = Object.entries(Object.fromEntries(new FormData(e.target)));
 
