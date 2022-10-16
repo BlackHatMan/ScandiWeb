@@ -5,7 +5,7 @@ import { Markup } from 'interweave';
 import { Typography, TypographyRoboto, Button } from '../common/styledComponents';
 import { Image } from '../common/Image';
 import { CheckBox } from '../common/CheckBox';
-import { getProduct } from '../hok/getCategory';
+import { getProduct } from '../hok/hoks';
 import { addItem } from '../data/slice';
 
 const Form = styled('form')`

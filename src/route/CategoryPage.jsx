@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Container, Typography } from '../common/styledComponents';
 import { addItem } from '../data/slice';
-import { getCategory } from '../hok/getCategory';
+import { getCategory } from '../hok/hoks';
 import CartLogo from '../svg/Card_item.svg';
 import { Image } from '../common/Image';
 

@@ -1,11 +1,11 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
-import './index.css';
-import App from './App';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import { BrowserRouter } from 'react-router-dom';
+import ReactDOM from 'react-dom/client';
+import React from 'react';
 import { Provider } from 'react-redux';
 import { store } from './data/store';
+import App from './App';
+import './index.css';
 
 const client = new ApolloClient({
   uri: 'http://localhost:4000/',

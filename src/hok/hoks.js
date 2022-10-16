@@ -15,10 +15,9 @@ export function getCategory(Component) {
       },
     });
 
-    if (!data) {
+    if (!data?.category) {
       return null;
     }
-
     return <Component {...props} param={param} data={data.category.products} />;
   };
 }
@@ -34,10 +33,9 @@ export function getProduct(Component) {
       },
     });
 
-    if (!data) {
+    if (!data?.product) {
       return null;
     }
-
     return <Component {...props} data={data} navigate={navigate} />;
   };
 }
@@ -45,7 +43,7 @@ export function getProduct(Component) {
 export function getBasketProduct(Component) {
   return (props) => {
     const data = useSelector((state) => state);
-    if (!data) {
+    if (!data?.items) {
       return null;
     }
 
