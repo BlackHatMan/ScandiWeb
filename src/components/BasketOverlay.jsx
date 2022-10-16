@@ -29,7 +29,7 @@ const BasketContainer = styled(Container)`
   position: absolute;
   top: 0;
   right: 70px;
-  width: 325px;
+  width: 345px; /* more than in figma because after 4 items  horizontal scroll appears*/
   max-height: calc(100vh - 80px);
   padding: 32px 16px;
   border: 1px solid black;

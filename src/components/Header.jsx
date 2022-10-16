@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { Container } from '../common/styledComponents';
 import Link from './../common/Link';
@@ -6,7 +7,6 @@ import BasketOverlay from './BasketOverlay';
 import DropDown from '../common/DropDown';
 import { ReactComponent as CartLogo } from '../svg/Card_logo.svg';
 import img from '../svg/Vector.svg';
-import { connect } from 'react-redux';
 
 const Logo = styled('div')`
   cursor: pointer;
@@ -38,7 +38,7 @@ class Header extends Component {
       isOpen: false,
     };
   }
-  handlerPortal = () => {
+  handlerOpenBasket = () => {
     this.setState((prev) => ({
       isOpen: !prev.isOpen,
     }));
@@ -54,11 +54,11 @@ class Header extends Component {
         <CartLogo />
         <Container width="80px" style={{ alignItems: 'center' }}>
           <DropDown />
-          <Logo onClick={this.handlerPortal}>
+          <Logo onClick={this.handlerOpenBasket}>
             <span>{this.props.total.count || 0}</span>
           </Logo>
         </Container>
-        {this.state.isOpen && <BasketOverlay close={this.handlerPortal} />}
+        {this.state.isOpen && <BasketOverlay close={this.handlerOpenBasket} />}
       </Container>
     );
   }

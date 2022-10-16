@@ -1,14 +1,16 @@
 import { Component } from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Container, Typography } from '../common/styledComponents';
+import { addItem } from '../data/slice';
 import { getCategory } from '../hok/getCategory';
 import CartLogo from '../svg/Card_item.svg';
 import { Image } from '../common/Image';
 
 const WrapperPage = styled('div')`
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
   gap: 40px;
 `;
 
@@ -54,6 +56,25 @@ const StockTitle = styled('span')`
 `;
 
 class CategoryPage extends Component {
+  addToCart = (e, item) => {
+    console.log('item', item);
+    e.preventDefault();
+
+    const attributes = item.attributes.map((el) => {
+      const valueAndType = `${el.items[0].value}-${el.type}`;
+      return [el.id, valueAndType];
+    });
+
+    this.props.addItem({
+      id: item.id,
+      attributes,
+      brand: item.brand,
+      gallery: item.gallery,
+      name: item.name,
+      prices: item.prices,
+      count: 1,
+    });
+  };
   render() {
     return (
       <WrapperPage>
@@ -62,10 +83,10 @@ class CategoryPage extends Component {
             <WrapperCard key={i} color={item.inStock ? '' : '#8D8F9A'}>
               <Link to={item.inStock ? item.id : false}>
                 <WrapperImage>
-                  <Image src={item.gallery.at(0)} alt={item.name} width={350} height={340} />
+                  <Image src={item.gallery[0]} alt={item.name} width={350} height={340} />
 
                   {item.inStock ? (
-                    <Logo src={CartLogo} alt="add item" />
+                    <Logo src={CartLogo} onClick={(e) => this.addToCart(e, item)} alt="add item" />
                   ) : (
                     <StockTitle>OUT OF STOCK</StockTitle>
                   )}
@@ -88,4 +109,4 @@ class CategoryPage extends Component {
   }
 }
 
-export default getCategory(CategoryPage);
+export default connect(null, { addItem })(getCategory(CategoryPage));

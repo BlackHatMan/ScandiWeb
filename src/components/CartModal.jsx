@@ -40,9 +40,9 @@ class CartModal extends Component {
                   /* parse type checkbox from redux which the added from ProductPAge */
                   const [value, type] = attr.at(1).split('-');
                   return (
-                    <div style={{ fontSize: '14px', fontWeight: '500' }} key={attr.at(0)}>
+                    <div style={{ fontSize: '14px', fontWeight: '500' }} key={attr[0]}>
                       <TypographyRoboto fs="14px" fw="500" lh="16px" mr="4px 0">
-                        {attr.at(0)}
+                        {attr[0]}
                       </TypographyRoboto>
                       <Stack>
                         <CheckBox
@@ -64,7 +64,7 @@ class CartModal extends Component {
                 </Typography>
                 <ButtonCount onClick={() => this.props.decreaseCount(item.id)}>-</ButtonCount>
               </Container>
-              <Image src={item.gallery.at(0)} alt={item.name} width={120} height={180} />
+              <Image src={item.gallery[0]} alt={item.name} width={120} height={180} />
             </Container>
           );
         })}

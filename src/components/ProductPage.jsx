@@ -102,7 +102,7 @@ class ProductPage extends Component {
             })}
           </ImageContainer>
         </ScrollContainer>
-        <Image src={this.state.path || gallery.at(0)} width={610} height={510} />
+        <Image src={this.state.path || gallery[0]} width={610} height={510} />
         <div style={{ width: '292px', margin: '0 15px' }}>
           <div>
             <Typography fs="30px" fw="600" lh="27px">

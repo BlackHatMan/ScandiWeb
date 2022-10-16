@@ -70,7 +70,7 @@ export class CheckBox extends Component {
           id={ID}
           name={nameGroup}
           required={required}
-          value={`${value}-${type}`}
+          value={`${value}-${type}`} // for parse type from redux
           {...rest}
         />
         {type === 'text' && (
