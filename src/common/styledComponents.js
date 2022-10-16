@@ -15,8 +15,7 @@ export const Typography = styled('p')`
   font-size: ${(props) => props.fs};
   font-weight: ${(props) => props.fw};
   line-height: ${(props) => props.lh};
-  margin: ${(props) => props.mr};
-  ${(props) => props.css};
+  margin: ${(props) => props.m};
 `;
 
 export const TypographyRoboto = styled(Typography)`

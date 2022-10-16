@@ -43,7 +43,7 @@ class Cart extends Component {
   render() {
     return (
       <div style={{ margin: '0 10px' }}>
-        <Typography fw="700" fs="32px" lh="40px" mr="60px 0">
+        <Typography fw="700" fs="32px" lh="40px" m="60px 0">
           CART
         </Typography>
         <WrapperItem padding="24px 0">
@@ -51,13 +51,13 @@ class Cart extends Component {
             <Typography fs="30px" fw="600" lh="27px">
               Jupiter
             </Typography>
-            <Typography fs="30px" fw="400" lh="27px" mr="16px 0">
+            <Typography fs="30px" fw="400" lh="27px" m="16px 0">
               Wayfarer
             </Typography>
-            <Typography fs="24px" fw="700" lh="24px" mr="6px 0">
+            <Typography fs="24px" fw="700" lh="24px" m="6px 0">
               $50.00
             </Typography>
-            <TypographyRoboto fs="18px" fw="700" lh="18px" mr="20px 0 10px 0">
+            <TypographyRoboto fs="18px" fw="700" lh="18px" m="20px 0 10px 0">
               Size:
             </TypographyRoboto>
             <div>
@@ -78,7 +78,7 @@ class Cart extends Component {
                 );
               })}
             </div>
-            <TypographyRoboto fs="18px" fw="700" lh="18px" mr="20px 0 10px 0">
+            <TypographyRoboto fs="18px" fw="700" lh="18px" m="20px 0 10px 0">
               Color:
             </TypographyRoboto>
             <div>

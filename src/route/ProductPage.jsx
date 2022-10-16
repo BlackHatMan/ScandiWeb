@@ -108,7 +108,7 @@ class ProductPage extends Component {
             <Typography fs="30px" fw="600" lh="27px">
               {brand}
             </Typography>
-            <Typography fs="30px" fw="400" lh="27px" mr="16px 0">
+            <Typography fs="30px" fw="400" lh="27px" m="16px 0">
               {name}
             </Typography>
           </div>
@@ -116,7 +116,7 @@ class ProductPage extends Component {
             {attributes.map((attr) => {
               return (
                 <div key={attr.id}>
-                  <TypographyRoboto fs="18px" fw="700" mr="10px 0">
+                  <TypographyRoboto fs="18px" fw="700" m="10px 0">
                     {attr.id}
                   </TypographyRoboto>
                   {attr.items.map((el) => {
@@ -136,7 +136,7 @@ class ProductPage extends Component {
             })}
           </div>
           <div style={{ margin: '12px 0 20px 0' }}>
-            <TypographyRoboto fs="18px" fw="700" mr="10px 0">
+            <TypographyRoboto fs="18px" fw="700" m="10px 0">
               Price:
             </TypographyRoboto>
             <Typography fs="24px" fw="700">

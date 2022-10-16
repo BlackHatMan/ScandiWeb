@@ -46,7 +46,7 @@ class BasketOverlay extends Component {
       <Overlay onClick={this.props.close}>
         <BackgroundOverlay>
           <BasketContainer onClick={(e) => e.stopPropagation()}>
-            <Typography fw="700" lh="25px" mr="4px 0">
+            <Typography fw="700" lh="25px" m="4px 0">
               My Bag {this.props.total.count} items
             </Typography>
             <BasketItem

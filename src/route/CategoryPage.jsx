@@ -92,7 +92,7 @@ class CategoryPage extends Component {
                 </WrapperImage>
               </Link>
               <div>
-                <Typography fw="300" fs="16px" lh="29px" mr="24px 0 0 0">
+                <Typography fw="300" fs="16px" lh="29px" m="24px 0 0 0">
                   {item.name}
                 </Typography>
                 <Typography fw="500" fs="16px" lh="29px">

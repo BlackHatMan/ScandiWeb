@@ -23,12 +23,12 @@ class BasketItem extends Component {
       <Container margin="20px 0" flexDirection="column">
         {this.props.data.map((item, i) => {
           return (
-            <Container key={`${item.brand}-${i}`} margin="1rem 0">
+            <Container key={`${item.brand}-${i}`} margin="15px 0">
               <Container width="136px" flexDirection="column">
-                <Typography fw="300" lh="25px" mr="4px 0">
+                <Typography fw="300" lh="25px" m="4px 0">
                   {item.brand}
                 </Typography>
-                <Typography fw="300" lh="25px" mr="4px 0">
+                <Typography fw="300" lh="25px" m="4px 0">
                   {item.name}
                 </Typography>
                 <Typography fw="500" lh="25px">
@@ -40,7 +40,7 @@ class BasketItem extends Component {
                   const [value, type] = attr.at(1).split('-');
                   return (
                     <div style={{ fontSize: '14px', fontWeight: '500' }} key={attr[0]}>
-                      <TypographyRoboto fs="14px" fw="500" lh="16px" mr="4px 0">
+                      <TypographyRoboto fs="14px" fw="500" lh="16px" m="4px 0">
                         {attr[0]}
                       </TypographyRoboto>
                       <Stack>
