@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { increaseCount, decreaseCount } from '../data/slice';
 import { Container, Typography, Button } from '../common/styledComponents';
 import { getBasketProduct } from './../hok/getCategory';
-import CartModal from './CartModal';
+import BasketItem from './BasketItem';
 
 const Overlay = styled('div')`
   position: absolute;
@@ -49,7 +49,7 @@ class BasketOverlay extends Component {
             <Typography fw="700" lh="25px" mr="4px 0">
               My Bag {this.props.total.count} items
             </Typography>
-            <CartModal
+            <BasketItem
               data={this.props.data}
               increaseCount={this.props.increaseCount}
               decreaseCount={this.props.decreaseCount}

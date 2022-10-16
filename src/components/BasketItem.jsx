@@ -2,8 +2,8 @@ import { Component } from 'react';
 import styled from 'styled-components';
 import { CheckBox } from '../common/CheckBox';
 import { Container, Typography } from '../common/styledComponents';
-import { TypographyRoboto } from './../common/styledComponents';
-import { Image } from './../common/Image';
+import { TypographyRoboto } from '../common/styledComponents';
+import { Image } from '../common/Image';
 
 const ButtonCount = styled('button')`
   background-color: white;
@@ -17,9 +17,8 @@ const ButtonCount = styled('button')`
 const Stack = styled('div')`
   display: inline-flex;
 `;
-class CartModal extends Component {
+class BasketItem extends Component {
   render() {
-    if (!this.props.data) return null;
     return (
       <Container margin="20px 0" flexDirection="column">
         {this.props.data.map((item, i) => {
@@ -72,4 +71,4 @@ class CartModal extends Component {
     );
   }
 }
-export default CartModal;
+export default BasketItem;

@@ -1,9 +1,8 @@
 import { Route, Routes } from 'react-router-dom';
-import CategoryPage from './components/CategoryPage';
-import { Page404 } from './components/Page404';
+import CategoryPage from './route/CategoryPage';
 import Layout from './components/Layout';
-import Cart from './components/Cart';
-import ProductPage from './components/ProductPage';
+import Cart from './route/Cart';
+import ProductPage from './route/ProductPage';
 
 function App() {
   return (
@@ -13,7 +12,6 @@ function App() {
           <Route path="cart" element={<Cart />} />
           <Route path=":category" element={<CategoryPage />} />
           <Route path=":category/:categoryId" element={<ProductPage />} />
-          <Route path="*" element={<Page404 />} />
         </Route>
       </Routes>
     </div>

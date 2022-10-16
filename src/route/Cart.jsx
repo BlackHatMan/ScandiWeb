@@ -1,8 +1,8 @@
 import { Component } from 'react';
 import styled from 'styled-components';
 import { Typography, TypographyRoboto, Button } from '../common/styledComponents';
-import { Container } from './../common/styledComponents';
-import { CheckBox } from './../common/CheckBox';
+import { Container } from '../common/styledComponents';
+import { CheckBox } from '../common/CheckBox';
 
 const sizeStock = ['XS', 'S', 'M', 'L'];
 const colorStock = ['grey', 'yellow', 'red', 'lightgreen', 'blue'];
@@ -42,7 +42,7 @@ class Cart extends Component {
   };
   render() {
     return (
-      <div>
+      <div style={{ margin: '0 10px' }}>
         <Typography fw="700" fs="32px" lh="40px" mr="60px 0">
           CART
         </Typography>

@@ -57,7 +57,6 @@ const StockTitle = styled('span')`
 
 class CategoryPage extends Component {
   addToCart = (e, item) => {
-    console.log('item', item);
     e.preventDefault();
 
     const attributes = item.attributes.map((el) => {
