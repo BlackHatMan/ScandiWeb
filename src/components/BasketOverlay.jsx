@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { increaseCount, decreaseCount } from '../data/slice';
@@ -40,6 +41,11 @@ const BasketContainer = styled(Container)`
   overflow: auto;
 `;
 
+const StyledLink = styled(Link)`
+  width: 140px;
+  text-decoration: none;
+`;
+
 class BasketOverlay extends Component {
   render() {
     return (
@@ -59,12 +65,16 @@ class BasketOverlay extends Component {
               <Typography fw="700">${this.props.total.cost}</Typography>
             </Container>
             <Container>
-              <Button width="140px" height="40px" fw="700" color="black" bgColor="transparent">
-                View bag
-              </Button>
-              <Button width="140px" height="40px" fw="700" border="1px solid #5ECE7B">
-                CHECK OUT
-              </Button>
+              <StyledLink to="/cart" onClick={this.props.close}>
+                <Button width="140px" height="40px" fw="700" color="black" bgColor="transparent">
+                  View bag
+                </Button>
+              </StyledLink>
+              <StyledLink to="/all" onClick={this.props.close}>
+                <Button width="140px" height="40px" fw="700" border="1px solid #5ECE7B">
+                  CHECK OUT
+                </Button>
+              </StyledLink>
             </Container>
           </BasketContainer>
         </BackgroundOverlay>

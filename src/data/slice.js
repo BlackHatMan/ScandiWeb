@@ -45,5 +45,7 @@ const totalCostHelper = (items) => {
       return acc + current.count * current.prices[0].amount;
     }, 0)
     .toFixed(2);
-  return { count, cost };
+  const tax = (cost * 1.21 - cost).toFixed(2);
+  const total = tax + cost;
+  return { count, cost, tax, total };
 };

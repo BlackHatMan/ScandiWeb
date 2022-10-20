@@ -12,6 +12,7 @@ const WrapperPage = styled('div')`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
   gap: 40px;
+  overflow: auto;
 `;
 
 const WrapperImage = styled('div')`

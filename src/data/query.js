@@ -9,6 +9,7 @@ export const GET_CATEGORY = gql`
         name
         inStock
         gallery
+        brand
         attributes {
           id
           name
