@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client';
-import { GET_CATEGORY, GET_PRODUCT } from '../data/query';
+import { GET_CATEGORY, GET_PRODUCT, GET_CURRENCY } from '../data/query';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
@@ -48,5 +48,16 @@ export function getBasketProduct(Component) {
     }
 
     return <Component {...props} data={data.items} />;
+  };
+}
+
+export function getCurrency(Component) {
+  return (props) => {
+    const { data } = useQuery(GET_CURRENCY);
+
+    if (!data?.currencies) {
+      return null;
+    }
+    return <Component {...props} data={data} />;
   };
 }

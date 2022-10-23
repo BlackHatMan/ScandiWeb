@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import { getCurrency } from '../hok/hoks';
 import { Container } from '../common/styledComponents';
 import Link from './../common/Link';
 import BasketOverlay from './BasketOverlay';
@@ -53,7 +54,7 @@ class Header extends Component {
         </nav>
         <CartLogo />
         <Container width="80px" style={{ alignItems: 'center' }}>
-          <DropDown />
+          <DropDown currency={this.props.data} />
           <Logo onClick={this.handlerOpenBasket}>
             <span>{this.props.total.count || 0}</span>
           </Logo>
@@ -65,4 +66,4 @@ class Header extends Component {
 }
 const mapStateToProps = (state) => ({ total: state.total });
 
-export default connect(mapStateToProps, null)(Header);
+export default connect(mapStateToProps, null)(getCurrency(Header));

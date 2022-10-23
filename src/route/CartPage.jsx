@@ -2,7 +2,7 @@ import { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { Typography, Button } from '../common/styledComponents';
-import CartItem from './../components/CartItem';
+import CartItem from '../components/CartItem';
 import { increaseCount, decreaseCount } from '../data/slice';
 
 const WrapperCost = styled('div')`
@@ -12,7 +12,7 @@ const WrapperCost = styled('div')`
   row-gap: 8px;
   margin: 30px 0 20px 0;
 `;
-class Cart extends Component {
+class CartPage extends Component {
   render() {
     return (
       <div style={{ margin: '0 10px' }}>
@@ -58,4 +58,4 @@ class Cart extends Component {
   }
 }
 const mapStateToProps = (state) => state;
-export default connect(mapStateToProps, { increaseCount, decreaseCount })(Cart);
+export default connect(mapStateToProps, { increaseCount, decreaseCount })(CartPage);

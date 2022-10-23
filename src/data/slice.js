@@ -1,9 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-/* interface InitState {
-  value: number;
-} */
-
 const initialState = {
   items: [],
   total: {},

@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { PureComponent } from 'react';
 import styled from 'styled-components';
 
 const DropDownContainer = styled('div')`
@@ -52,19 +52,18 @@ const Overlay = styled('div')`
   bottom: 0;
   z-index: 101;
 `;
-const options = ['$ USD', '€ EUR', '¥ JPY'];
 
-class DropDown extends Component {
+class DropDown extends PureComponent {
   constructor() {
     super();
     this.state = {
       isOpen: false,
-      selectedOption: '$',
+      selectedOption: this.props?.currency.currencies[0].symbol ?? '$',
     };
   }
 
   itemHandler = (value) => () => {
-    this.setState({ selectedOption: value.charAt(0) });
+    this.setState({ selectedOption: value });
   };
 
   openDropDown = () => {
@@ -79,9 +78,9 @@ class DropDown extends Component {
           <>
             <Overlay />
             <DropDownList>
-              {options.map((option) => (
-                <DropDownItem onClick={this.itemHandler(option)} key={option}>
-                  {option}
+              {this.props.currency.currencies.map((option) => (
+                <DropDownItem onClick={this.itemHandler(option.symbol)} key={option.label}>
+                  {option.symbol}
                 </DropDownItem>
               ))}
             </DropDownList>

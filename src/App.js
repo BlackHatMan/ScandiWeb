@@ -1,9 +1,9 @@
 import { Route, Routes } from 'react-router-dom';
+import { ErrorBoundary } from './components/ErrorBoundary';
 import CategoryPage from './route/CategoryPage';
 import Layout from './components/Layout';
-import Cart from './route/Cart';
+import CartPage from './route/CartPage';
 import ProductPage from './route/ProductPage';
-import { ErrorBoundary } from './components/ErrorBoundary';
 
 function App() {
   return (
@@ -11,7 +11,7 @@ function App() {
       <ErrorBoundary>
         <Routes>
           <Route path="/" element={<Layout />}>
-            <Route path="cart" element={<Cart />} />
+            <Route path="cart" element={<CartPage />} />
             <Route path=":category" element={<CategoryPage />} />
             <Route path=":category/:categoryId" element={<ProductPage />} />
           </Route>
@@ -24,3 +24,5 @@ function App() {
 export default App;
 
 // TODO title on all pages
+// TOD add currency query in Dropdown
+// TODO refactor query
