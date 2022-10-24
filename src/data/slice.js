@@ -20,10 +20,12 @@ const itemSlice = createSlice({
       state.total = totalCostHelper(state.items);
     },
     decreaseCount: (state, { payload }) => {
-      state.items = state.items.map((el) => {
-        if (el.count === 0) return el;
-        return el.id === payload ? { ...el, count: el.count - 1 } : el;
-      });
+      state.items = state.items
+        .map((el) => {
+          return el.id === payload ? { ...el, count: el.count - 1 } : el;
+        })
+        .filter((el) => el.count !== 0);
+
       state.total = totalCostHelper(state.items);
     },
   },

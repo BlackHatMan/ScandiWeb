@@ -24,3 +24,4 @@ function App() {
 export default App;
 
 // TODO title on all pages
+// TODO remove scroll on modal window
