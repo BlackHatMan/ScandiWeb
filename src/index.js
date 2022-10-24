@@ -1,9 +1,10 @@
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import { PersistGate } from 'redux-persist/integration/react';
 import { BrowserRouter } from 'react-router-dom';
 import ReactDOM from 'react-dom/client';
-import React from 'react';
 import { Provider } from 'react-redux';
-import { store } from './data/store';
+import React from 'react';
+import { store, persistor } from './data/store';
 import App from './App';
 import './index.css';
 
@@ -18,7 +19,9 @@ root.render(
     <ApolloProvider client={client}>
       <Provider store={store}>
         <BrowserRouter>
-          <App />
+          <PersistGate loading={null} persistor={persistor}>
+            <App />
+          </PersistGate>
         </BrowserRouter>
       </Provider>
     </ApolloProvider>

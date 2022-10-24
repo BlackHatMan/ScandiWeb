@@ -24,5 +24,3 @@ function App() {
 export default App;
 
 // TODO title on all pages
-// TOD add currency query in Dropdown
-// TODO refactor query
