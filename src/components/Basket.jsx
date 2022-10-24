@@ -46,7 +46,7 @@ const StyledLink = styled(Link)`
   text-decoration: none;
 `;
 
-class BasketOverlay extends Component {
+class Basket extends Component {
   render() {
     return (
       <Overlay onClick={this.props.close}>
@@ -84,6 +84,4 @@ class BasketOverlay extends Component {
 }
 const mapStateToProps = (state) => ({ total: state.total });
 
-export default connect(mapStateToProps, { increaseCount, decreaseCount })(
-  getBasketProduct(BasketOverlay)
-);
+export default connect(mapStateToProps, { increaseCount, decreaseCount })(getBasketProduct(Basket));

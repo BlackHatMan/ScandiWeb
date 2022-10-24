@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { getCurrency } from '../hok/hoks';
 import { Container } from '../common/styledComponents';
 import Link from './../common/Link';
-import BasketOverlay from './BasketOverlay';
+import Basket from './Basket';
 import DropDown from '../common/DropDown';
 import { ReactComponent as CartLogo } from '../svg/Card_logo.svg';
 import img from '../svg/Vector.svg';
@@ -59,7 +59,7 @@ class Header extends Component {
             <span>{this.props.total.count || 0}</span>
           </Logo>
         </Container>
-        {this.state.isOpen && <BasketOverlay close={this.handlerOpenBasket} />}
+        {this.state.isOpen && <Basket close={this.handlerOpenBasket} />}
       </Container>
     );
   }
