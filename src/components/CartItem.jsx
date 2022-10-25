@@ -41,19 +41,17 @@ class CartItem extends Component {
                     ${el.prices[0].amount}
                   </Typography>
                   <div>
-                    {el.attributes.map((attr, index) => {
-                      /* parse type checkbox from redux which the added from ProductPAge */
-                      const [value, type] = attr.at(1).split('-');
+                    {el.attributes.map((attr) => {
                       return (
-                        <div style={{ fontSize: '14px', fontWeight: '500' }} key={attr[0]}>
+                        <div style={{ fontSize: '14px', fontWeight: '500' }} key={attr.id}>
                           <TypographyRoboto fs="18px" fw="700" lh="18px" m="20px 0 10px 0">
-                            {attr[0]}
+                            {attr.name}
                           </TypographyRoboto>
                           <Stack>
                             <CheckBox
-                              value={value}
-                              type={type}
-                              nameGroup={value + index}
+                              value={attr.items[0].value}
+                              type={attr.type}
+                              nameGroup={attr.name + el.id}
                               defaultChecked={true}
                             />
                           </Stack>

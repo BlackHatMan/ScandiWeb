@@ -64,8 +64,14 @@ class ProductPage extends Component {
 
   addToCart = (e, data) => {
     e.preventDefault();
+    const formData = Object.fromEntries(new FormData(e.target));
+
     if (e.target.checkValidity()) {
-      const attributes = Object.entries(Object.fromEntries(new FormData(e.target)));
+      const attributes = this.props.data.product.attributes
+        .map((el) => {
+          return { ...el, items: el.items.filter((attr) => attr.value === formData[el.id]) };
+        })
+        .flat();
 
       this.props.addItem({
         id: data.id,

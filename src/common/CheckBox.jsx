@@ -66,13 +66,7 @@ export class CheckBox extends Component {
 
     return (
       <CheckBoxContainer>
-        <HiddenCheckBox
-          id={ID}
-          name={nameGroup}
-          required={required}
-          value={`${value}-${type}`} // for parse type from redux
-          {...rest}
-        />
+        <HiddenCheckBox id={ID} name={nameGroup} required={required} value={value} {...rest} />
         {type === 'text' && (
           <Text htmlFor={ID} {...rest}>
             {value}

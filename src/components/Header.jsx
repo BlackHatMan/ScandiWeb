@@ -21,7 +21,7 @@ const Logo = styled('div')`
   & span {
     height: 1.2rem;
     width: 1.2rem;
-    line-height: 1.1rem;
+    line-height: 1.2rem;
     font-weight: 600;
     text-align: center;
     display: block;

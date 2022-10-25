@@ -25,3 +25,5 @@ export default App;
 
 // TODO title on all pages
 // TODO remove scroll on modal window
+// TODD scroll image cartPage
+// TODO refactor add value in checkbox, will make with filter attributes

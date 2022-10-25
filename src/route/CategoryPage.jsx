@@ -61,10 +61,11 @@ class CategoryPage extends Component {
     e.preventDefault();
 
     const attributes = item.attributes.map((el) => {
-      const valueAndType = `${el.items[0].value}-${el.type}`;
-      return [el.id, valueAndType];
+      return {
+        ...el,
+        items: [el.items[0]],
+      };
     });
-
     this.props.addItem({
       id: item.id,
       attributes,
@@ -76,6 +77,8 @@ class CategoryPage extends Component {
     });
   };
   render() {
+    const currencyIndex = this.props?.data[0].prices.findIndex((el) => el.currency.symbol === 'A$');
+    // console.log(currencyIndex);
     return (
       <WrapperPage>
         {this.props.data.map((item, i) => {
@@ -97,8 +100,8 @@ class CategoryPage extends Component {
                   {item.name}
                 </Typography>
                 <Typography fw="500" fs="16px" lh="29px">
-                  {item.prices[0].amount}
-                  {item.prices[0].currency.symbol}
+                  {item.prices[currencyIndex].amount}
+                  {item.prices[currencyIndex].currency.symbol}
                 </Typography>
               </div>
             </WrapperCard>

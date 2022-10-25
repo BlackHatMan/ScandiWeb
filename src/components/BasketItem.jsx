@@ -37,18 +37,18 @@ class BasketItem extends Component {
 
                 {item.attributes.map((attr, index) => {
                   /* parse type checkbox from redux which the added from ProductPAge */
-                  const [value, type] = attr.at(1).split('-');
+                  //const [value, type] = attr.at(1).split('-');
                   return (
-                    <div style={{ fontSize: '14px', fontWeight: '500' }} key={attr[0]}>
+                    <div style={{ fontSize: '14px', fontWeight: '500' }} key={attr.id}>
                       <TypographyRoboto fs="14px" fw="500" lh="16px" m="4px 0">
-                        {attr[0]}
+                        {attr.name}
                       </TypographyRoboto>
                       <Stack>
                         <CheckBox
                           small
-                          value={value}
-                          type={type}
-                          nameGroup={value + index}
+                          value={attr.items[0].value}
+                          type={attr.type}
+                          nameGroup={attr.name + item.id}
                           defaultChecked={true}
                         />
                       </Stack>
