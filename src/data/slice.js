@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   items: [],
   total: {},
+  currency: '',
 };
 
 const itemSlice = createSlice({
@@ -28,10 +29,13 @@ const itemSlice = createSlice({
 
       state.total = totalCostHelper(state.items);
     },
+    setCurrency: (state, { payload }) => {
+      state.currency = payload;
+    },
   },
 });
 
-export const { addItem, increaseCount, decreaseCount } = itemSlice.actions;
+export const { addItem, increaseCount, decreaseCount, setCurrency } = itemSlice.actions;
 export default itemSlice.reducer;
 
 const totalCostHelper = (items) => {

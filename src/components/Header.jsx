@@ -7,14 +7,14 @@ import Link from './../common/Link';
 import Basket from './Basket';
 import DropDown from '../common/DropDown';
 import { ReactComponent as CartLogo } from '../svg/Card_logo.svg';
-import img from '../svg/Vector.svg';
+import basketLogo from '../svg/Vector.svg';
 
 const Logo = styled('div')`
   cursor: pointer;
   width: 20px;
   height: 20px;
   margin-right: 15px;
-  background-image: url(${img});
+  background-image: url(${basketLogo});
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
@@ -39,11 +39,13 @@ class Header extends Component {
       isOpen: false,
     };
   }
+
   handlerOpenBasket = () => {
     this.setState((prev) => ({
       isOpen: !prev.isOpen,
     }));
   };
+
   render() {
     return (
       <Container padding="25px 0" height="80px">
@@ -53,7 +55,7 @@ class Header extends Component {
           <Link to="/tech">Tech</Link>
         </nav>
         <CartLogo />
-        <Container width="80px" style={{ alignItems: 'center' }}>
+        <Container width="80px" alignItems="center">
           <DropDown currency={this.props.data} />
           <Logo onClick={this.handlerOpenBasket}>
             <span>{this.props.total.count || 0}</span>
