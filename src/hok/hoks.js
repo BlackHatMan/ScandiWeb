@@ -1,8 +1,7 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useQuery } from '@apollo/client';
 import { GET_CATEGORY, GET_PRODUCT, GET_CURRENCY } from '../data/query';
-import { setCurrency } from '../data/slice';
 
 export function getCategory(Component) {
   return (props) => {
@@ -19,6 +18,7 @@ export function getCategory(Component) {
     if (!data?.category) {
       return null;
     }
+
     return <Component {...props} param={param} data={data.category.products} />;
   };
 }
@@ -54,16 +54,12 @@ export function getBasketProduct(Component) {
 
 export function getCurrency(Component) {
   return (props) => {
-    const dispatch = useDispatch();
-
     const { data } = useQuery(GET_CURRENCY);
 
     if (!data?.currencies) {
       return null;
     }
 
-    dispatch(setCurrency(data.currencies[0].symbol));
-
-    return <Component {...props} data={data.currencies} />;
+    return <Component {...props} currencies={data.currencies} />;
   };
 }

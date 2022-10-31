@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
@@ -56,7 +56,7 @@ const StockTitle = styled('span')`
   line-height: 160%;
 `;
 
-class CategoryPage extends Component {
+class CategoryPage extends PureComponent {
   addToCart = (e, item) => {
     e.preventDefault();
 
@@ -66,6 +66,7 @@ class CategoryPage extends Component {
         items: [el.items[0]],
       };
     });
+
     this.props.addItem({
       id: item.id,
       attributes,
@@ -77,8 +78,6 @@ class CategoryPage extends Component {
     });
   };
   render() {
-    const currencyIndex = this.props?.data[0].prices.findIndex((el) => el.currency.symbol === 'A$');
-    // console.log(currencyIndex);
     return (
       <WrapperPage>
         {this.props.data.map((item, i) => {
@@ -100,8 +99,8 @@ class CategoryPage extends Component {
                   {item.name}
                 </Typography>
                 <Typography fw="500" fs="16px" lh="29px">
-                  {item.prices[currencyIndex].amount}
-                  {item.prices[currencyIndex].currency.symbol}
+                  {item.prices[this.props.selectedCurrency].amount}
+                  {item.prices[this.props.selectedCurrency].currency.symbol}
                 </Typography>
               </div>
             </WrapperCard>
@@ -111,5 +110,5 @@ class CategoryPage extends Component {
     );
   }
 }
-
-export default connect(null, { addItem })(getCategory(CategoryPage));
+const mapStateToProps = (state) => ({ selectedCurrency: state.indexSelectedCurrency });
+export default connect(mapStateToProps, { addItem })(getCategory(CategoryPage));

@@ -56,9 +56,9 @@ class Header extends Component {
         </nav>
         <CartLogo />
         <Container width="80px" alignItems="center">
-          <DropDown currency={this.props.data} />
+          <DropDown />
           <Logo onClick={this.handlerOpenBasket}>
-            <span>{this.props.total.count || 0}</span>
+            <span>{this.props.count || 0}</span>
           </Logo>
         </Container>
         {this.state.isOpen && <Basket close={this.handlerOpenBasket} />}
@@ -66,6 +66,6 @@ class Header extends Component {
     );
   }
 }
-const mapStateToProps = (state) => ({ total: state.total });
+const mapStateToProps = (state) => ({ count: state.total.count });
 
-export default connect(mapStateToProps, null)(getCurrency(Header));
+export default connect(mapStateToProps, null)(Header);

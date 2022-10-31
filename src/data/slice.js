@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   items: [],
   total: {},
-  currency: '',
+  indexSelectedCurrency: 0,
 };
 
 const itemSlice = createSlice({
@@ -30,7 +30,7 @@ const itemSlice = createSlice({
       state.total = totalCostHelper(state.items);
     },
     setCurrency: (state, { payload }) => {
-      state.currency = payload;
+      state.indexSelectedCurrency = payload;
     },
   },
 });
