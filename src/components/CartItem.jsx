@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Typography, TypographyRoboto } from '../common/styledComponents';
 import { Container } from './../common/styledComponents';
 import { CheckBox } from '../common/CheckBox';
+import { Image } from '../common/Image';
 
 const Stack = styled('div')`
   display: inline-flex;
@@ -16,17 +17,88 @@ const ButtonCount = styled('button')`
   height: 45px;
   font-size: 24px;
 `;
-const WrapperItem = styled(Container)`
+const Wrapper = styled(Container)`
   border-bottom: solid 1px #e5e5e5;
   border-top: solid 1px #e5e5e5;
   border-collapse: collapse;
+  padding: 24px 0;
+`;
+const WrapperImage = styled('div')`
+  position: relative;
+`;
+const BtnRight = styled('button')`
+  cursor: pointer;
+  position: relative;
+  width: 24px;
+  height: 24px;
+  border: none;
+  background: rgba(0, 0, 0, 0.73);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  &:: after {
+    position: absolute;
+    content: '';
+    width: 9px;
+    height: 9px;
+    left: 5px;
+    top: 6px;
+    border-top: 2px solid white;
+    border-right: 2px solid white;
+    transform: rotate(45deg);
+  }
+`;
+const BtnLeft = styled('button')`
+  cursor: pointer;
+  position: relative;
+  width: 24px;
+  height: 24px;
+  border: none;
+  background: rgba(0, 0, 0, 0.73);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  &:: after {
+    position: absolute;
+    content: '';
+    width: 9px;
+    height: 9px;
+    left: 8px;
+    top: 6px;
+    border-bottom: 2px solid white;
+    border-left: 2px solid white;
+    transform: rotate(45deg);
+  }
 `;
 
+const WrapperButtons = styled('div')`
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  width: 56px;
+  right: 16px;
+  bottom: 16px;
+`;
 class CartItem extends Component {
+  constructor() {
+    super();
+    this.state = {
+      imageNumber: 0,
+    };
+  }
+
+  imageHandlerLeft = () => {
+    if (this.state.imageNumber > 0) {
+      this.setState((state) => ({ imageNumber: state.imageNumber - 1 }));
+    }
+  };
+
+  imageHandlerRight = () => {
+    if (this.props.item.gallery.length - 1 > this.state.imageNumber) {
+      this.setState((state) => ({ imageNumber: state.imageNumber + 1 }));
+    }
+  };
+
   render() {
     const { item, indexSelectedCurrency, symbol } = this.props;
     return (
-      <WrapperItem padding="24px 0">
+      <Wrapper>
         <Container width="100%">
           <Container width="300px" flexDirection="column">
             <Typography fs="30px" fw="600" lh="27px">
@@ -67,10 +139,21 @@ class CartItem extends Component {
               </Typography>
               <ButtonCount onClick={() => this.props.decreaseCount(item.id)}>-</ButtonCount>
             </Container>
-            <img src={item.gallery[0]} alt="item" width="200px" height="290px" />
+            <WrapperImage>
+              <Image
+                src={item.gallery[this.state.imageNumber]}
+                alt="item"
+                width={200}
+                height={290}
+              />
+              <WrapperButtons>
+                <BtnLeft onClick={this.imageHandlerLeft} />
+                <BtnRight onClick={this.imageHandlerRight} />
+              </WrapperButtons>
+            </WrapperImage>
           </Container>
         </Container>
-      </WrapperItem>
+      </Wrapper>
     );
   }
 }

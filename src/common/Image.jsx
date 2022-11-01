@@ -3,10 +3,10 @@ import styled from 'styled-components';
 const Img = styled('img')`
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: fill;
   cursor: ${(props) => props.cursor};
-  max-width: ${(props) => props.width + 'px'};
-  max-height: ${(props) => props.height + 'px'};
+  width: ${(props) => props.width + 'px'};
+  height: ${(props) => props.height + 'px'};
 `;
 
 export const Image = (props) => {

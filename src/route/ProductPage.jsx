@@ -62,11 +62,12 @@ class ProductPage extends Component {
     this.setState({ path });
   };
 
-  addToCart = (e, data) => {
+  addToCart = (e, product) => {
     e.preventDefault();
     const formData = Object.fromEntries(new FormData(e.target));
 
     if (e.target.checkValidity()) {
+      /* remove unselected attributes*/
       const attributes = this.props.data.product.attributes
         .map((el) => {
           return { ...el, items: el.items.filter((attr) => attr.value === formData[el.id]) };
@@ -74,12 +75,12 @@ class ProductPage extends Component {
         .flat();
 
       this.props.addItem({
-        id: data.id,
+        id: product.id,
         attributes,
-        brand: data.brand,
-        gallery: data.gallery,
-        name: data.name,
-        prices: data.prices,
+        brand: product.brand,
+        gallery: product.gallery,
+        name: product.name,
+        prices: product.prices,
         count: 1,
       });
 
