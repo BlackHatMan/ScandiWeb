@@ -146,7 +146,8 @@ class ProductPage extends Component {
               Price:
             </TypographyRoboto>
             <Typography fs="24px" fw="700">
-              {prices[0].amount}$
+              {prices[this.props.indexSelectedCurrency].amount}
+              {this.props.symbol}
             </Typography>
           </div>
           <Button height="52px" color="white" border="1px solid #5ECE7B" type="submit">
@@ -160,5 +161,4 @@ class ProductPage extends Component {
     );
   }
 }
-
-export default connect(null, { addItem })(getProduct(ProductPage));
+export default connect((state) => state, { addItem })(getProduct(ProductPage));

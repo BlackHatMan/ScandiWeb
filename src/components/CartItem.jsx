@@ -24,57 +24,53 @@ const WrapperItem = styled(Container)`
 
 class CartItem extends Component {
   render() {
+    const { item, indexSelectedCurrency, symbol } = this.props;
     return (
-      <>
-        {this.props.item.map((el) => {
-          return (
-            <WrapperItem key={el.id} padding="24px 0">
-              <Container width="100%">
-                <Container width="300px" flexDirection="column">
-                  <Typography fs="30px" fw="600" lh="27px">
-                    {el.name}
-                  </Typography>
-                  <Typography fs="30px" fw="400" lh="27px" m="16px 0">
-                    {el.brand}
-                  </Typography>
-                  <Typography fs="24px" fw="700" lh="24px" m="6px 0">
-                    ${el.prices[0].amount}
-                  </Typography>
-                  <div>
-                    {el.attributes.map((attr) => {
-                      return (
-                        <div style={{ fontSize: '14px', fontWeight: '500' }} key={attr.id}>
-                          <TypographyRoboto fs="18px" fw="700" lh="18px" m="20px 0 10px 0">
-                            {attr.name}
-                          </TypographyRoboto>
-                          <Stack>
-                            <CheckBox
-                              value={attr.items[0].value}
-                              type={attr.type}
-                              nameGroup={attr.name + el.id}
-                              defaultChecked={true}
-                            />
-                          </Stack>
-                        </div>
-                      );
-                    })}
+      <WrapperItem padding="24px 0">
+        <Container width="100%">
+          <Container width="300px" flexDirection="column">
+            <Typography fs="30px" fw="600" lh="27px">
+              {item.name}
+            </Typography>
+            <Typography fs="30px" fw="400" lh="27px" m="16px 0">
+              {item.brand}
+            </Typography>
+            <Typography fs="24px" fw="700" lh="24px" m="6px 0">
+              {symbol}
+              {item.prices[indexSelectedCurrency].amount}
+            </Typography>
+            <div>
+              {item.attributes.map((attr) => {
+                return (
+                  <div style={{ fontSize: '14px', fontWeight: '500' }} key={attr.id}>
+                    <TypographyRoboto fs="18px" fw="700" lh="18px" m="20px 0 10px 0">
+                      {attr.name}
+                    </TypographyRoboto>
+                    <Stack>
+                      <CheckBox
+                        value={attr.items[0].value}
+                        type={attr.type}
+                        nameGroup={attr.name + item.id}
+                        defaultChecked={true}
+                      />
+                    </Stack>
                   </div>
-                </Container>
-                <Container>
-                  <Container flexDirection="column" alignItems="center" margin="0 24px">
-                    <ButtonCount onClick={() => this.props.increaseCount(el.id)}>+</ButtonCount>
-                    <Typography fs="24px" fw="500" lh="25px">
-                      {el.count}
-                    </Typography>
-                    <ButtonCount onClick={() => this.props.decreaseCount(el.id)}>-</ButtonCount>
-                  </Container>
-                  <img src={el.gallery[0]} alt="item" width="200px" height="290px" />
-                </Container>
-              </Container>
-            </WrapperItem>
-          );
-        })}
-      </>
+                );
+              })}
+            </div>
+          </Container>
+          <Container>
+            <Container flexDirection="column" alignItems="center" margin="0 24px">
+              <ButtonCount onClick={() => this.props.increaseCount(item.id)}>+</ButtonCount>
+              <Typography fs="24px" fw="500" lh="25px">
+                {item.count}
+              </Typography>
+              <ButtonCount onClick={() => this.props.decreaseCount(item.id)}>-</ButtonCount>
+            </Container>
+            <img src={item.gallery[0]} alt="item" width="200px" height="290px" />
+          </Container>
+        </Container>
+      </WrapperItem>
     );
   }
 }

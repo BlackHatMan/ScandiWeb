@@ -92,11 +92,5 @@ class CartOverlay extends PureComponent {
     );
   }
 }
-const mapStateToProps = (state) => ({
-  total: state.total,
-  items: state.items,
-  indexSelectedCurrency: state.indexSelectedCurrency,
-  symbol: state.symbol,
-});
 
-export default connect(mapStateToProps, { increaseCount, decreaseCount })(CartOverlay);
+export default connect((state) => state, { increaseCount, decreaseCount })(CartOverlay);
