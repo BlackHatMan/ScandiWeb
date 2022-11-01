@@ -1,6 +1,6 @@
 import { PureComponent } from 'react';
-import styled from 'styled-components';
 import { connect } from 'react-redux';
+import styled from 'styled-components';
 import { setCurrency } from '../data/slice';
 import { getCurrency } from '../hok/hoks';
 
@@ -72,14 +72,17 @@ class DropDown extends PureComponent {
     return (
       <DropDownContainer onClick={this.openDropDown}>
         <DropDownHeader isOpen={this.state.isOpen}>
-          {this.props.currencies[this.props.selectedCurrency].symbol}
+          {this.props.currencies[this.props.index].symbol}
         </DropDownHeader>
         {this.state.isOpen && (
           <>
             <Overlay />
             <DropDownList>
               {this.props.currencies.map((option, i) => (
-                <DropDownItem key={option.label + i} onClick={() => this.props.setCurrency(i)}>
+                <DropDownItem
+                  key={option.label + i}
+                  onClick={() => this.props.setCurrency({ index: i, symbol: option.symbol })}
+                >
                   {option.symbol}
                 </DropDownItem>
               ))}
@@ -90,6 +93,6 @@ class DropDown extends PureComponent {
     );
   }
 }
-const mapStateToProps = (state) => ({ selectedCurrency: state.indexSelectedCurrency });
+const mapStateToProps = (state) => ({ index: state.indexSelectedCurrency });
 
 export default connect(mapStateToProps, { setCurrency })(getCurrency(DropDown));

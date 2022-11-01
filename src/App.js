@@ -24,6 +24,5 @@ function App() {
 export default App;
 
 // TODO title on all pages
-// TODO remove scroll on modal window
-// TODD scroll image cartPage
+// TODD scroll image cartPage (slider)
 // TODO styled provider

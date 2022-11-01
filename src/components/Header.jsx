@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { getCurrency } from '../hok/hoks';
+import CartOverlay from './CartOverlay';
+import DropDown from '../common/DropDown';
 import { Container } from '../common/styledComponents';
 import Link from './../common/Link';
-import Basket from './Basket';
-import DropDown from '../common/DropDown';
 import { ReactComponent as CartLogo } from '../svg/Card_logo.svg';
 import basketLogo from '../svg/Vector.svg';
 
@@ -61,7 +60,7 @@ class Header extends Component {
             <span>{this.props.count || 0}</span>
           </Logo>
         </Container>
-        {this.state.isOpen && <Basket close={this.handlerOpenBasket} />}
+        {this.state.isOpen && <CartOverlay close={this.handlerOpenBasket} />}
       </Container>
     );
   }

@@ -1,11 +1,10 @@
-import { Component } from 'react';
+import { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { increaseCount, decreaseCount } from '../data/slice';
 import { Container, Typography, Button } from '../common/styledComponents';
-import { getBasketProduct } from '../hok/hoks';
-import BasketItem from './BasketItem';
+import CartOverlayItem from './CartOverlayItem';
 
 const Overlay = styled('div')`
   position: absolute;
@@ -46,31 +45,42 @@ const StyledLink = styled(Link)`
   text-decoration: none;
 `;
 
-class Basket extends Component {
+class CartOverlay extends PureComponent {
+  componentDidMount() {
+    document.body.style.overflow = 'hidden';
+  }
+  componentWillUnmount() {
+    document.body.style.overflow = 'auto';
+  }
   render() {
+    const { items, indexSelectedCurrency, total, close, symbol } = this.props;
     return (
-      <Overlay onClick={this.props.close}>
+      <Overlay onClick={close}>
         <BackgroundOverlay>
           <BasketContainer onClick={(e) => e.stopPropagation()}>
             <Typography fw="700" lh="25px" m="4px 0">
-              My Bag {this.props.total.count} items
+              My Bag {total.count} items
             </Typography>
-            <BasketItem
-              data={this.props.data}
+            <CartOverlayItem
+              items={items}
               increaseCount={this.props.increaseCount}
               decreaseCount={this.props.decreaseCount}
+              indexSelectedCurrency={indexSelectedCurrency}
             />
             <Container margin="0 0 30px 0">
               <Typography fw="700">Total</Typography>
-              <Typography fw="700">${this.props.total.cost}</Typography>
+              <Typography fw="700">
+                {symbol}
+                {total.cost}
+              </Typography>
             </Container>
             <Container>
-              <StyledLink to="/cart" onClick={this.props.close}>
+              <StyledLink to="/cart" onClick={close}>
                 <Button width="140px" height="40px" fw="700" color="black" bgColor="transparent">
                   View bag
                 </Button>
               </StyledLink>
-              <StyledLink to="/all" onClick={this.props.close}>
+              <StyledLink to="/all" onClick={close}>
                 <Button width="140px" height="40px" fw="700" border="1px solid #5ECE7B">
                   CHECK OUT
                 </Button>
@@ -82,6 +92,11 @@ class Basket extends Component {
     );
   }
 }
-const mapStateToProps = (state) => ({ total: state.total });
+const mapStateToProps = (state) => ({
+  total: state.total,
+  items: state.items,
+  indexSelectedCurrency: state.indexSelectedCurrency,
+  symbol: state.symbol,
+});
 
-export default connect(mapStateToProps, { increaseCount, decreaseCount })(getBasketProduct(Basket));
+export default connect(mapStateToProps, { increaseCount, decreaseCount })(CartOverlay);

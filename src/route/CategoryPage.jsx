@@ -99,8 +99,8 @@ class CategoryPage extends PureComponent {
                   {item.name}
                 </Typography>
                 <Typography fw="500" fs="16px" lh="29px">
-                  {item.prices[this.props.selectedCurrency].amount}
-                  {item.prices[this.props.selectedCurrency].currency.symbol}
+                  {item.prices[this.props.index].amount}
+                  {item.prices[this.props.index].currency.symbol}
                 </Typography>
               </div>
             </WrapperCard>
@@ -110,5 +110,6 @@ class CategoryPage extends PureComponent {
     );
   }
 }
-const mapStateToProps = (state) => ({ selectedCurrency: state.indexSelectedCurrency });
+const mapStateToProps = (state) => ({ index: state.indexSelectedCurrency });
+
 export default connect(mapStateToProps, { addItem })(getCategory(CategoryPage));

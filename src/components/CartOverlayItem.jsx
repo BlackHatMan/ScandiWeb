@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { PureComponent } from 'react';
 import styled from 'styled-components';
 import { CheckBox } from '../common/CheckBox';
 import { Container, Typography } from '../common/styledComponents';
@@ -17,13 +17,15 @@ const ButtonCount = styled('button')`
 const Stack = styled('div')`
   display: inline-flex;
 `;
-class BasketItem extends Component {
+
+class CartOverlayItem extends PureComponent {
   render() {
+    const { items, indexSelectedCurrency } = this.props;
     return (
       <Container margin="20px 0" flexDirection="column">
-        {this.props.data.map((item, i) => {
+        {items.map((item, i) => {
           return (
-            <Container key={`${item.brand}-${i}`} margin="15px 0">
+            <Container key={item.brand + i} margin="15px 0">
               <Container width="136px" flexDirection="column">
                 <Typography fw="300" lh="25px" m="4px 0">
                   {item.brand}
@@ -32,12 +34,11 @@ class BasketItem extends Component {
                   {item.name}
                 </Typography>
                 <Typography fw="500" lh="25px">
-                  {item.prices[0].amount}$
+                  {item.prices[indexSelectedCurrency].amount}
+                  {item.prices[indexSelectedCurrency].currency.symbol}
                 </Typography>
 
-                {item.attributes.map((attr, index) => {
-                  /* parse type checkbox from redux which the added from ProductPAge */
-                  //const [value, type] = attr.at(1).split('-');
+                {item.attributes.map((attr) => {
                   return (
                     <div style={{ fontSize: '14px', fontWeight: '500' }} key={attr.id}>
                       <TypographyRoboto fs="14px" fw="500" lh="16px" m="4px 0">
@@ -71,4 +72,4 @@ class BasketItem extends Component {
     );
   }
 }
-export default BasketItem;
+export default CartOverlayItem;
