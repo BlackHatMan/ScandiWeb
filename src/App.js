@@ -24,5 +24,4 @@ function App() {
 export default App;
 
 // TODO title on all pages
-// TODD scroll image cartPage (slider)
 // TODO styled provider
