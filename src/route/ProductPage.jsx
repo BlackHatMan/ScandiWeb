@@ -2,7 +2,7 @@ import { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { Markup } from 'interweave';
-import { Typography, TypographyRoboto, Button } from '../common/styledComponents';
+import { Typography, Button } from '../common/styledComponents';
 import { Image } from '../common/Image';
 import { CheckBox } from '../common/CheckBox';
 import { getProduct } from '../hok/hoks';
@@ -18,7 +18,7 @@ const ImageContainer = styled('div')`
   flex-direction: column;
   justify-content: flex-start;
   gap: 30px;
-  overflow-y: auto;
+  overflow-x: hidden;
   max-height: 800px;
   margin-right: 15px;
 `;
@@ -34,7 +34,7 @@ const ScrollContainer = styled('div')`
     border-radius: 5px;
   }
   &::-webkit-scrollbar-thumb {
-    background: #5ece7b;
+    background: ${(props) => props.theme.color.green};
     border-radius: 15px;
     height: 2px;
   }
@@ -44,7 +44,7 @@ const ScrollContainer = styled('div')`
   }
 `;
 const DescriptionContainer = styled('div')`
-  font-family: 'Roboto Condensed';
+  font-family: ${(props) => props.theme.fonts.roboto};
   font-size: 16px;
   line-height: 26px;
   margin: 40px 0 0 0;
@@ -123,9 +123,9 @@ class ProductPage extends Component {
             {attributes.map((attr) => {
               return (
                 <div key={attr.id}>
-                  <TypographyRoboto fs="18px" fw="700" m="10px 0">
+                  <Typography roboto fs="18px" fw="700" m="10px 0">
                     {attr.id}
-                  </TypographyRoboto>
+                  </Typography>
                   {attr.items.map((el) => {
                     return (
                       <CheckBox
@@ -143,15 +143,15 @@ class ProductPage extends Component {
             })}
           </div>
           <div style={{ margin: '12px 0 20px 0' }}>
-            <TypographyRoboto fs="18px" fw="700" m="10px 0">
+            <Typography roboto fs="18px" fw="700" m="10px 0">
               Price:
-            </TypographyRoboto>
+            </Typography>
             <Typography fs="24px" fw="700">
               {prices[this.props.indexSelectedCurrency].amount}
               {this.props.symbol}
             </Typography>
           </div>
-          <Button height="52px" color="white" border="1px solid #5ECE7B" type="submit">
+          <Button type="submit" height="52px" color="white">
             ADD TO CART
           </Button>
           <DescriptionContainer>

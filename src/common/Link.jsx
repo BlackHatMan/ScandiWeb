@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { PureComponent } from 'react';
 import { Link as RouterLink, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -7,7 +7,7 @@ const StyledLink = styled(RouterLink)`
   font-size: 16px;
   line-height: 120%;
   text-transform: uppercase;
-  color: #5ece7b;
+  color: ${(props) => props.theme.color.green};
   text-decoration: none;
   margin: 0 1rem;
   padding-bottom: 1rem;
@@ -21,7 +21,7 @@ const StyledLink = styled(RouterLink)`
     height: 2px;
     left: ${(props) => (props.active === 'true' ? '0' : '50%')};
     bottom: 0;
-    background-color: #5ece7b;
+    background-color: ${(props) => props.theme.color.green};
     transition: all ease-in-out 0.2s;
   }
 
@@ -31,7 +31,7 @@ const StyledLink = styled(RouterLink)`
   }
 `;
 
-class Link extends Component {
+class Link extends PureComponent {
   render() {
     const active = (this.props.location.pathname === this.props.to).toString();
     return (

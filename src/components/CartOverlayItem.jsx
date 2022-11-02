@@ -2,7 +2,6 @@ import { PureComponent } from 'react';
 import styled from 'styled-components';
 import { CheckBox } from '../common/CheckBox';
 import { Container, Typography } from '../common/styledComponents';
-import { TypographyRoboto } from '../common/styledComponents';
 import { Image } from '../common/Image';
 
 const ButtonCount = styled('button')`
@@ -41,9 +40,9 @@ class CartOverlayItem extends PureComponent {
                 {item.attributes.map((attr) => {
                   return (
                     <div style={{ fontSize: '14px', fontWeight: '500' }} key={attr.id}>
-                      <TypographyRoboto fs="14px" fw="500" lh="16px" m="4px 0">
+                      <Typography roboto fs="14px" fw="500" lh="16px" m="4px 0">
                         {attr.name}
-                      </TypographyRoboto>
+                      </Typography>
                       <Stack>
                         <CheckBox
                           small

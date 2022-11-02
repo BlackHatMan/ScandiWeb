@@ -42,7 +42,7 @@ const Text = styled('label')`
   text-align: center;
   cursor: pointer;
   border: solid 1px #1d1f22;
-  font-family: Source Sans Pro, sans-serif;
+  font-family: ${(props) => props.theme.fonts.source};
   width: ${(props) => props.width || '4rem'};
   height: ${(props) => props.height || '3rem'};
   ${(props) =>

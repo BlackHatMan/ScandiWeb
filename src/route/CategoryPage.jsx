@@ -35,7 +35,7 @@ const WrapperCard = styled(Container)`
   max-height: 444px;
   flex-direction: column;
   padding: 16px;
-  color: ${(props) => props.color};
+  color: ${(props) => (props.inStock ? 'black' : props.theme.color.gray)};
   &:hover {
     transition: ease 0.3s background;
     background-color: #ffffff;
@@ -82,7 +82,7 @@ class CategoryPage extends PureComponent {
       <WrapperPage>
         {this.props.data.map((item, i) => {
           return (
-            <WrapperCard key={i} color={item.inStock ? '' : '#8D8F9A'}>
+            <WrapperCard key={i} inStock={item.inStock}>
               <Link to={item.inStock ? item.id : false}>
                 <WrapperImage>
                   <Image src={item.gallery[0]} alt={item.name} width={350} height={340} />

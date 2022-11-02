@@ -1,7 +1,6 @@
 import { Component } from 'react';
 import styled from 'styled-components';
-import { Typography, TypographyRoboto } from '../common/styledComponents';
-import { Container } from './../common/styledComponents';
+import { Typography, Container } from '../common/styledComponents';
 import { CheckBox } from '../common/CheckBox';
 import { Image } from '../common/Image';
 
@@ -34,7 +33,7 @@ const BtnRight = styled('button')`
   border: none;
   background: rgba(0, 0, 0, 0.73);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  &:: after {
+  &::after {
     position: absolute;
     content: '';
     width: 9px;
@@ -44,6 +43,10 @@ const BtnRight = styled('button')`
     border-top: 2px solid white;
     border-right: 2px solid white;
     transform: rotate(45deg);
+  }
+  &:hover::after {
+    border-top: 2px solid red;
+    border-right: 2px solid red;
   }
 `;
 const BtnLeft = styled('button')`
@@ -64,6 +67,11 @@ const BtnLeft = styled('button')`
     border-bottom: 2px solid white;
     border-left: 2px solid white;
     transform: rotate(45deg);
+  }
+
+  &:hover::after {
+    border-bottom: 2px solid red;
+    border-left: 2px solid red;
   }
 `;
 
@@ -115,9 +123,9 @@ class CartItem extends Component {
               {item.attributes.map((attr) => {
                 return (
                   <div style={{ fontSize: '14px', fontWeight: '500' }} key={attr.id}>
-                    <TypographyRoboto fs="18px" fw="700" lh="18px" m="20px 0 10px 0">
+                    <Typography roboto fs="18px" fw="700" lh="18px" m="20px 0 10px 0">
                       {attr.name}
-                    </TypographyRoboto>
+                    </Typography>
                     <Stack>
                       <CheckBox
                         value={attr.items[0].value}
@@ -146,10 +154,12 @@ class CartItem extends Component {
                 width={200}
                 height={290}
               />
-              <WrapperButtons>
-                <BtnLeft onClick={this.imageHandlerLeft} />
-                <BtnRight onClick={this.imageHandlerRight} />
-              </WrapperButtons>
+              {this.props.item.gallery.length > 1 && (
+                <WrapperButtons>
+                  <BtnLeft onClick={this.imageHandlerLeft} />
+                  <BtnRight onClick={this.imageHandlerRight} />
+                </WrapperButtons>
+              )}
             </WrapperImage>
           </Container>
         </Container>

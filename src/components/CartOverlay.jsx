@@ -75,12 +75,12 @@ class CartOverlay extends PureComponent {
             </Container>
             <Container>
               <StyledLink to="/cart" onClick={close}>
-                <Button width="140px" height="40px" fw="700" color="black" bgColor="transparent">
+                <Button width="140px" height="40px" fw="700" color="black">
                   View bag
                 </Button>
               </StyledLink>
               <StyledLink to="/all" onClick={close}>
-                <Button width="140px" height="40px" fw="700" border="1px solid #5ECE7B">
+                <Button width="140px" height="40px" fw="700">
                   CHECK OUT
                 </Button>
               </StyledLink>

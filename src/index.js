@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import React from 'react';
 import { store, persistor } from './data/store';
+import Theme from './hok/Theme';
 import App from './App';
 import './index.css';
 
@@ -20,7 +21,9 @@ root.render(
       <Provider store={store}>
         <BrowserRouter>
           <PersistGate loading={null} persistor={persistor}>
-            <App />
+            <Theme>
+              <App />
+            </Theme>
           </PersistGate>
         </BrowserRouter>
       </Provider>
