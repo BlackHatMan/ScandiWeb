@@ -16,6 +16,7 @@ export const Typography = styled('p')`
   font-weight: ${(props) => props.fw};
   line-height: ${(props) => props.lh};
   margin: ${(props) => props.m};
+  color: ${(props) => props.theme.color.black};
   font-family: ${(props) => {
     return props.roboto ? props.theme.fonts.roboto : props.theme.fonts.raleway;
   }};

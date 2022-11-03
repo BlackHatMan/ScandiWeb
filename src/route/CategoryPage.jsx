@@ -35,7 +35,7 @@ const WrapperCard = styled(Container)`
   max-height: 444px;
   flex-direction: column;
   padding: 16px;
-  color: ${(props) => (props.inStock ? 'black' : props.theme.color.gray)};
+  opacity: ${(props) => (props.inStock ? 1 : 0.5)};
   &:hover {
     transition: ease 0.3s background;
     background-color: #ffffff;
@@ -55,7 +55,14 @@ const StockTitle = styled('span')`
   font-size: 24px;
   line-height: 160%;
 `;
-
+const Title = styled('h1')`
+  font-size: 42px;
+  font-weight: 400;
+  font-family: Raleway;
+  margin: 60px 0 60px 10px;
+  text-transform: uppercase;
+  color: ${(props) => props.theme.color.black};
+`;
 class CategoryPage extends PureComponent {
   addToCart = (e, item) => {
     e.preventDefault();
@@ -78,35 +85,43 @@ class CategoryPage extends PureComponent {
     });
   };
   render() {
+    const { products, param } = this.props;
     return (
-      <WrapperPage>
-        {this.props.data.map((item, i) => {
-          return (
-            <WrapperCard key={i} inStock={item.inStock}>
-              <Link to={item.inStock ? item.id : false}>
-                <WrapperImage>
-                  <Image src={item.gallery[0]} alt={item.name} width={350} height={340} />
+      <>
+        <Title>{param.category}</Title>
+        <WrapperPage>
+          {products.map((item, i) => {
+            return (
+              <WrapperCard key={i} inStock={item.inStock}>
+                <Link to={item.inStock ? item.id : false}>
+                  <WrapperImage>
+                    <Image src={item.gallery[0]} alt={item.name} width={350} height={340} />
 
-                  {item.inStock ? (
-                    <Logo src={CartLogo} onClick={(e) => this.addToCart(e, item)} alt="add item" />
-                  ) : (
-                    <StockTitle>OUT OF STOCK</StockTitle>
-                  )}
-                </WrapperImage>
-              </Link>
-              <div>
-                <Typography fw="300" fs="16px" lh="29px" m="24px 0 0 0">
-                  {item.name}
-                </Typography>
-                <Typography fw="500" fs="16px" lh="29px">
-                  {item.prices[this.props.index].amount}
-                  {item.prices[this.props.index].currency.symbol}
-                </Typography>
-              </div>
-            </WrapperCard>
-          );
-        })}
-      </WrapperPage>
+                    {item.inStock ? (
+                      <Logo
+                        src={CartLogo}
+                        onClick={(e) => this.addToCart(e, item)}
+                        alt="add item"
+                      />
+                    ) : (
+                      <StockTitle>OUT OF STOCK</StockTitle>
+                    )}
+                  </WrapperImage>
+                </Link>
+                <div>
+                  <Typography fw="300" fs="16px" lh="29px" m="24px 0 0 0">
+                    {item.name}
+                  </Typography>
+                  <Typography fw="500" fs="16px" lh="29px">
+                    {item.prices[this.props.index].amount}
+                    {item.prices[this.props.index].currency.symbol}
+                  </Typography>
+                </div>
+              </WrapperCard>
+            );
+          })}
+        </WrapperPage>
+      </>
     );
   }
 }

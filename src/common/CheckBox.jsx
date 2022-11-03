@@ -41,7 +41,7 @@ const Text = styled('label')`
   margin: 2px 0;
   text-align: center;
   cursor: pointer;
-  border: solid 1px #1d1f22;
+  border: solid 1px ${(props) => props.theme.color.black};
   font-family: ${(props) => props.theme.fonts.source};
   width: ${(props) => props.width || '4rem'};
   height: ${(props) => props.height || '3rem'};
@@ -55,7 +55,7 @@ const Text = styled('label')`
     `}
   ${HiddenCheckBox}:checked + && {
     color: white;
-    background-color: black;
+    background-color: ${(props) => props.theme.color.black};
   }
 `;
 

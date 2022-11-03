@@ -18,7 +18,7 @@ export function getCategory(Component) {
       return null;
     }
 
-    return <Component {...props} param={param} data={data.category.products} />;
+    return <Component {...props} param={param} products={data.category.products} />;
   };
 }
 
