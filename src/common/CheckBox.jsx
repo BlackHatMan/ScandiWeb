@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import styled from 'styled-components';
 import { css } from 'styled-components';
 
@@ -23,6 +23,7 @@ const Color = styled('label')`
   width: ${(props) => props.width || '2rem'};
   height: ${(props) => props.height || '2rem'};
   background-color: ${(props) => props.value};
+  transition: 0.2s all linear;
   ${(props) =>
     props.small &&
     css`
@@ -41,6 +42,7 @@ const Text = styled('label')`
   margin: 2px 0;
   text-align: center;
   cursor: pointer;
+  transition: 0.2s all linear;
   border: solid 1px ${(props) => props.theme.color.black};
   font-family: ${(props) => props.theme.fonts.source};
   width: ${(props) => props.width || '4rem'};
@@ -59,11 +61,10 @@ const Text = styled('label')`
   }
 `;
 
-export class CheckBox extends Component {
+export class CheckBox extends PureComponent {
   render() {
     const { id, value, type, nameGroup, required, ...rest } = this.props;
     const ID = `${nameGroup}-${id}`;
-
     return (
       <CheckBoxContainer>
         <HiddenCheckBox id={ID} name={nameGroup} required={required} value={value} {...rest} />

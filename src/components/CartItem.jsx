@@ -6,6 +6,8 @@ import { Image } from '../common/Image';
 
 const Stack = styled('div')`
   display: inline-flex;
+  font-size: 14px;
+  font-weight: 500;
 `;
 
 const ButtonCount = styled('button')`
@@ -122,17 +124,24 @@ class CartItem extends Component {
             <div>
               {item.attributes.map((attr) => {
                 return (
-                  <div style={{ fontSize: '14px', fontWeight: '500' }} key={attr.id}>
+                  <div key={attr.id}>
                     <Typography roboto fs="18px" fw="700" lh="18px" m="20px 0 10px 0">
                       {attr.name}
                     </Typography>
                     <Stack>
-                      <CheckBox
-                        value={attr.items[0].value}
-                        type={attr.type}
-                        nameGroup={attr.name + item.id}
-                        defaultChecked={true}
-                      />
+                      {attr.items.map((el) => {
+                        return (
+                          <CheckBox
+                            key={attr.id + el.id}
+                            id={el.id}
+                            value={el.value}
+                            type={attr.type}
+                            nameGroup={attr.name + item.id}
+                            defaultChecked={el.checked}
+                            disabled={!el.checked}
+                          />
+                        );
+                      })}
                     </Stack>
                   </div>
                 );

@@ -44,13 +44,19 @@ class CartOverlayItem extends PureComponent {
                         {attr.name}
                       </Typography>
                       <Stack>
-                        <CheckBox
-                          small
-                          value={attr.items[0].value}
-                          type={attr.type}
-                          nameGroup={attr.name + item.id}
-                          defaultChecked={true}
-                        />
+                        {attr.items.map((el) => {
+                          return (
+                            <CheckBox
+                              key={attr.id + el.id}
+                              small
+                              value={el.value}
+                              type={attr.type}
+                              nameGroup={attr.name + item.id}
+                              defaultChecked={el.checked}
+                              disabled={!el.checked}
+                            />
+                          );
+                        })}
                       </Stack>
                     </div>
                   );

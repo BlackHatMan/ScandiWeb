@@ -64,23 +64,27 @@ const Title = styled('h1')`
   color: ${(props) => props.theme.color.black};
 `;
 class CategoryPage extends PureComponent {
-  addToCart = (e, item) => {
+  addToCart = (e, product) => {
     e.preventDefault();
-
-    const attributes = item.attributes.map((el) => {
+    const attributes = product.attributes.map((el) => {
       return {
         ...el,
-        items: [el.items[0]],
+        items: el.items.map((attr, i) => {
+          return {
+            ...attr,
+            checked: i === 0,
+          };
+        }),
       };
     });
 
     this.props.addItem({
-      id: item.id,
+      id: product.id,
       attributes,
-      brand: item.brand,
-      gallery: item.gallery,
-      name: item.name,
-      prices: item.prices,
+      brand: product.brand,
+      gallery: product.gallery,
+      name: product.name,
+      prices: product.prices,
       count: 1,
     });
   };
