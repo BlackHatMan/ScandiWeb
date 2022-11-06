@@ -1,11 +1,23 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { item } from './../types/types';
 
-const initialState = {
+const initialState: state = {
   items: [],
-  total: {},
+  total: { count: 0, cost: 0, tax: 0, total: 0 },
   indexSelectedCurrency: 0,
   symbol: '$',
 };
+interface state {
+  items: item[];
+  total: {
+    count: number;
+    cost: number;
+    tax: number;
+    total: number;
+  };
+  indexSelectedCurrency: number;
+  symbol: string;
+}
 
 const itemSlice = createSlice({
   name: 'item',
@@ -41,18 +53,18 @@ const itemSlice = createSlice({
 export const { addItem, increaseCount, decreaseCount, setCurrency } = itemSlice.actions;
 export default itemSlice.reducer;
 
-const totalCostHelper = (items, indexCurrency) => {
-  const count = items.reduce((acc, current) => {
+const totalCostHelper = (items: item[], indexCurrency: number) => {
+  const count = +items.reduce((acc, current) => {
     return acc + current.count;
   }, 0);
 
-  const cost = items
+  const cost = +items
     .reduce((acc, current) => {
       return acc + current.count * current.prices[indexCurrency].amount;
     }, 0)
     .toFixed(2);
 
-  const tax = (cost * 1.21 - cost).toFixed(2);
+  const tax = +(cost * 1.21 - cost).toFixed(2);
 
   const total = tax + cost;
   return { count, cost, tax, total };

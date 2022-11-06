@@ -12,13 +12,14 @@ export interface attribute {
   name: string;
   type: typeAttribute;
   items: item[];
-  prices: price[];
 }
 
 export interface item {
   displayValue: string;
   value: string;
   id: string;
+  count: number;
+  prices: price[];
 }
 
 export interface price {
