@@ -1,6 +1,7 @@
+import { CSSProperties } from 'react';
 import styled from 'styled-components';
 
-export const Container = styled('div')`
+export const Container = styled('div')<CSSProperties>`
   display: flex;
   justify-content: space-between;
   width: ${(props) => props.width};
@@ -11,7 +12,13 @@ export const Container = styled('div')`
   padding: ${(props) => props.padding};
 `;
 
-export const Typography = styled('p')`
+export const Typography = styled('p')<{
+  fs?: string;
+  fw?: string;
+  lh?: string;
+  m?: string;
+  roboto?: string;
+}>`
   font-size: ${(props) => props.fs};
   font-weight: ${(props) => props.fw};
   line-height: ${(props) => props.lh};
@@ -22,7 +29,12 @@ export const Typography = styled('p')`
   }};
 `;
 
-export const Button = styled('button')`
+export const Button = styled('button')<
+  CSSProperties & {
+    fs: string;
+    fw: string;
+  }
+>`
   width: 100%;
   font-family: ${(props) => props.theme.fonts.raleway};
   cursor: pointer;

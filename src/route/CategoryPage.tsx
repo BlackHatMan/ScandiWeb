@@ -1,12 +1,14 @@
-import { PureComponent } from 'react';
-import { connect } from 'react-redux';
+import { BaseSyntheticEvent, PureComponent } from 'react';
+import { connect, ConnectedProps } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { Container, Typography } from '../common/styledComponents';
+import { Typography } from '../common/styledComponents';
 import { addItem } from '../data/slice';
 import { getCategory } from '../hok/hoks';
 import CartLogo from '../svg/Card_item.svg';
 import { Image } from '../common/Image';
+import { product, state } from '../types/types';
+import { Container } from './../common/styledComponents';
 
 const WrapperPage = styled('div')`
   display: grid;
@@ -29,7 +31,7 @@ const Logo = styled('img')`
   transition: opacity ease 0.3s;
 `;
 
-const WrapperCard = styled(Container)`
+const WrapperCard = styled(Container)<{ inStock: boolean }>`
   width: 386px;
   min-width: 300px;
   max-height: 444px;
@@ -63,8 +65,8 @@ const Title = styled('h1')`
   text-transform: uppercase;
   color: ${(props) => props.theme.color.black};
 `;
-class CategoryPage extends PureComponent {
-  addToCart = (e, product) => {
+class CategoryPage extends PureComponent<PropsFromRedux> {
+  addToCart = (e: BaseSyntheticEvent<MouseEvent>, product: product) => {
     e.preventDefault();
     const attributes = product.attributes.map((el) => {
       return {
@@ -92,12 +94,12 @@ class CategoryPage extends PureComponent {
     const { products, param } = this.props;
     return (
       <>
-        <Title>{param.category}</Title>
+        <Title>{param}</Title>
         <WrapperPage>
           {products.map((item, i) => {
             return (
               <WrapperCard key={i} inStock={item.inStock}>
-                <Link to={item.inStock ? item.id : false}>
+                <Link to={item.inStock ? item.id : ''}>
                   <WrapperImage>
                     <Image src={item.gallery[0]} alt={item.name} width={350} height={340} />
 
@@ -129,6 +131,14 @@ class CategoryPage extends PureComponent {
     );
   }
 }
-const mapStateToProps = (state) => ({ index: state.indexSelectedCurrency });
+const mapStateToProps = (state: state) => ({ index: state.indexSelectedCurrency });
 
-export default connect(mapStateToProps, { addItem })(getCategory(CategoryPage));
+interface propsCategory {
+  products: product[];
+  param?: string;
+}
+
+const connector = connect(mapStateToProps, { addItem });
+export type PropsFromRedux = ConnectedProps<typeof connector> & propsCategory;
+
+export default connector(getCategory(CategoryPage));

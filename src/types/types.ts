@@ -5,6 +5,8 @@ export interface product {
   gallery: string[];
   brand: string;
   attributes: attribute[];
+  prices: price[];
+  count: number;
 }
 
 export interface attribute {
@@ -18,8 +20,6 @@ export interface item {
   displayValue: string;
   value: string;
   id: string;
-  count: number;
-  prices: price[];
 }
 
 export interface price {
@@ -32,3 +32,15 @@ export interface currency {
 }
 
 export type typeAttribute = 'text' | 'swatch';
+
+export interface state {
+  items: product[];
+  total: {
+    count: number;
+    cost: number;
+    tax: number;
+    total: number;
+  };
+  indexSelectedCurrency: number;
+  symbol: string;
+}

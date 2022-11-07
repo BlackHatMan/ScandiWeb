@@ -3,6 +3,7 @@ import { useQuery } from '@apollo/client';
 import { GET_CATEGORY, GET_PRODUCT, GET_CURRENCY } from '../data/query';
 import { currency, product } from '../types/types';
 import { ComponentClass } from 'react';
+import { PropsFromRedux } from '../route/CategoryPage';
 
 interface categoryData {
   category: {
@@ -10,7 +11,7 @@ interface categoryData {
   };
 }
 
-export function getCategory(Component: ComponentClass) {
+export function getCategory(Component: ComponentClass<PropsFromRedux>) {
   return (props: any) => {
     const param = useParams();
 
@@ -30,7 +31,7 @@ export function getCategory(Component: ComponentClass) {
       return null;
     }
 
-    return <Component {...props} param={param} products={data.category.products} />;
+    return <Component {...props} param={param.category} products={data.category.products} />;
   };
 }
 
