@@ -1,7 +1,18 @@
-import { CSSProperties } from 'react';
 import styled from 'styled-components';
 
-export const Container = styled('div')<CSSProperties>`
+interface cssProps {
+  width?: string;
+  height?: string;
+  padding?: string;
+  color?: string;
+  margin?: string;
+  alignItems?: string;
+  flexDirection?: string;
+  fs?: string;
+  fw?: string;
+}
+
+export const Container = styled('div')<cssProps>`
   display: flex;
   justify-content: space-between;
   width: ${(props) => props.width};
@@ -17,7 +28,7 @@ export const Typography = styled('p')<{
   fw?: string;
   lh?: string;
   m?: string;
-  roboto?: string;
+  roboto?: boolean;
 }>`
   font-size: ${(props) => props.fs};
   font-weight: ${(props) => props.fw};
@@ -29,12 +40,14 @@ export const Typography = styled('p')<{
   }};
 `;
 
-export const Button = styled('button')<
-  CSSProperties & {
-    fs: string;
-    fw: string;
-  }
->`
+export const Button = styled('button')<{
+  width?: string;
+  height?: string;
+  padding?: string;
+  color?: string;
+  fs?: string;
+  fw?: string;
+}>`
   width: 100%;
   font-family: ${(props) => props.theme.fonts.raleway};
   cursor: pointer;

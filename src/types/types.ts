@@ -7,6 +7,7 @@ export interface product {
   attributes: attribute[];
   prices: price[];
   count: number;
+  description: string;
 }
 
 export interface attribute {

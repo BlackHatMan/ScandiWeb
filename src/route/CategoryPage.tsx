@@ -2,13 +2,13 @@ import { BaseSyntheticEvent, PureComponent } from 'react';
 import { connect, ConnectedProps } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { Typography } from '../common/styledComponents';
+import { Typography, Container } from '../common/styledComponents';
 import { addItem } from '../data/slice';
 import { getCategory } from '../hok/hoks';
 import CartLogo from '../svg/Card_item.svg';
 import { Image } from '../common/Image';
-import { product, state } from '../types/types';
-import { Container } from './../common/styledComponents';
+import { product } from '../types/types';
+import { RootState } from '../data/store';
 
 const WrapperPage = styled('div')`
   display: grid;
@@ -65,7 +65,7 @@ const Title = styled('h1')`
   text-transform: uppercase;
   color: ${(props) => props.theme.color.black};
 `;
-class CategoryPage extends PureComponent<PropsFromRedux> {
+class CategoryPage extends PureComponent<propsCategory> {
   addToCart = (e: BaseSyntheticEvent<MouseEvent>, product: product) => {
     e.preventDefault();
     const attributes = product.attributes.map((el) => {
@@ -131,14 +131,12 @@ class CategoryPage extends PureComponent<PropsFromRedux> {
     );
   }
 }
-const mapStateToProps = (state: state) => ({ index: state.indexSelectedCurrency });
+const mapStateToProps = (state: RootState) => ({ index: state.indexSelectedCurrency });
 
-interface propsCategory {
+const connector = connect(mapStateToProps, { addItem });
+type PropsFromRedux = ConnectedProps<typeof connector>;
+export interface propsCategory extends PropsFromRedux {
   products: product[];
   param?: string;
 }
-
-const connector = connect(mapStateToProps, { addItem });
-export type PropsFromRedux = ConnectedProps<typeof connector> & propsCategory;
-
 export default connector(getCategory(CategoryPage));

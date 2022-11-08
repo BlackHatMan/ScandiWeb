@@ -1,5 +1,5 @@
-import { Component } from 'react';
-import { connect } from 'react-redux';
+import { Component, FormEvent } from 'react';
+import { connect, ConnectedProps } from 'react-redux';
 import styled from 'styled-components';
 import { Markup } from 'interweave';
 import { Typography, Button } from '../common/styledComponents';
@@ -7,6 +7,8 @@ import { Image } from '../common/Image';
 import { CheckBox } from '../common/CheckBox';
 import { getProduct } from '../hok/hoks';
 import { addItem } from '../data/slice';
+import { RootState } from '../data/store';
+import { product } from '../types/types';
 
 const Form = styled('form')`
   display: flex;
@@ -50,24 +52,26 @@ const DescriptionContainer = styled('div')`
   margin: 40px 0 0 0;
 `;
 
-class ProductPage extends Component {
-  constructor() {
-    super();
+class ProductPage extends Component<ProductProps, { path: string }> {
+  constructor(props: ProductProps) {
+    super(props);
     this.state = {
-      path: this.props?.data.gallery[0],
+      path: this.props?.product.gallery[0],
     };
   }
 
-  handlerPath = (path) => {
+  handlerPath = (path: string) => {
     this.setState({ path });
   };
 
-  addToCart = (e, product) => {
+  addToCart = (e: FormEvent<HTMLFormElement>, product: product) => {
     e.preventDefault();
-    const formData = Object.fromEntries(new FormData(e.target));
-    /* add field checked */
-    if (e.target.checkValidity()) {
-      const attributes = this.props.data.product.attributes.map((el) => {
+    const target = e.target as HTMLFormElement;
+    const formData = Object.fromEntries(new FormData(target));
+    /* add checked  field */
+
+    if (target.checkValidity()) {
+      const attributes = this.props.product.attributes.map((el) => {
         return {
           ...el,
           items: el.items.map((attr) => {
@@ -94,9 +98,10 @@ class ProductPage extends Component {
   };
 
   render() {
-    const { gallery, brand, name, attributes, prices, description } = this.props.data.product;
+    const { gallery, brand, name, attributes, prices, description } = this.props.product;
+
     return (
-      <Form onSubmit={(e) => this.addToCart(e, this.props.data.product)}>
+      <Form onSubmit={(e: FormEvent<HTMLFormElement>) => this.addToCart(e, this.props.product)}>
         <ScrollContainer>
           <ImageContainer>
             {gallery.map((el) => {
@@ -167,4 +172,10 @@ class ProductPage extends Component {
     );
   }
 }
-export default connect((state) => state, { addItem })(getProduct(ProductPage));
+const connector = connect((state: RootState) => state, { addItem });
+type PropsFromRedux = ConnectedProps<typeof connector>;
+export interface ProductProps extends PropsFromRedux {
+  product: product;
+  navigate: (arg: number) => void;
+}
+export default connector(getProduct(ProductPage));

@@ -1,9 +1,10 @@
 import { useNavigate, useParams } from 'react-router-dom';
+import { ComponentClass } from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_CATEGORY, GET_PRODUCT, GET_CURRENCY } from '../data/query';
+import { propsCategory } from '../route/CategoryPage';
 import { currency, product } from '../types/types';
-import { ComponentClass } from 'react';
-import { PropsFromRedux } from '../route/CategoryPage';
+import { ProductProps } from '../route/ProductPage';
 
 interface categoryData {
   category: {
@@ -11,7 +12,7 @@ interface categoryData {
   };
 }
 
-export function getCategory(Component: ComponentClass<PropsFromRedux>) {
+export function getCategory(Component: ComponentClass<propsCategory>) {
   return (props: any) => {
     const param = useParams();
 
@@ -35,22 +36,26 @@ export function getCategory(Component: ComponentClass<PropsFromRedux>) {
   };
 }
 
-export function getProduct(Component: ComponentClass) {
+export function getProduct(Component: ComponentClass<ProductProps>) {
   return (props: any) => {
     const param = useParams();
     const navigate = useNavigate();
 
-    const { data, error } = useQuery<{ product: product }>(GET_PRODUCT, {
+    const { loading, data, error } = useQuery<{ product: product }>(GET_PRODUCT, {
       variables: {
         id: param.categoryId,
       },
     });
 
+    if (loading) {
+      return <h2>Here might be a spinner</h2>;
+    }
+
     if (!data?.product || error) {
       return null;
     }
 
-    return <Component {...props} data={data} navigate={navigate} />;
+    return <Component {...props} product={data.product} navigate={navigate} />;
   };
 }
 
