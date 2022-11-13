@@ -1,17 +1,5 @@
 import styled from 'styled-components';
 
-interface cssProps {
-  width?: string;
-  height?: string;
-  padding?: string;
-  color?: string;
-  margin?: string;
-  alignItems?: string;
-  flexDirection?: string;
-  fs?: string;
-  fw?: string;
-}
-
 export const Container = styled('div')<cssProps>`
   display: flex;
   justify-content: space-between;
@@ -40,14 +28,7 @@ export const Typography = styled('p')<{
   }};
 `;
 
-export const Button = styled('button')<{
-  width?: string;
-  height?: string;
-  padding?: string;
-  color?: string;
-  fs?: string;
-  fw?: string;
-}>`
+export const Button = styled('button')<cssProps>`
   width: 100%;
   font-family: ${(props) => props.theme.fonts.raleway};
   cursor: pointer;
@@ -63,3 +44,15 @@ export const Button = styled('button')<{
     background-color: forestgreen;
   }
 `;
+
+interface cssProps {
+  width?: string;
+  height?: string;
+  padding?: string;
+  color?: string;
+  margin?: string;
+  alignItems?: string;
+  flexDirection?: string;
+  fs?: string;
+  fw?: string;
+}

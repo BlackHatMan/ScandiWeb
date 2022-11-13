@@ -1,8 +1,8 @@
-import { PureComponent } from 'react';
-import { Link as RouterLink, useLocation } from 'react-router-dom';
+import { PureComponent, ComponentClass } from 'react';
+import { Link as RouterLink, useLocation, LinkProps } from 'react-router-dom';
 import styled from 'styled-components';
 
-const StyledLink = styled(RouterLink)`
+const StyledLink = styled(RouterLink)<{ active: boolean }>`
   font-weight: 600;
   font-size: 16px;
   line-height: 120%;
@@ -12,14 +12,13 @@ const StyledLink = styled(RouterLink)`
   margin: 0 1rem;
   padding-bottom: 1rem;
   position: relative;
-  border-bottom: ${(props) => props.border};
 
   &:after {
     content: '';
     position: absolute;
-    width: ${(props) => (props.active === 'true' ? '100%' : '0')};
+    width: ${(props) => (props.active === true ? '100%' : '0')};
     height: 2px;
-    left: ${(props) => (props.active === 'true' ? '0' : '50%')};
+    left: ${(props) => (props.active === false ? '0' : '50%')};
     bottom: 0;
     background-color: ${(props) => props.theme.color.green};
     transition: all ease-in-out 0.2s;
@@ -31,9 +30,9 @@ const StyledLink = styled(RouterLink)`
   }
 `;
 
-class Link extends PureComponent {
+class Link extends PureComponent<props> {
   render() {
-    const active = (this.props.location.pathname === this.props.to).toString();
+    const active = this.props.location === this.props.to;
     return (
       <StyledLink to={this.props.to} active={active}>
         {this.props.children}
@@ -41,11 +40,15 @@ class Link extends PureComponent {
     );
   }
 }
-export default Wrapper(Link);
+export default getLocation(Link);
 
-function Wrapper(Child) {
-  return function ComponentWithRouterProp(props) {
+function getLocation(Child: ComponentClass<props>) {
+  return function ComponentWithRouterProp(props: LinkProps) {
     const location = useLocation();
-    return <Child {...props} location={location} />;
+    return <Child {...props} location={location.pathname} />;
   };
+}
+
+interface props extends LinkProps {
+  location: string;
 }

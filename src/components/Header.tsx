@@ -1,12 +1,13 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import { Component } from 'react';
+import { connect, ConnectedProps } from 'react-redux';
 import styled from 'styled-components';
 import CartOverlay from './CartOverlay';
 import DropDown from '../common/DropDown';
 import { Container } from '../common/styledComponents';
-import Link from './../common/Link';
+import Link from '../common/Link';
 import { ReactComponent as CartLogo } from '../svg/Card_logo.svg';
 import basketLogo from '../svg/Vector.svg';
+import { RootState } from '../data/store';
 
 const Logo = styled('div')`
   cursor: pointer;
@@ -31,9 +32,9 @@ const Logo = styled('div')`
   }
 `;
 
-class Header extends Component {
-  constructor() {
-    super();
+class Header extends Component<PropsFromRedux, { isOpen: boolean }> {
+  constructor(props: PropsFromRedux) {
+    super(props);
     this.state = {
       isOpen: false,
     };
@@ -65,6 +66,8 @@ class Header extends Component {
     );
   }
 }
-const mapStateToProps = (state) => ({ count: state.total.count });
+const mapStateToProps = (state: RootState) => ({ count: state.total.count });
 
-export default connect(mapStateToProps, null)(Header);
+const connector = connect(mapStateToProps);
+type PropsFromRedux = ConnectedProps<typeof connector>;
+export default connector(Header);

@@ -5,6 +5,7 @@ import { GET_CATEGORY, GET_PRODUCT, GET_CURRENCY } from '../data/query';
 import { propsCategory } from '../route/CategoryPage';
 import { currency, product } from '../types/types';
 import { ProductProps } from '../route/ProductPage';
+import { DropDownProps } from '../common/DropDown';
 
 interface categoryData {
   category: {
@@ -13,7 +14,7 @@ interface categoryData {
 }
 
 export function getCategory(Component: ComponentClass<propsCategory>) {
-  return (props: any) => {
+  return function ComponentWithData(props: any) {
     const param = useParams();
 
     const { loading, data, error } = useQuery<categoryData>(GET_CATEGORY, {
@@ -37,7 +38,7 @@ export function getCategory(Component: ComponentClass<propsCategory>) {
 }
 
 export function getProduct(Component: ComponentClass<ProductProps>) {
-  return (props: any) => {
+  return function ComponentWithData(props: any) {
     const param = useParams();
     const navigate = useNavigate();
 
@@ -59,8 +60,8 @@ export function getProduct(Component: ComponentClass<ProductProps>) {
   };
 }
 
-export function getCurrency(Component: ComponentClass) {
-  return (props: any) => {
+export function getCurrency(Component: ComponentClass<DropDownProps>) {
+  return function ComponentWithData(props: any) {
     const { data, error } = useQuery<{ currencies: currency }>(GET_CURRENCY);
 
     if (!data?.currencies || error) {

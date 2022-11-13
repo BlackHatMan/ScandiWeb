@@ -16,7 +16,7 @@ const HiddenCheckBox = styled.input.attrs({ type: 'radio' })`
   z-index: -1;
 `;
 
-const Color = styled('label')`
+const Color = styled('label')<InputProps>`
   display: inline-block;
   cursor: pointer;
   border: 2px solid white;
@@ -26,7 +26,7 @@ const Color = styled('label')`
   transition: 0.2s all linear;
   ${(props) =>
     props.small &&
-    css`
+    css<InputProps>`
       width: ${(props) => props.width || '1rem'};
       height: ${(props) => props.height || '1rem'};
     `}
@@ -35,7 +35,7 @@ const Color = styled('label')`
   }
 `;
 
-const Text = styled('label')`
+const Text = styled('label')<InputProps>`
   display: inline-block;
   text-transform: uppercase;
   padding: 0.7rem;
@@ -49,7 +49,7 @@ const Text = styled('label')`
   height: ${(props) => props.height || '3rem'};
   ${(props) =>
     props.small &&
-    css`
+    css<InputProps>`
       padding: 0.2rem;
       width: ${(props) => props.width || '100%'};
       min-width: 1.5rem;
@@ -61,20 +61,31 @@ const Text = styled('label')`
   }
 `;
 
-export class CheckBox extends PureComponent {
+export class CheckBox extends PureComponent<CheckboxProps> {
   render() {
     const { id, value, type, nameGroup, required, ...rest } = this.props;
     const ID = `${nameGroup}-${id}`;
     return (
       <CheckBoxContainer>
         <HiddenCheckBox id={ID} name={nameGroup} required={required} value={value} {...rest} />
-        {type === 'text' && (
-          <Text htmlFor={ID} {...rest}>
-            {value}
-          </Text>
-        )}
-        {type === 'swatch' && <Color htmlFor={ID} value={value} {...rest} />}
+        {type === 'text' && <Text htmlFor={ID}>{value}</Text>}
+        {type === 'swatch' && <Color htmlFor={ID} value={value} />}
       </CheckBoxContainer>
     );
   }
+}
+
+interface CheckboxProps extends React.ImgHTMLAttributes<HTMLInputElement> {
+  type: string;
+  is: string;
+  value: string;
+  nameGroup: string;
+  required?: boolean;
+}
+
+interface InputProps {
+  width?: string;
+  height?: string;
+  value?: string;
+  small?: boolean;
 }
