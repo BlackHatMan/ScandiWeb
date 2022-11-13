@@ -1,9 +1,10 @@
-import { Component } from 'react';
-import { connect } from 'react-redux';
+import { connect, ConnectedProps } from 'react-redux';
 import styled from 'styled-components';
+import { PureComponent } from 'react';
 import { Typography, Button } from '../common/styledComponents';
-import CartItem from '../components/CartItem';
 import { increaseCount, decreaseCount } from '../data/slice';
+import CartItem from '../components/CartItem';
+import { RootState } from '../data/store';
 
 const WrapperCost = styled('div')`
   display: grid;
@@ -13,7 +14,8 @@ const WrapperCost = styled('div')`
   column-gap: 5px;
   margin: 30px 0 20px 0;
 `;
-class CartPage extends Component {
+
+class CartPage extends PureComponent<PropsFromRedux> {
   render() {
     const { items, total, symbol, indexSelectedCurrency, decreaseCount, increaseCount } =
       this.props;
@@ -68,5 +70,7 @@ class CartPage extends Component {
     );
   }
 }
+const connector = connect((state: RootState) => state, { increaseCount, decreaseCount });
+type PropsFromRedux = ConnectedProps<typeof connector>;
 
-export default connect((state) => state, { increaseCount, decreaseCount })(CartPage);
+export default connector(CartPage);

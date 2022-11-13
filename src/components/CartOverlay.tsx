@@ -1,10 +1,11 @@
-import { PureComponent } from 'react';
+import { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { connect, ConnectedProps } from 'react-redux';
 import styled from 'styled-components';
-import { increaseCount, decreaseCount } from '../data/slice';
 import { Container, Typography, Button } from '../common/styledComponents';
+import { increaseCount, decreaseCount } from '../data/slice';
 import CartOverlayItem from './CartOverlayItem';
+import { RootState } from '../data/store';
 
 const Overlay = styled('div')`
   position: absolute;
@@ -44,7 +45,7 @@ const StyledLink = styled(Link)`
   text-decoration: none;
 `;
 
-class CartOverlay extends PureComponent {
+class CartOverlay extends Component<CartOverlayProps> {
   componentDidMount() {
     document.body.style.overflow = 'hidden';
   }
@@ -91,5 +92,14 @@ class CartOverlay extends PureComponent {
     );
   }
 }
+const connector = connect((state: RootState) => state, { increaseCount, decreaseCount });
+type PropsFromRedux = ConnectedProps<typeof connector>;
 
-export default connect((state) => state, { increaseCount, decreaseCount })(CartOverlay);
+interface CartOverlayProps extends PropsFromRedux {
+  close: () => void;
+}
+export type CartOverlayItemProps = Omit<
+  CartOverlayProps,
+  'symbol' | 'total' | 'close' | '_persist'
+>;
+export default connector(CartOverlay);

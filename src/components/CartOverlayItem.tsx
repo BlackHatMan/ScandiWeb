@@ -1,7 +1,8 @@
 import { PureComponent } from 'react';
 import styled from 'styled-components';
-import { CheckBox } from '../common/CheckBox';
 import { Container, Typography } from '../common/styledComponents';
+import { CartOverlayItemProps } from './CartOverlay';
+import { CheckBox } from '../common/CheckBox';
 import { Image } from '../common/Image';
 
 const ButtonCount = styled('button')`
@@ -17,7 +18,7 @@ const Stack = styled('div')`
   display: inline-flex;
 `;
 
-class CartOverlayItem extends PureComponent {
+class CartOverlayItem extends PureComponent<CartOverlayItemProps> {
   render() {
     const { items, indexSelectedCurrency } = this.props;
     return (

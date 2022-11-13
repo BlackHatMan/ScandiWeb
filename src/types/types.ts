@@ -21,6 +21,7 @@ export interface item {
   displayValue: string;
   value: string;
   id: string;
+  checked?: boolean;
 }
 
 export interface price {
