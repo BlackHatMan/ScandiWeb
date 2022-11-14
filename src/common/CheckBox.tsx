@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { InputHTMLAttributes, PureComponent } from 'react';
 import styled from 'styled-components';
 import { css } from 'styled-components';
 
@@ -16,7 +16,7 @@ const HiddenCheckBox = styled.input.attrs({ type: 'radio' })`
   z-index: -1;
 `;
 
-const Color = styled('label')`
+const Color = styled('label')<InputProps>`
   display: inline-block;
   cursor: pointer;
   border: 2px solid white;
@@ -27,15 +27,15 @@ const Color = styled('label')`
   ${(props) =>
     props.small &&
     css`
-      width: ${(props) => props.width || '1rem'};
-      height: ${(props) => props.height || '1rem'};
+      width: 1rem;
+      height: 1rem;
     `}
   ${HiddenCheckBox}:checked + && {
-    outline: ${(props) => `2px solid ${props.value}`};
+    outline: ${(props) => `2px solid ${props.theme.color.green}`};
   }
 `;
 
-const Text = styled('label')`
+const Text = styled('label')<InputProps>`
   display: inline-block;
   text-transform: uppercase;
   padding: 0.7rem;
@@ -51,9 +51,9 @@ const Text = styled('label')`
     props.small &&
     css`
       padding: 0.2rem;
-      width: ${(props) => props.width || '100%'};
       min-width: 1.5rem;
-      height: ${(props) => props.height || '1.5rem'};
+      width: 100%;
+      height: 1.5rem;
     `}
   ${HiddenCheckBox}:checked + && {
     color: white;
@@ -61,20 +61,35 @@ const Text = styled('label')`
   }
 `;
 
-export class CheckBox extends PureComponent {
+export class CheckBox extends PureComponent<CheckboxProps> {
   render() {
-    const { id, value, type, nameGroup, required, ...rest } = this.props;
+    const { id, value, type, nameGroup, small, ...rest } = this.props;
     const ID = `${nameGroup}-${id}`;
     return (
       <CheckBoxContainer>
-        <HiddenCheckBox id={ID} name={nameGroup} required={required} value={value} {...rest} />
+        <HiddenCheckBox id={ID} name={nameGroup} value={value} {...rest} />
         {type === 'text' && (
-          <Text htmlFor={ID} {...rest}>
+          <Text htmlFor={ID} small={small}>
             {value}
           </Text>
         )}
-        {type === 'swatch' && <Color htmlFor={ID} value={value} {...rest} />}
+        {type === 'swatch' && <Color htmlFor={ID} small={small} value={value} />}
       </CheckBoxContainer>
     );
   }
+}
+
+interface CheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
+  type: string;
+  id: string;
+  value: string;
+  nameGroup: string;
+  small?: boolean;
+}
+
+interface InputProps {
+  width?: string;
+  height?: string;
+  value?: string;
+  small?: boolean;
 }

@@ -1,8 +1,10 @@
 import { PureComponent } from 'react';
-import { connect } from 'react-redux';
+import { connect, ConnectedProps } from 'react-redux';
 import styled from 'styled-components';
 import { setCurrency } from '../data/slice';
+import { RootState } from '../data/store';
 import { getCurrency } from '../hok/hoks';
+import { currency } from './../types/types';
 
 const DropDownContainer = styled('div')`
   width: 50px;
@@ -11,7 +13,7 @@ const DropDownContainer = styled('div')`
   font-weight: 500;
 `;
 
-const DropDownHeader = styled('div')`
+const DropDownHeader = styled('div')<{ isOpen: boolean }>`
   padding: 8px;
   position: relative;
   &:after {
@@ -56,9 +58,9 @@ const Overlay = styled('div')`
   z-index: 101;
 `;
 
-class DropDown extends PureComponent {
-  constructor() {
-    super();
+class DropDown extends PureComponent<DropDownProps, { isOpen: boolean }> {
+  constructor(props: DropDownProps) {
+    super(props);
     this.state = {
       isOpen: false,
     };
@@ -93,6 +95,13 @@ class DropDown extends PureComponent {
     );
   }
 }
-const mapStateToProps = (state) => ({ index: state.indexSelectedCurrency });
 
-export default connect(mapStateToProps, { setCurrency })(getCurrency(DropDown));
+const connector = connect((state: RootState) => ({ index: state.indexSelectedCurrency }), {
+  setCurrency,
+});
+
+type PropsFromRedux = ConnectedProps<typeof connector>;
+export interface DropDownProps extends PropsFromRedux {
+  currencies: currency[];
+}
+export default connector(getCurrency(DropDown));

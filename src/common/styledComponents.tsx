@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Container = styled('div')`
+export const Container = styled('div')<cssProps>`
   display: flex;
   justify-content: space-between;
   width: ${(props) => props.width};
@@ -11,7 +11,13 @@ export const Container = styled('div')`
   padding: ${(props) => props.padding};
 `;
 
-export const Typography = styled('p')`
+export const Typography = styled('p')<{
+  fs?: string;
+  fw?: string;
+  lh?: string;
+  m?: string;
+  roboto?: boolean;
+}>`
   font-size: ${(props) => props.fs};
   font-weight: ${(props) => props.fw};
   line-height: ${(props) => props.lh};
@@ -22,7 +28,7 @@ export const Typography = styled('p')`
   }};
 `;
 
-export const Button = styled('button')`
+export const Button = styled('button')<cssProps>`
   width: 100%;
   font-family: ${(props) => props.theme.fonts.raleway};
   cursor: pointer;
@@ -38,3 +44,15 @@ export const Button = styled('button')`
     background-color: forestgreen;
   }
 `;
+
+interface cssProps {
+  width?: string;
+  height?: string;
+  padding?: string;
+  color?: string;
+  margin?: string;
+  alignItems?: string;
+  flexDirection?: string;
+  fs?: string;
+  fw?: string;
+}

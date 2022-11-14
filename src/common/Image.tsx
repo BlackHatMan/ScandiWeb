@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const Img = styled('img')`
+const Img = styled('img')<ImageProps>`
   width: 100%;
   height: 100%;
   object-fit: fill;
@@ -9,7 +9,7 @@ const Img = styled('img')`
   height: ${(props) => props.height + 'px'};
 `;
 
-export const Image = (props) => {
+export const Image = (props: ImageProps) => {
   const { src, width, height, alt, cursor, ...attr } = props;
   if (!src) {
     return <Img src={`https://via.placeholder.com/${width}x${height}?text=${alt}`} />;
@@ -26,3 +26,7 @@ export const Image = (props) => {
     />
   );
 };
+
+interface ImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
+  cursor?: string;
+}

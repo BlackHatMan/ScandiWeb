@@ -1,8 +1,10 @@
-import { Component } from 'react';
+import { PureComponent } from 'react';
 import styled from 'styled-components';
 import { Typography, Container } from '../common/styledComponents';
 import { CheckBox } from '../common/CheckBox';
 import { Image } from '../common/Image';
+import { ActionCreatorWithPayload } from '@reduxjs/toolkit/dist/createAction';
+import { product } from '../types/types';
 
 const Stack = styled('div')`
   display: inline-flex;
@@ -85,9 +87,10 @@ const WrapperButtons = styled('div')`
   right: 16px;
   bottom: 16px;
 `;
-class CartItem extends Component {
-  constructor() {
-    super();
+
+class CartItem extends PureComponent<CartItemProps, { imageNumber: number }> {
+  constructor(props: CartItemProps) {
+    super(props);
     this.state = {
       imageNumber: 0,
     };
@@ -106,7 +109,7 @@ class CartItem extends Component {
   };
 
   render() {
-    const { item, indexSelectedCurrency, symbol } = this.props;
+    const { item, indexSelectedCurrency, symbol, decreaseCount, increaseCount } = this.props;
     return (
       <Wrapper>
         <Container width="100%">
@@ -150,11 +153,11 @@ class CartItem extends Component {
           </Container>
           <Container>
             <Container flexDirection="column" alignItems="center" margin="0 24px">
-              <ButtonCount onClick={() => this.props.increaseCount(item.id)}>+</ButtonCount>
+              <ButtonCount onClick={() => increaseCount(item.id)}>+</ButtonCount>
               <Typography fs="24px" fw="500" lh="25px">
                 {item.count}
               </Typography>
-              <ButtonCount onClick={() => this.props.decreaseCount(item.id)}>-</ButtonCount>
+              <ButtonCount onClick={() => decreaseCount(item.id)}>-</ButtonCount>
             </Container>
             <WrapperImage>
               <Image
@@ -163,7 +166,7 @@ class CartItem extends Component {
                 width={200}
                 height={290}
               />
-              {this.props.item.gallery.length > 1 && (
+              {item.gallery.length > 1 && (
                 <WrapperButtons>
                   <BtnLeft onClick={this.imageHandlerLeft} />
                   <BtnRight onClick={this.imageHandlerRight} />
@@ -178,3 +181,11 @@ class CartItem extends Component {
 }
 
 export default CartItem;
+
+interface CartItemProps {
+  item: product;
+  decreaseCount: ActionCreatorWithPayload<any, string>;
+  increaseCount: ActionCreatorWithPayload<any, string>;
+  indexSelectedCurrency: number;
+  symbol: string;
+}
