@@ -2,7 +2,7 @@ import { PureComponent, ComponentClass } from 'react';
 import { Link as RouterLink, useLocation, LinkProps } from 'react-router-dom';
 import styled from 'styled-components';
 
-const StyledLink = styled(RouterLink)<{ active: boolean }>`
+const StyledLink = styled(RouterLink)<{ active: string }>`
   font-weight: 600;
   font-size: 16px;
   line-height: 120%;
@@ -16,9 +16,9 @@ const StyledLink = styled(RouterLink)<{ active: boolean }>`
   &:after {
     content: '';
     position: absolute;
-    width: ${(props) => (props.active === true ? '100%' : '0')};
+    width: ${(props) => (props.active === 'true' ? '100%' : '0')};
     height: 2px;
-    left: ${(props) => (props.active === false ? '0' : '50%')};
+    left: ${(props) => (props.active === 'false' ? '0' : '50%')};
     bottom: 0;
     background-color: ${(props) => props.theme.color.green};
     transition: all ease-in-out 0.2s;
@@ -32,7 +32,7 @@ const StyledLink = styled(RouterLink)<{ active: boolean }>`
 
 class Link extends PureComponent<props> {
   render() {
-    const active = this.props.location === this.props.to;
+    const active = (this.props.location === this.props.to).toString();
     return (
       <StyledLink to={this.props.to} active={active}>
         {this.props.children}

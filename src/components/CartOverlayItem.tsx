@@ -49,12 +49,13 @@ class CartOverlayItem extends PureComponent<CartOverlayItemProps> {
                           return (
                             <CheckBox
                               key={attr.id + el.id}
-                              small
+                              id={el.id}
                               value={el.value}
                               type={attr.type}
                               nameGroup={attr.name + item.id}
                               defaultChecked={el.checked}
                               disabled={!el.checked}
+                              small
                             />
                           );
                         })}

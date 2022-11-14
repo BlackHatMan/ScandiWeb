@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { InputHTMLAttributes, PureComponent } from 'react';
 import styled from 'styled-components';
 import { css } from 'styled-components';
 
@@ -26,12 +26,12 @@ const Color = styled('label')<InputProps>`
   transition: 0.2s all linear;
   ${(props) =>
     props.small &&
-    css<InputProps>`
-      width: ${(props) => props.width || '1rem'};
-      height: ${(props) => props.height || '1rem'};
+    css`
+      width: 1rem;
+      height: 1rem;
     `}
   ${HiddenCheckBox}:checked + && {
-    outline: ${(props) => `2px solid ${props.value}`};
+    outline: ${(props) => `2px solid ${props.theme.color.green}`};
   }
 `;
 
@@ -49,11 +49,11 @@ const Text = styled('label')<InputProps>`
   height: ${(props) => props.height || '3rem'};
   ${(props) =>
     props.small &&
-    css<InputProps>`
+    css`
       padding: 0.2rem;
-      width: ${(props) => props.width || '100%'};
       min-width: 1.5rem;
-      height: ${(props) => props.height || '1.5rem'};
+      width: 100%;
+      height: 1.5rem;
     `}
   ${HiddenCheckBox}:checked + && {
     color: white;
@@ -63,24 +63,28 @@ const Text = styled('label')<InputProps>`
 
 export class CheckBox extends PureComponent<CheckboxProps> {
   render() {
-    const { id, value, type, nameGroup, required, ...rest } = this.props;
+    const { id, value, type, nameGroup, small, ...rest } = this.props;
     const ID = `${nameGroup}-${id}`;
     return (
       <CheckBoxContainer>
-        <HiddenCheckBox id={ID} name={nameGroup} required={required} value={value} {...rest} />
-        {type === 'text' && <Text htmlFor={ID}>{value}</Text>}
-        {type === 'swatch' && <Color htmlFor={ID} value={value} />}
+        <HiddenCheckBox id={ID} name={nameGroup} value={value} {...rest} />
+        {type === 'text' && (
+          <Text htmlFor={ID} small={small}>
+            {value}
+          </Text>
+        )}
+        {type === 'swatch' && <Color htmlFor={ID} small={small} value={value} />}
       </CheckBoxContainer>
     );
   }
 }
 
-interface CheckboxProps extends React.ImgHTMLAttributes<HTMLInputElement> {
+interface CheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
   type: string;
-  is: string;
+  id: string;
   value: string;
   nameGroup: string;
-  required?: boolean;
+  small?: boolean;
 }
 
 interface InputProps {
