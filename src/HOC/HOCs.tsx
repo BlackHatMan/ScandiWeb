@@ -13,7 +13,7 @@ interface categoryData {
   };
 }
 
-export function getCategory(Component: ComponentClass<propsCategory>) {
+export function withGetCategory(Component: ComponentClass<propsCategory>) {
   return function ComponentWithData(props: any) {
     const param = useParams();
 
@@ -37,7 +37,7 @@ export function getCategory(Component: ComponentClass<propsCategory>) {
   };
 }
 
-export function getProduct(Component: ComponentClass<ProductProps>) {
+export function withGetProduct(Component: ComponentClass<ProductProps>) {
   return function ComponentWithData(props: any) {
     const param = useParams();
     const navigate = useNavigate();
@@ -60,7 +60,7 @@ export function getProduct(Component: ComponentClass<ProductProps>) {
   };
 }
 
-export function getCurrency(Component: ComponentClass<DropDownProps>) {
+export function withGetCurrency(Component: ComponentClass<DropDownProps>) {
   return function ComponentWithData(props: any) {
     const { data, error } = useQuery<{ currencies: currency }>(GET_CURRENCY);
 

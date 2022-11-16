@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import React from 'react';
 import { store, persistor } from './data/store';
-import Theme from './hok/Theme';
+import Theme from './HOC/Theme';
 import App from './App';
 import './index.css';
 

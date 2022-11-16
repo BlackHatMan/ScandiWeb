@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Typography, Container } from '../common/styledComponents';
 import { addItem } from '../data/slice';
-import { getCategory } from '../hok/hoks';
+import { withGetCategory } from '../HOC/HOCs';
 import CartLogo from '../svg/Card_item.svg';
 import { Image } from '../common/Image';
 import { product } from '../types/types';
@@ -139,4 +139,4 @@ export interface propsCategory extends PropsFromRedux {
   products: product[];
   param?: string;
 }
-export default connector(getCategory(CategoryPage));
+export default connector(withGetCategory(CategoryPage));

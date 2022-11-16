@@ -3,7 +3,7 @@ import { connect, ConnectedProps } from 'react-redux';
 import styled from 'styled-components';
 import { setCurrency } from '../data/slice';
 import { RootState } from '../data/store';
-import { getCurrency } from '../hok/hoks';
+import { withGetCurrency } from '../HOC/HOCs';
 import { currency } from './../types/types';
 
 const DropDownContainer = styled('div')`
@@ -104,4 +104,4 @@ type PropsFromRedux = ConnectedProps<typeof connector>;
 export interface DropDownProps extends PropsFromRedux {
   currencies: currency[];
 }
-export default connector(getCurrency(DropDown));
+export default connector(withGetCurrency(DropDown));

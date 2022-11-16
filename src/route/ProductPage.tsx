@@ -5,7 +5,7 @@ import { Markup } from 'interweave';
 import { Typography, Button } from '../common/styledComponents';
 import { Image } from '../common/Image';
 import { CheckBox } from '../common/CheckBox';
-import { getProduct } from '../hok/hoks';
+import { withGetProduct } from '../HOC/HOCs';
 import { addItem } from '../data/slice';
 import { RootState } from '../data/store';
 import { product } from '../types/types';
@@ -178,4 +178,4 @@ export interface ProductProps extends PropsFromRedux {
   product: product;
   navigate: (arg: number) => void;
 }
-export default connector(getProduct(ProductPage));
+export default connector(withGetProduct(ProductPage));
