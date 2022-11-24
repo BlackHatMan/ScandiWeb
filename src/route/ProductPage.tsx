@@ -92,8 +92,6 @@ class ProductPage extends Component<ProductProps, { path: string }> {
         prices: product.prices,
         count: 1,
       });
-
-      this.props.navigate(-1);
     }
   };
 
