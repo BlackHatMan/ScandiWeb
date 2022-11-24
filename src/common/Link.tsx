@@ -12,13 +12,13 @@ const StyledLink = styled(RouterLink)<{ active: string }>`
   margin: 0 1rem;
   padding-bottom: 1rem;
   position: relative;
-
+  left: 0;
   &:after {
     content: '';
     position: absolute;
     width: ${(props) => (props.active === 'true' ? '100%' : '0')};
     height: 2px;
-    left: ${(props) => (props.active === 'false' ? '0' : '50%')};
+    left: 0;
     bottom: 0;
     background-color: ${(props) => props.theme.color.green};
     transition: all ease-in-out 0.2s;
