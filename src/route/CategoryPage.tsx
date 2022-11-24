@@ -15,6 +15,7 @@ const WrapperPage = styled('div')`
   grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
   gap: 40px;
   overflow: auto;
+  padding: 10px;
 `;
 
 const WrapperImage = styled('div')`
@@ -40,8 +41,7 @@ const WrapperCard = styled(Container)<{ inStock: boolean }>`
   opacity: ${(props) => (props.inStock ? 1 : 0.5)};
   &:hover {
     transition: ease 0.3s background;
-    background-color: #ffffff;
-    box-shadow: 0px 4px 35px rgba(168, 172, 176, 0.19);
+    box-shadow: 0px 0px 25px 4px rgb(168 172 176 / 19%);
     ${Logo} {
       opacity: 1;
     }

@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { ComponentClass } from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_CATEGORY, GET_PRODUCT, GET_CURRENCY } from '../data/query';
