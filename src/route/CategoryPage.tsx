@@ -99,7 +99,7 @@ class CategoryPage extends PureComponent<propsCategory> {
           {products.map((item, i) => {
             return (
               <WrapperCard key={i} inStock={item.inStock}>
-                <Link to={item.inStock ? item.id : ''}>
+                <Link to={item.id}>
                   <WrapperImage>
                     <Image src={item.gallery[0]} alt={item.name} width={350} height={340} />
 
