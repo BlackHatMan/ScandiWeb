@@ -116,7 +116,7 @@ class CategoryPage extends PureComponent<propsCategory> {
                 </Link>
                 <div>
                   <Typography fw="300" fs="16px" lh="29px" m="24px 0 0 0">
-                    {item.name}
+                    {item.brand} {item.name}
                   </Typography>
                   <Typography fw="500" fs="16px" lh="29px">
                     {item.prices[this.props.index].amount}
