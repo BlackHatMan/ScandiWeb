@@ -68,10 +68,14 @@ const Title = styled('h1')`
 class CategoryPage extends PureComponent<propsCategory> {
   addToCart = (e: BaseSyntheticEvent<MouseEvent>, product: product) => {
     e.preventDefault();
+
+    let valueSelectedAttributes = '';
+
     const attributes = product.attributes.map((el) => {
       return {
         ...el,
         items: el.items.map((attr, i) => {
+          valueSelectedAttributes += '/' + attr.id;
           return {
             ...attr,
             checked: i === 0,
@@ -81,7 +85,7 @@ class CategoryPage extends PureComponent<propsCategory> {
     });
 
     this.props.addItem({
-      id: product.id,
+      id: product.id + valueSelectedAttributes,
       attributes,
       brand: product.brand,
       gallery: product.gallery,

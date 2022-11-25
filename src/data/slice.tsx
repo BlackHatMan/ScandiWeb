@@ -13,7 +13,14 @@ const itemSlice = createSlice({
   initialState: initialState,
   reducers: {
     addItem: (state, { payload }) => {
-      state.items.push(payload);
+      state.items.some((el) => {
+        return el.id === payload.id;
+      })
+        ? (state.items = state.items.map((el) => {
+            return el.id === payload.id ? { ...el, count: el.count + 1 } : el;
+          }))
+        : state.items.push(payload);
+
       state.total = totalCostHelper(state.items, state.indexSelectedCurrency);
     },
     increaseCount: (state, { payload }) => {

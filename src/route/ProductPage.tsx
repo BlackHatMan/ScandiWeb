@@ -70,11 +70,16 @@ class ProductPage extends Component<ProductProps, { path: string }> {
     const formData = Object.fromEntries(new FormData(target));
     /* add checked  field */
 
+    let valueSelectedAttributes = '';
+
     if (target.checkValidity()) {
       const attributes = this.props.product.attributes.map((el) => {
         return {
           ...el,
           items: el.items.map((attr) => {
+            if (attr.value === formData[el.id]) {
+              valueSelectedAttributes += '/' + attr.id;
+            }
             return {
               ...attr,
               checked: attr.value === formData[el.id],
@@ -84,7 +89,7 @@ class ProductPage extends Component<ProductProps, { path: string }> {
       });
 
       this.props.addItem({
-        id: product.id,
+        id: product.id + valueSelectedAttributes,
         attributes,
         brand: product.brand,
         gallery: product.gallery,

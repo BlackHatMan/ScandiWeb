@@ -184,8 +184,8 @@ export default CartItem;
 
 interface CartItemProps {
   item: product;
-  decreaseCount: ActionCreatorWithPayload<any, string>;
-  increaseCount: ActionCreatorWithPayload<any, string>;
+  decreaseCount: ActionCreatorWithPayload<string, string>;
+  increaseCount: ActionCreatorWithPayload<string, string>;
   indexSelectedCurrency: number;
   symbol: string;
 }
