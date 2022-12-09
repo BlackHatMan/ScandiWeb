@@ -70,11 +70,16 @@ class ProductPage extends Component<ProductProps, { path: string }> {
     const formData = Object.fromEntries(new FormData(target));
     /* add checked  field */
 
+    let valueSelectedAttributes = '';
+
     if (target.checkValidity()) {
       const attributes = this.props.product.attributes.map((el) => {
         return {
           ...el,
           items: el.items.map((attr) => {
+            if (attr.value === formData[el.id]) {
+              valueSelectedAttributes += '/' + attr.id;
+            }
             return {
               ...attr,
               checked: attr.value === formData[el.id],
@@ -84,7 +89,7 @@ class ProductPage extends Component<ProductProps, { path: string }> {
       });
 
       this.props.addItem({
-        id: product.id,
+        id: product.id + valueSelectedAttributes,
         attributes,
         brand: product.brand,
         gallery: product.gallery,
@@ -92,13 +97,11 @@ class ProductPage extends Component<ProductProps, { path: string }> {
         prices: product.prices,
         count: 1,
       });
-
-      this.props.navigate(-1);
     }
   };
 
   render() {
-    const { gallery, brand, name, attributes, prices, description } = this.props.product;
+    const { gallery, brand, name, attributes, prices, description, inStock } = this.props.product;
 
     return (
       <Form onSubmit={(e: FormEvent<HTMLFormElement>) => this.addToCart(e, this.props.product)}>
@@ -161,7 +164,7 @@ class ProductPage extends Component<ProductProps, { path: string }> {
               {this.props.symbol}
             </Typography>
           </div>
-          <Button type="submit" height="52px" color="white">
+          <Button disabled={!inStock} type="submit" height="52px" color="white">
             ADD TO CART
           </Button>
           <DescriptionContainer>

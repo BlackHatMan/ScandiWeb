@@ -40,7 +40,7 @@ class CartOverlayItem extends PureComponent<CartOverlayItemProps> {
 
                 {item.attributes.map((attr) => {
                   return (
-                    <div style={{ fontSize: '14px', fontWeight: '500' }} key={attr.id}>
+                    <div style={{ fontSize: '14px', fontWeight: '500' }} key={Math.random()}>
                       <Typography roboto fs="14px" fw="500" lh="16px" m="4px 0">
                         {attr.name}
                       </Typography>
@@ -48,7 +48,7 @@ class CartOverlayItem extends PureComponent<CartOverlayItemProps> {
                         {attr.items.map((el) => {
                           return (
                             <CheckBox
-                              key={attr.id + el.id}
+                              key={Math.random()}
                               id={el.id}
                               value={el.value}
                               type={attr.type}

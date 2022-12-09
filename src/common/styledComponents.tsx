@@ -43,6 +43,10 @@ export const Button = styled('button')<cssProps>`
   &:hover {
     background-color: forestgreen;
   }
+  :disabled {
+    background-color: #cccccc;
+    color: #666666;
+  }
 `;
 
 interface cssProps {

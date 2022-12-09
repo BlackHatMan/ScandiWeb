@@ -31,7 +31,7 @@ const BasketContainer = styled(Container)`
   top: 0;
   right: 70px;
   width: 345px;
-  max-height: calc(100vh - 80px);
+  max-height: calc(76vh - 80px);
   padding: 32px 16px;
   display: flex;
   flex-direction: column;

@@ -1,4 +1,5 @@
 import { ThemeProvider } from 'styled-components';
+import {ReactNode} from "react";
 
 const theme = {
   color: {
@@ -13,7 +14,7 @@ const theme = {
   },
 };
 
-const Theme = ({ children }: { children: React.ReactNode }) => {
+const Theme = ({ children }: { children: ReactNode }) => {
   return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
 };
 

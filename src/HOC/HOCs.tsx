@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { ComponentClass } from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_CATEGORY, GET_PRODUCT, GET_CURRENCY } from '../data/query';
@@ -40,7 +40,6 @@ export function withGetCategory(Component: ComponentClass<propsCategory>) {
 export function withGetProduct(Component: ComponentClass<ProductProps>) {
   return function ComponentWithData(props: any) {
     const param = useParams();
-    const navigate = useNavigate();
 
     const { loading, data, error } = useQuery<{ product: product }>(GET_PRODUCT, {
       variables: {
@@ -56,7 +55,7 @@ export function withGetProduct(Component: ComponentClass<ProductProps>) {
       return null;
     }
 
-    return <Component {...props} product={data.product} navigate={navigate} />;
+    return <Component {...props} product={data.product} />;
   };
 }
 

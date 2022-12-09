@@ -36,7 +36,7 @@ const BtnRight = styled('button')`
   height: 24px;
   border: none;
   background: rgba(0, 0, 0, 0.73);
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
   &::after {
     position: absolute;
     content: '';
@@ -60,8 +60,8 @@ const BtnLeft = styled('button')`
   height: 24px;
   border: none;
   background: rgba(0, 0, 0, 0.73);
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  &:: after {
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  &::after {
     position: absolute;
     content: '';
     width: 9px;
@@ -184,8 +184,8 @@ export default CartItem;
 
 interface CartItemProps {
   item: product;
-  decreaseCount: ActionCreatorWithPayload<any, string>;
-  increaseCount: ActionCreatorWithPayload<any, string>;
+  decreaseCount: ActionCreatorWithPayload<string>;
+  increaseCount: ActionCreatorWithPayload<string>;
   indexSelectedCurrency: number;
   symbol: string;
 }

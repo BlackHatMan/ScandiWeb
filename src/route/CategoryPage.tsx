@@ -15,6 +15,7 @@ const WrapperPage = styled('div')`
   grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
   gap: 40px;
   overflow: auto;
+  padding: 10px;
 `;
 
 const WrapperImage = styled('div')`
@@ -39,9 +40,8 @@ const WrapperCard = styled(Container)<{ inStock: boolean }>`
   padding: 16px;
   opacity: ${(props) => (props.inStock ? 1 : 0.5)};
   &:hover {
-    transition: ease 0.3s background;
-    background-color: #ffffff;
-    box-shadow: 0px 4px 35px rgba(168, 172, 176, 0.19);
+    transition: background ease 0.3s;
+    box-shadow: 0 0 25px 4px rgb(168 172 176 / 19%);
     ${Logo} {
       opacity: 1;
     }
@@ -60,7 +60,7 @@ const StockTitle = styled('span')`
 const Title = styled('h1')`
   font-size: 42px;
   font-weight: 400;
-  font-family: Raleway;
+  font-family: Raleway,sans-serif;
   margin: 60px 0 60px 10px;
   text-transform: uppercase;
   color: ${(props) => props.theme.color.black};
@@ -68,10 +68,14 @@ const Title = styled('h1')`
 class CategoryPage extends PureComponent<propsCategory> {
   addToCart = (e: BaseSyntheticEvent<MouseEvent>, product: product) => {
     e.preventDefault();
+
+    let valueSelectedAttributes = '';
+
     const attributes = product.attributes.map((el) => {
       return {
         ...el,
         items: el.items.map((attr, i) => {
+          valueSelectedAttributes += '/' + attr.id;
           return {
             ...attr,
             checked: i === 0,
@@ -81,7 +85,7 @@ class CategoryPage extends PureComponent<propsCategory> {
     });
 
     this.props.addItem({
-      id: product.id,
+      id: product.id + valueSelectedAttributes,
       attributes,
       brand: product.brand,
       gallery: product.gallery,
@@ -99,7 +103,7 @@ class CategoryPage extends PureComponent<propsCategory> {
           {products.map((item, i) => {
             return (
               <WrapperCard key={i} inStock={item.inStock}>
-                <Link to={item.inStock ? item.id : ''}>
+                <Link to={item.id}>
                   <WrapperImage>
                     <Image src={item.gallery[0]} alt={item.name} width={350} height={340} />
 
@@ -116,7 +120,7 @@ class CategoryPage extends PureComponent<propsCategory> {
                 </Link>
                 <div>
                   <Typography fw="300" fs="16px" lh="29px" m="24px 0 0 0">
-                    {item.name}
+                    {item.brand} {item.name}
                   </Typography>
                   <Typography fw="500" fs="16px" lh="29px">
                     {item.prices[this.props.index].amount}
