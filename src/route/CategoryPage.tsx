@@ -40,8 +40,8 @@ const WrapperCard = styled(Container)<{ inStock: boolean }>`
   padding: 16px;
   opacity: ${(props) => (props.inStock ? 1 : 0.5)};
   &:hover {
-    transition: ease 0.3s background;
-    box-shadow: 0px 0px 25px 4px rgb(168 172 176 / 19%);
+    transition: background ease 0.3s;
+    box-shadow: 0 0 25px 4px rgb(168 172 176 / 19%);
     ${Logo} {
       opacity: 1;
     }
@@ -60,7 +60,7 @@ const StockTitle = styled('span')`
 const Title = styled('h1')`
   font-size: 42px;
   font-weight: 400;
-  font-family: Raleway;
+  font-family: Raleway,sans-serif;
   margin: 60px 0 60px 10px;
   text-transform: uppercase;
   color: ${(props) => props.theme.color.black};

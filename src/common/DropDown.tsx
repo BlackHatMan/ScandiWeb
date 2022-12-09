@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { setCurrency } from '../data/slice';
 import { RootState } from '../data/store';
 import { withGetCurrency } from '../HOC/HOCs';
-import { currency } from './../types/types';
+import { currency } from '../types/types';
 
 const DropDownContainer = styled('div')`
   width: 50px;
